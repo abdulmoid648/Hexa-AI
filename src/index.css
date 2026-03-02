@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../src";
 
 * {
   margin: 0;
@@ -31,4 +32,46 @@ body {
 
 .voice-bar {
   animation: bar-pump 2s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+@keyframes soundwave {
+
+  0%,
+  100% {
+    height: 30%;
+  }
+
+  50% {
+    height: 90%;
+  }
+}
+
+.soundwave-bar {
+  animation: soundwave 1.5s ease-in-out infinite;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
