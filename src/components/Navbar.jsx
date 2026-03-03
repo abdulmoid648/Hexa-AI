@@ -7,11 +7,11 @@ export default function Navbar() {
     return (
         <nav className="w-full bg-white border-b-2 border-gray-100 pl-20 pr-6 h-20 ">
             <div className="max-w-7xl mx-auto flex items-center justify-between h-full">
-                <div className='w-2'></div>
+
                 {/* Logo */}
                 <div className="flex items-center gap-2 ml-8 mr-20  ">
                     <img src={logo} alt="Hexa AI Logo" className="h-10 w-auto" />
-                    <span className="text-2xl  text-gray-900 tracking-tight">Hexa AI</span>
+                    <span className="text-2xl text-gray-900 tracking-tight">Hexa AI</span>
                 </div>
 
                 {/* Center Nav Links */}
