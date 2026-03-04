@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import logo from '../assets/logo2.png'
+import logo from '../assets/logo.png'
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -9,7 +9,7 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto flex items-center justify-between h-full">
 
                 {/* Logo */}
-                <div className="flex items-center gap-2 ml-8 mr-20  ">
+                <div className="flex items-center gap-2 ml-8 mr-20 translate-x-15 ">
                     <img src={logo} alt="Hexa AI Logo" className="h-10 w-auto" />
                     <span className="text-2xl text-gray-900 tracking-tight">Hexa AI</span>
                 </div>

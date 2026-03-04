@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import logo from '../assets/logo.png'
 import mobileMockup from '../assets/Mobile.png'
 import VoiceBars from '../components/VoiceBars'
 import { PhoneCall } from 'lucide-react'
@@ -18,19 +19,18 @@ const features = [
     "Navigate IVR"
 ];
 
-const lines = [
-    { x1: "30%", y1: "28%", x2: "72%", y2: "24%" },
-    { x1: "30%", y1: "40%", x2: "72%", y2: "36%" },
-    { x1: "30%", y1: "52%", x2: "72%", y2: "48%" },
-    { x1: "30%", y1: "64%", x2: "72%", y2: "60%" },
-    { x1: "30%", y1: "76%", x2: "72%", y2: "72%" }
-]
-
 
 
 export default function Landing() {
     const [card4InView, setCard4InView] = useState(false);
     const card4Ref = useRef(null);
+
+    const [selectedDocs, setSelectedDocs] = useState(['terms']);
+    const [showValues, setShowValues] = useState(false);
+
+    const toggleDoc = (doc) => {
+        setSelectedDocs(prev => prev.includes(doc) ? [] : [doc]);
+    };
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -152,23 +152,68 @@ export default function Landing() {
                         </div>
 
                         {/* Right: Gradient preview card */}
-                        <div className="w-full h-full rounded-2xl overflow-hidden shadow-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #4f9cf9 0%, #a78bfa 55%, #c084fc 100%)', transform: 'translateX(50px)' }}>
+                        <div className="w-full h-full rounded-2xl overflow-hidden shadow-lg flex items-center justify-center relative" style={{ background: 'linear-gradient(135deg, #4f9cf9 0%, #a78bfa 55%, #c084fc 100%)', transform: 'translateX(50px)' }}>
 
-                            {/* Knowledge Base widget - centered */}
-                            <div className="bg-white rounded-xl shadow-xl border border-gray-100 flex flex-col" style={{ width: '200px', padding: '12px', gap: '8px' }}>
-                                <div className="flex items-center gap-2 border-b border-gray-100" style={{ paddingBottom: '8px' }}>
-                                    <div className="w-5 h-5 bg-yellow-400 rounded flex items-center justify-center text-xs">💡</div>
-                                    <span className="text-xs font-bold text-gray-600">Knowledge Base</span>
-                                    <div className="ml-auto w-4 h-4 rounded bg-yellow-400 text-white flex items-center justify-center text-xs font-bold">+</div>
+                            <div className="flex gap-4 items-center">
+                                {/* Knowledge Base widget - centered */}
+                                <div className="bg-white rounded-xl shadow-xl border border-gray-100 flex flex-col transform scale-90 hover:scale-100 transition-all duration-300 origin-center" style={{ width: '210px', height: '125px', padding: '12px', gap: '8px' }}>
+                                    <div className="flex items-center gap-2 border-b border-gray-100" style={{ paddingBottom: '8px' }}>
+                                        <div className="w-5 h-5 bg-yellow-400 rounded flex items-center justify-center text-xs">💡</div>
+                                        <span className="text-xs font-bold text-gray-600">Knowledge Base</span>
+                                        <div
+                                            onClick={() => {
+                                                if (selectedDocs.length > 0) setShowValues(true);
+                                            }}
+                                            className="ml-auto w-4 h-4 rounded bg-yellow-400 text-white flex items-center justify-center text-xs font-bold cursor-pointer hover:bg-yellow-500 transition-colors"
+                                        >
+                                            +
+                                        </div>
+                                    </div>
+                                    <div
+                                        onClick={() => toggleDoc('terms')}
+                                        className="flex items-center gap-2 bg-gray-50 rounded-lg border border-gray-100 cursor-pointer hover:bg-gray-100 transition-colors"
+                                        style={{ padding: '6px 8px' }}
+                                    >
+                                        <div className={`w-3 h-3 border rounded-full flex items-center justify-center ${selectedDocs.includes('terms') ? 'border-blue-400 bg-blue-50' : 'border-gray-300'}`}>
+                                            {selectedDocs.includes('terms') && <div className="w-1.5 h-1.5 bg-blue-400 rounded-full" />}
+                                        </div>
+                                        <span className="text-gray-500 font-medium" style={{ fontSize: '10px' }}>Terms & Conditions</span>
+                                    </div>
+                                    <div
+                                        onClick={() => toggleDoc('privacy')}
+                                        className="flex items-center gap-2 bg-gray-50 rounded-lg border border-gray-100 cursor-pointer hover:bg-gray-100 transition-colors"
+                                        style={{ padding: '6px 8px' }}
+                                    >
+                                        <div className={`w-3 h-3 border rounded-full flex items-center justify-center ${selectedDocs.includes('privacy') ? 'border-blue-400 bg-blue-50' : 'border-gray-300'}`}>
+                                            {selectedDocs.includes('privacy') && <div className="w-1.5 h-1.5 bg-blue-400 rounded-full" />}
+                                        </div>
+                                        <span className="text-gray-500 font-medium" style={{ fontSize: '10px' }}>Privacy Policy</span>
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-2 bg-gray-50 rounded-lg border border-gray-100" style={{ padding: '6px 8px' }}>
-                                    <div className="w-3 h-3 border border-blue-400 rounded-sm bg-blue-50" />
-                                    <span className="text-gray-500 font-medium" style={{ fontSize: '10px' }}>Terms & Conditions</span>
-                                </div>
-                                <div className="flex items-center gap-2 bg-gray-50 rounded-lg border border-gray-100" style={{ padding: '6px 8px' }}>
-                                    <div className="w-3 h-3 border border-gray-300 rounded-sm" />
-                                    <span className="text-gray-500 font-medium" style={{ fontSize: '10px' }}>Privacy Policy</span>
-                                </div>
+
+                                {/* Extracted Values widget */}
+                                {showValues && selectedDocs.length > 0 && (
+                                    <div className="bg-white rounded-xl shadow-xl border border-gray-100 flex flex-col transform scale-100 transition-all duration-300" style={{ width: '210px', height: '125px', padding: '12px', gap: '8px' }}>
+                                        <div className="flex items-center gap-2 border-b border-gray-100" style={{ paddingBottom: '8px' }}>
+                                            <div className="w-5 h-5 bg-green-400 rounded flex items-center justify-center text-xs text-white">✓</div>
+                                            <span className="text-xs font-bold text-gray-600">
+                                                {selectedDocs[0] === 'terms' ? 'Terms & Conditions' : 'Privacy Policy'}
+                                            </span>
+                                            <div
+                                                onClick={() => setShowValues(false)}
+                                                className="ml-auto w-4 h-4 rounded text-gray-400 flex items-center justify-center text-xs font-bold cursor-pointer hover:bg-gray-100 transition-colors"
+                                            >
+                                                ✕
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-col gap-1 bg-gray-50 rounded-lg border border-gray-100" style={{ padding: '6px 8px' }}>
+                                            <span className="text-gray-700 font-semibold" style={{ fontSize: '10px' }}>
+                                                {selectedDocs[0] === 'terms' ? 'Terms & Conditions' : 'Privacy Policy'}
+                                            </span>
+                                            <span className="text-gray-400" style={{ fontSize: '8px' }}>Added to KB • Ready</span>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
                         </div>
@@ -193,8 +238,8 @@ export default function Landing() {
                         >
                             <div className="relative z-10 ">
 
-                                <h3 className="text-xl font-medium text-white mb-0 translate-x-5 translate-y-1">Fully Complaint Platform</h3>
-                                <p className="text-blue-50 text-base opacity-90 leading-relaxed translate-x-">
+                                <h3 className="text-xl font-medium text-white mb-0 md:translate-x-5 md:translate-y-1">Fully Complaint Platform</h3>
+                                <p className="text-blue-50 text-base opacity-90 leading-relaxed md:translate-x-5 md:translate-y-4">
                                     Hexa Ai is SOC 2 Type 1&2, HIPAA, and GDPR compliant, meeting all industry compliance standards.
                                 </p>
                             </div>
@@ -374,23 +419,20 @@ export default function Landing() {
                         </div>
 
                         {/* Card 5: Reliable and Stable Platform */}
-                        <div className="rounded-[2rem] p-10 flex flex-col bg-[#f8fafc] overflow-hidden relative min-h border border-gray-100 shadow-sm">
-                            <div className="relative z-10 translate-y-10 translate-x-2">
+                        <div className="rounded-[2rem] flex flex-col bg-[#f8fafc] overflow-hidden relative h-105 w-110 border border-gray-100 shadow-sm -translate-x-5">
+                            <div className="relative z-10 translate-y-10 ">
 
-                                <h3 className="text-2xl font-semibold text-gray-900 mb-4 leading-tight">
+                                <h3 className="text-2xl font-semibold text-gray-900 mb-4 leading-tight translate-x-5">
                                     Reliable and Stable Platform <br /> You can trust
                                 </h3>
-                                <p className="text-gray-500 text-base leading-relaxed mb-10">
+                                <p className="text-gray-500 text-lg  mb-10 md:translate-x-5 md:translate-y-2">
                                     With average 99.99% uptime and effortless fallback, Hexa AI ensures your phone callers are always production-ready.
                                 </p>
 
-                                <div className="flex items-center gap-2 mt-auto">
-                                    <div className="w-6 h-6 bg-blue-500 rounded-md flex items-center justify-center">
-                                        <svg viewBox="0 0 24 24" className="w-4 h-4 text-white fill-current">
-                                            <path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z" />
-                                        </svg>
-                                    </div>
-                                    <span className="font-bold text-gray-800 text-xl tracking-tight">Hexa Ai</span>
+                                <div className="flex items-center gap-2 mt-auto md:translate-x-5 md:translate-y-10">
+                                    <img src={logo} alt="Hexa Ai" className="h-8 w-auto" />
+                                    <span className="text-2xl text-gray-900 tracking-tight">Hexa AI</span>
+
                                 </div>
                             </div>
                         </div>
@@ -445,24 +487,21 @@ export default function Landing() {
                             ].map((node, i) => (
                                 <div key={i} className="absolute transform -translate-x-1/2 -translate-y-1/2 z-10" style={{ left: node.x, top: node.y }}>
                                     {/* Outer dashed/cyan border container with soft background */}
-                                    <div className="bg-[#f8fbff] border-[1.5px] border-[#38bdf8] rounded-[1.25rem] flex items-center justify-center p-[6px] sm:p-[8px] shadow-sm">
+                                    <div className="w-[55px] h-[65px] md:w-[85px] md:h-[85px]  rounded-[0.85rem] shadow-[0_4px_12px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.04)] flex items-center justify-center overflow-hidden border border-cyan-200">
+
                                         {/* Inner actual box containing the image */}
                                         <div className="w-[55px] h-[55px] sm:w-[65px] sm:h-[65px] bg-white rounded-[0.85rem] shadow-[0_4px_12px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.04)] flex items-center justify-center overflow-hidden border border-gray-100">
                                             <img src={node.src} alt="Integration" className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
                                         </div>
                                     </div>
+
                                 </div>
                             ))}
 
                             {/* Central Hexa AI Node */}
-                            <div className="absolute transform -translate-x-1/2 -translate-y-1/2 z-10" style={{ left: '50%', top: '87.5%' }}>
-                                <div className="bg-white border border-blue-200/80 rounded-full py-2.5 px-6 shadow-[0_4px_15px_rgba(0,0,0,0.05)] flex items-center gap-2">
-                                    <div className="w-5 h-5 bg-blue-500 rounded flex items-center justify-center">
-                                        <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-white fill-current">
-                                            <path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z" />
-                                        </svg>
-                                    </div>
-                                    <span className="font-bold text-gray-800 text-sm tracking-tight text-[#2d68ff]">Hexa Ai</span>
+                            <div className=" w-[65px] h-[95px] absolute transform -translate-x-5 -translate-y-4 z-10" style={{ left: '50%', top: '87.5%' }}>
+                                <div className="bg-white border border-blue-200/80 rounded-full py-2.5 px-6 shadow-[0_4px_15px_rgba(0,0,0,0.05)] flex items-center gap-2 ">
+                                    <img src={logo} alt="Hexa Ai" className="h-6 w-auto translate-x-4" />
                                 </div>
                             </div>
 
@@ -473,7 +512,7 @@ export default function Landing() {
             </section>
 
             {/* Try Our Live Demo Section */}
-            <section className="py-24 bg-[#f4f6fb] relative">
+            <section className="py-24 live-demo-bg relative">
                 <div className='h-30'></div>
                 <div className="max-w-6xl mx-auto px-4">
                     {/* Header */}
@@ -622,28 +661,28 @@ export default function Landing() {
                         </div>
 
                         {/* Column 3: Enter Details Form */}
-                        <div className=" bg-[#333333] rounded-2xl p-8 flex flex-col gap-6 shadow-xl min-h-100 min-w-90 translate-y-20 translate-x-30">
+                        <div className=" bg-[#333333] rounded-2xl p-8 flex flex-col gap-6 shadow-xl min-h-110 min-w-100 translate-y-20 translate-x-30">
                             <h3 className="text-2xl font-normal text-white translate-y-5 translate-x-3">Enter Details</h3>
 
-                            <div className="flex flex-col gap-4 flex-1 translate-y-5 translate-x-3">
+                            <div className="flex flex-col gap-4 flex-1 translate-y-5 translate-x-5">
                                 <input
                                     type="text"
                                     placeholder="123-456-7890"
-                                    className=" h-10 w-80 bg-transparent border border-gray-400 text-white placeholder-gray-500 rounded-xl px-4 py-10 text-sm focus:outline-none  "
+                                    className=" h-15 w-90 bg-transparent border border-gray-400 text-white placeholder-gray-500 rounded-xl px-4 py-10 text-sm focus:outline-none  "
                                 />
                                 <input
                                     type="text"
                                     placeholder="Wilson"
-                                    className="h-10 w-80 bg-transparent border border-gray-400 text-white placeholder-gray-500 rounded-xl px-4 py-4 text-sm focus:outline-none "
+                                    className="h-15 w-90 bg-transparent border border-gray-400 text-white placeholder-gray-500 rounded-xl px-4 py-4 text-sm focus:outline-none "
                                 />
                                 <input
                                     type="email"
                                     placeholder="wilson@company.com"
-                                    className="h-10 w-80 bg-transparent border border-gray-500 text-white placeholder-gray-500 rounded-xl px-4 py-4 text-sm focus:outline-none "
+                                    className="h-15 w-90 bg-transparent border border-gray-500 text-white placeholder-gray-500 rounded-xl px-4 py-4 text-sm focus:outline-none "
                                 />
                             </div>
 
-                            <a href="#call" className="flex items-center justify-center gap-2 bg-white text-black rounded-lg text-base h-15 w-60 font-semibold hover:bg-gray-700 transition translate-x-15 -translate-y-10">
+                            <a href="#call" className="flex items-center justify-center gap-2 bg-white text-black rounded-lg text-base h-15 w-60 font-semibold  translate-x-15 -translate-y-10">
                                 Get a Call
                             </a>
                         </div>
@@ -651,6 +690,49 @@ export default function Landing() {
                 </div>
                 <div className='h-100'></div>
             </section>
+
+            {/* Hire Section */}
+            <section className="flex flex-col items-center justify-center min-h-[50vh] text-center px-4 pt-20 pb-16 bg-white overflow-hidden gap-7 mb-10">
+                {/* Heading */}
+
+                <h1 className="text-3xl md:text-4xl font-medium text-gray-900 leading-tight max-w-3xl ">
+                    Time to Hire Your {' '}
+                    <span
+                        className="font-bold"
+                        style={{
+                            background: 'linear-gradient(90deg, #ef4444 0%, #a855f7 50%, #3b82f6 100%)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
+                        }}
+                    >
+                        AI Call Center
+                    </span>
+
+                </h1>
+
+                {/* Subheading */}
+                <p className="text-base md:text-lg text-gray-500 max-w-md  leading-snug">
+                    Revolutionize your call operation with Hexa AI
+                </p>
+
+                {/* Buttons */}
+                <div className="flex flex-col sm:flex-row gap-6 mb-20">
+
+                    {/* Primary */}
+                    <a href="#call" className="flex items-center justify-center gap-2 bg-gray-800 text-white rounded-lg text-base h-12 w-44  hover:bg-gray-700 transition">
+                        Try For Free
+                    </a>
+
+                    {/* Secondary */}
+                    <a href="#signup" className="flex items-center justify-center h-12 w-44 rounded-lg text-base font-semibold border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 transition">
+                        Contact Sales Team
+                    </a>
+
+                </div>
+
+            </section>
+
         </>
     )
 }

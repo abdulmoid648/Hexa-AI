@@ -7,6 +7,12 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -125,4 +131,50 @@ body {
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+@keyframes liveDemoBg {
+  0% {
+    background-color: #e0ecff;
+  }
+
+  25% {
+    background-color: #e8e0ff;
+  }
+
+  50% {
+    background-color: #fce0ef;
+  }
+
+  75% {
+    background-color: #e8e0ff;
+  }
+
+  100% {
+    background-color: #e0ecff;
+  }
+}
+
+.live-demo-bg {
+  animation: liveDemoBg 8s ease-in-out infinite;
+}
+
+@keyframes footerGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.footer-gradient-bg {
+  background: linear-gradient(90deg, #fef9c3, #d1fae5, #cffafe, #ddd6fe, #fce7f3, #fef9c3);
+  background-size: 200% 100%;
+  animation: footerGradientShift 10s ease-in-out infinite;
 }
