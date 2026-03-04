@@ -7,6 +7,9 @@ import gptIcon from '../assets/gpt.png'
 import arrowsIcon from '../assets/arrows.png'
 import iIcon from '../assets/i.png'
 import circleIcon from '../assets/circle.png'
+import uaeFlag from '../assets/UAE.gif'
+import germanyFlag from '../assets/Germany.gif'
+import brazilFlag from '../assets/Brazil.gif'
 
 const features = [
     "Auto-Sync Knowledge Base",
@@ -22,6 +25,8 @@ const lines = [
     { x1: "30%", y1: "64%", x2: "72%", y2: "60%" },
     { x1: "30%", y1: "76%", x2: "72%", y2: "72%" }
 ]
+
+
 
 export default function Landing() {
     const [card4InView, setCard4InView] = useState(false);
@@ -98,10 +103,10 @@ export default function Landing() {
                 <div className="relative flex items-center justify-center w-full max-w-5xl mx-auto pt-20 pb-10 translate-y-10 -mt-10 ">
                     <VoiceBars />
 
-                    {/* Restored Cyan Top Glow */}
+                    {/*  Cyan Top Glow */}
                     <div className="absolute top-20 left-[53%] -translate-x-1/2 w-80 h-80 bg-cyan-400 blur-[80px] opacity-30 rounded-full z-0" />
 
-                    {/* Glow behind image (Restored original gradient) */}
+                    {/* Glow behind image  */}
                     <div
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-48 rounded-full blur-3xl opacity-30"
                         style={{ background: 'radial-gradient(ellipse, #a855f7 0%, #3b82f6 60%, transparent 100%)' }}
@@ -129,7 +134,7 @@ export default function Landing() {
                             Powerful AI Voice Agent Creation Features
                         </h2>
                     </div>
-                    {/* Two column grid - increased gap */}
+
                     <div className="grid md:grid-cols-2 gap-30 items-center ">
 
                         {/* Left: Feature list */}
@@ -218,27 +223,25 @@ export default function Landing() {
                         </div>
 
                         {/* Card 2: Voice AI API */}
-                        <div className="rounded-[1rem] p-10 flex flex-col overflow-hidden relative min-h-[320px]"
+                        <div className="w-[400px] rounded-[1rem] p-10 flex flex-col overflow-hidden relative min-h-[220px] "
                             style={{ background: 'linear-gradient(180deg, #60a5fa 0%, #3b82f6 100%)' }}>
                             <div className="relative z-10">
-                                <div className='h-5'></div>
+
                                 <h3 className="text-2xl font-semibold text-white mb-2 translate-x-5">Voice AI API</h3>
-                                <p className="text-blue-50 text-base opacity-95 leading-relaxed translate-x-5">
+                                <p className="text-blue-50 text-base opacity-95 leading-relaxed translate-x-2">
                                     Natural, smooth and empathetic AI conversations with only 500ms latency.
                                 </p>
                             </div>
 
                             {/* High-Fidelity Audio Waveform Visual */}
                             <div className="mt-auto mb-4 flex items-center justify-center gap-1.5 h-20">
-                                {[
-                                    0.2, 0.4, 0.8, 1.0, 0.8, 0.4, 0.2, 0.4, 0.8, 1.0, 0.8, 0.4, 0.2, 0.4, 0.8, 1.0, 0.8, 0.4, 0.2, 0.4, 0.8, 1.0, 0.8, 0.4, 0.2
-                                ].map((h, i) => (
+                                {[...Array(20)].map((_, i) => (
                                     <div
                                         key={i}
-                                        className="w-1.5 bg-black rounded-full soundwave-bar"
+                                        className="w-1.5 bg-black rounded-full fake-wave-bar"
                                         style={{
-                                            height: `${h * 100}%`,
-                                            animationDelay: `${i * 0.1}s`,
+                                            height: '80%',
+                                            animationDelay: `${(i * 0.07).toFixed(1)}s`,
                                         }}
                                     ></div>
                                 ))}
@@ -246,7 +249,7 @@ export default function Landing() {
                         </div>
 
                         {/* Card 3: Multilingual Support */}
-                        <div className="rounded-[1rem] p-10 flex flex-col overflow-hidden relative min-h-[400px] min-w-[400px] -translate-y-40 -translate-x-20"
+                        <div className="rounded-[1rem] p-10 flex flex-col overflow-hidden relative min-h-[400px] min-w-[400px] -translate-y-20 -translate-x-20"
                             style={{ background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)' }}>
                             <div className="relative z-10">
                                 <div className='h-2'></div>
@@ -268,28 +271,18 @@ export default function Landing() {
                             {/* Flag Placeholders - EXACTLY ON LINES */}
                             <div className="absolute inset-0 pointer-events-none">
                                 {/* UAE Flag (Inner Circle - r=160, theta=45°) */}
-                                <div className="absolute left-[28.2%] bottom-[28.2%] w-12 h-12 rounded-full border-2 border-white/50 shadow-2xl overflow-hidden bg-white flex translate-x-[-90%] -translate-y-[40%]">
-                                    <div className="w-1/3 h-full bg-red-600"></div>
-                                    <div className="w-2/3 h-full flex flex-col">
-                                        <div className="h-1/3 bg-green-700"></div>
-                                        <div className="h-1/3 bg-white"></div>
-                                        <div className="h-1/3 bg-black"></div>
-                                    </div>
+                                <div className="absolute left-[28.2%] bottom-[28.2%] w-15 h-15 rounded-full  shadow-2xl overflow-hidden flex translate-x-[-90%] -translate-y-[20%]">
+                                    <img src={uaeFlag} alt="UAE" className="w-full h-full object-cover" />
                                 </div>
 
                                 {/* Germany Flag (Middle Circle - r=260, theta=65°) */}
-                                <div className="absolute left-[27.5%] bottom-[59%] w-12 h-12 rounded-full border-2 border-white/50 shadow-2xl overflow-hidden flex flex-col translate-x-[100%] translate-y-[170%]">
-                                    <div className="h-1/3 bg-black"></div>
-                                    <div className="h-1/3 bg-red-600"></div>
-                                    <div className="h-1/3 bg-yellow-400"></div>
+                                <div className="absolute left-[27.5%] bottom-[59%] w-15 h-15 rounded-full shadow-2xl overflow-hidden flex flex-col translate-x-[100%] translate-y-[170%]">
+                                    <img src={germanyFlag} alt="Germany" className="w-full h-full object-cover" />
                                 </div>
 
                                 {/* Brazil Flag (Outer Circle - r=360, theta=25°) */}
-                                <div className="absolute left-[81.5%] bottom-[38%] w-12 h-12 rounded-full border-2 border-white/50 shadow-2xl overflow-hidden bg-green-600 flex items-center justify-center translate-x-[-50%] translate-y-[50%]">
-                                    <div className="w-full h-full relative flex items-center justify-center">
-                                        <div className="w-8 h-8 bg-yellow-400 rotate-45 absolute"></div>
-                                        <div className="w-5 h-5 bg-blue-700 rounded-full z-10 absolute"></div>
-                                    </div>
+                                <div className="absolute left-[81.5%] bottom-[38%] w-15 h-15 rounded-full  shadow-2xl overflow-hidden translate-x-[-50%] translate-y-[50%]">
+                                    <img src={brazilFlag} alt="Brazil" className="w-full h-full object-cover" />
                                 </div>
                             </div>
                         </div>
@@ -297,7 +290,7 @@ export default function Landing() {
                         {/* Card 4: Effortless Scalability */}
                         <div
                             ref={card4Ref}
-                            className="rounded-[1rem] p-10 flex flex-col overflow-hidden relative min-h-[500px] min-w-[400px] -translate-y-40 -translate-x-15"
+                            className="rounded-[1rem] p-10 flex flex-col overflow-hidden relative min-h-[500px] min-w-[400px] -translate-y-20 -translate-x-15"
                             style={{ background: 'linear-gradient(135deg, #d946ef 0%, #a855f7 50%, #6366f1 100%)' }}>
                             <div className="relative z-10 mb-8 translate-x-5">
                                 <div className='h-4 '></div>
@@ -481,16 +474,16 @@ export default function Landing() {
 
             {/* Try Our Live Demo Section */}
             <section className="py-24 bg-[#f4f6fb] relative">
-                <div className='h-10'></div>
+                <div className='h-30'></div>
                 <div className="max-w-6xl mx-auto px-4">
                     {/* Header */}
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 inline-block relative">
+                        <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 inline-block relative translate-x-15 ">
                             Try Our Live Demo
                             {/* Text shadow/glow effect behind heading */}
                             <span className="absolute inset-0 bg-blue-400 blur-xl opacity-20 -z-10 translate-y-2"></span>
                         </h2>
-                        <p className="text-lg text-gray-500">
+                        <p className="text-lg text-gray-500 translate-y-5 translate-x-15">
                             Discover how our AI caller transforms customer conversations.
                         </p>
                     </div>
@@ -499,145 +492,161 @@ export default function Landing() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
 
                         {/* Column 1: Select Department */}
-                        <div className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-6 translate-y-20 translate-x-15">
                             <h3 className="text-xl font-bold text-gray-800">Select Department</h3>
-                            <div className="grid grid-cols-2 gap-4">
-                                <button className="bg-white rounded-xl py-4 px-2 text-sm font-semibold text-[#0ea5e9] shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-blue-50 hover:shadow-md transition-shadow">
+                            <div className="grid grid-cols-2 gap-2">
+                                <a href="#call" className="flex items-center justify-center  bg-white text-black rounded-xl text-sm h-15 w-40  hover:text-cyan-400 transition">
                                     Receptionist
-                                </button>
-                                <button className="bg-white rounded-xl py-4 px-2 text-sm font-medium text-gray-600 shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-md transition-shadow">
+                                </a>
+                                <a href="#call" className="flex items-center justify-center gap-2 bg-white text-black rounded-xl text-sm h-15 w-40  hover:text-cyan-400 transition">
                                     Appointment
-                                </button>
-                                <button className="bg-white rounded-xl py-4 px-2 text-sm font-medium text-gray-600 shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-md transition-shadow">
+                                </a>
+                                <a href="#call" className="flex items-center justify-center gap-2 bg-white text-black rounded-xl text-sm h-15 w-40  hover:text-cyan-400 transition">
                                     Customer Service
-                                </button>
-                                <button className="bg-white rounded-xl py-4 px-2 text-sm font-medium text-gray-600 shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-md transition-shadow">
+                                </a>
+                                <a href="#call" className="flex items-center justify-center gap-2 bg-white text-black rounded-xl text-sm h-15 w-40  hover:text-cyan-400 transition">
                                     Survey
-                                </button>
-                                <button className="bg-white rounded-xl py-4 px-2 text-sm font-medium text-gray-600 shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-md transition-shadow">
+                                </a>
+                                <a href="#call" className="flex items-center justify-center gap-2 bg-white text-black rounded-xl text-sm h-15 w-40  hover:text-cyan-400 transition">
                                     Queries
-                                </button>
-                                <button className="bg-white rounded-xl py-4 px-2 text-sm font-medium text-gray-600 shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-md transition-shadow">
-                                    Leads
-                                </button>
+                                </a>
+                                <a href="#call" className="flex items-center justify-center gap-2 bg-white text-black rounded-xl text-sm h-15 w-40  hover:text-cyan-400 transition">
+                                    Lead
+                                </a>
+
                             </div>
                         </div>
 
                         {/* Column 2: Choose Voice */}
-                        <div className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-6 translate-y-20 translate-x-20">
                             <h3 className="text-xl font-bold text-gray-800">Choose Voice</h3>
                             <div className="flex flex-col gap-4">
                                 {/* Voice Option 1 (Active) */}
-                                <div className="bg-white rounded-xl p-3 flex items-center justify-between shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-blue-50 cursor-pointer hover:shadow-md transition-shadow">
-                                    <div className="w-10 h-10 bg-[#0ea5e9] rounded-full flex items-center justify-center shrink-0">
-                                        {/* Play icon */}
-                                        <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current translate-x-[1px]">
-                                            <path d="M8 5v14l11-7z" />
-                                        </svg>
+                                <div className="flex items-center justify-center  bg-white text-black rounded-xl text-sm h-15 w-90  hover:text-cyan-400 transition">
+                                    <div className="w-10 h-10 bg-[#0ea5e9] rounded-lg flex items-center justify-center shrink-0 translate-x-[10px]">
+                                        <div className="w-8 h-8 bg-[#0ea5e9] rounded-full border-2 border-white flex items-center justify-center shrink-0 -translate-x-[1px]">
+                                            {/* Play icon */}
+                                            <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current translate-x-[1px] translate-y-[1px]">
+                                                <path d="M8 5v14l11-7z" />
+                                            </svg>
+                                        </div>
                                     </div>
                                     <div className="flex-1 px-4 flex items-center justify-center hidden sm:flex">
                                         {/* Fake waveform */}
                                         <div className="flex items-center gap-[2px] h-6">
-                                            {[...Array(20)].map((_, i) => (
-                                                <div key={i} className="w-[2px] bg-gray-800 rounded-full" style={{ height: `${Math.max(20, Math.random() * 100)}%` }}></div>
+                                            {[...Array(40)].map((_, i) => (
+                                                <div key={i} className="w-[2px] bg-gray-800 rounded-full fake-wave-bar" style={{ height: '80%', animationDelay: `${(i * 0.07).toFixed(2)}s` }}></div>
                                             ))}
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-3 shrink-0">
+                                    <div className="flex items-center gap-3 shrink-0 -translate-x-3">
                                         <span className="text-sm font-semibold text-gray-500">Voice 01</span>
                                         <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Voice 1" className="w-8 h-8 rounded-full border border-gray-100" />
                                     </div>
                                 </div>
 
                                 {/* Voice Option 2 */}
-                                <div className="bg-white rounded-xl p-3 flex items-center justify-between shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-gray-100 cursor-pointer hover:shadow-md transition-shadow">
-                                    <div className="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center shrink-0">
-                                        <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current translate-x-[1px]">
-                                            <path d="M8 5v14l11-7z" />
-                                        </svg>
+                                <div className="flex items-center justify-center  bg-white text-black rounded-xl text-sm h-15 w-90  hover:text-cyan-400 transition">
+                                    <div className="w-10 h-10 bg-gray-500 rounded-lg flex items-center justify-center shrink-0 translate-x-[10px]">
+
+                                        <div className="w-8 h-8 bg-gray-500 rounded-full flex border-2 border-white items-center justify-center shrink-0 translate-x-[1px]">
+                                            <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current -translate-x-[1px]">
+                                                <path d="M8 5v14l11-7z" />
+                                            </svg>
+                                        </div>
                                     </div>
                                     <div className="flex-1 px-4 flex items-center justify-center hidden sm:flex">
                                         <div className="flex items-center gap-[2px] h-6 opacity-40">
-                                            {[...Array(20)].map((_, i) => (
+                                            {[...Array(40)].map((_, i) => (
                                                 <div key={i} className="w-[2px] bg-gray-400 rounded-full" style={{ height: `${Math.max(20, Math.random() * 100)}%` }}></div>
                                             ))}
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-3 shrink-0">
+                                    <div className="flex items-center gap-3 shrink-0 -translate-x-3">
                                         <span className="text-sm font-medium text-gray-500">Voice 02</span>
                                         <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop" alt="Voice 2" className="w-8 h-8 rounded-full border border-gray-100" />
                                     </div>
                                 </div>
-
                                 {/* Voice Option 3 */}
-                                <div className="bg-white rounded-xl p-3 flex items-center justify-between shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-gray-100 cursor-pointer hover:shadow-md transition-shadow">
-                                    <div className="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center shrink-0">
-                                        <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current translate-x-[1px]">
-                                            <path d="M8 5v14l11-7z" />
-                                        </svg>
+
+                                <div className="flex items-center justify-center  bg-white text-black rounded-xl text-sm h-15 w-90  hover:text-cyan-400 transition">
+                                    <div className="w-10 h-10 bg-gray-500 rounded-lg flex items-center justify-center shrink-0 translate-x-[10px]">
+
+                                        <div className="w-8 h-8 bg-gray-500 rounded-full flex border-2 border-white items-center justify-center shrink-0 translate-x-[1px]">
+                                            <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current -translate-x-[1px]">
+                                                <path d="M8 5v14l11-7z" />
+                                            </svg>
+                                        </div>
                                     </div>
                                     <div className="flex-1 px-4 flex items-center justify-center hidden sm:flex">
                                         <div className="flex items-center gap-[2px] h-6 opacity-40">
-                                            {[...Array(20)].map((_, i) => (
+                                            {[...Array(40)].map((_, i) => (
                                                 <div key={i} className="w-[2px] bg-gray-400 rounded-full" style={{ height: `${Math.max(20, Math.random() * 100)}%` }}></div>
                                             ))}
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-3 shrink-0">
-                                        <span className="text-sm font-medium text-gray-500">Voice 03</span>
+                                    <div className="flex items-center gap-3 shrink-0 -translate-x-3">
+                                        <span className="text-sm font-medium text-gray-500">Voice 02</span>
                                         <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?w=100&h=100&fit=crop" alt="Voice 3" className="w-8 h-8 rounded-full border border-gray-100" />
                                     </div>
                                 </div>
-
                                 {/* Voice Option 4 */}
-                                <div className="bg-white rounded-xl p-3 flex items-center justify-between shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-gray-100 cursor-pointer hover:shadow-md transition-shadow">
-                                    <div className="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center shrink-0">
-                                        <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current translate-x-[1px]">
-                                            <path d="M8 5v14l11-7z" />
-                                        </svg>
+
+                                <div className="flex items-center justify-center  bg-white text-black rounded-xl text-sm h-15 w-90  hover:text-cyan-400 transition">
+                                    <div className="w-10 h-10 bg-gray-500 rounded-lg flex items-center justify-center shrink-0 translate-x-[10px]">
+
+                                        <div className="w-8 h-8 bg-gray-500 rounded-full flex border-2 border-white items-center justify-center shrink-0 translate-x-[1px]">
+                                            <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current -translate-x-[1px]">
+                                                <path d="M8 5v14l11-7z" />
+                                            </svg>
+                                        </div>
                                     </div>
                                     <div className="flex-1 px-4 flex items-center justify-center hidden sm:flex">
                                         <div className="flex items-center gap-[2px] h-6 opacity-40">
-                                            {[...Array(20)].map((_, i) => (
+                                            {[...Array(40)].map((_, i) => (
                                                 <div key={i} className="w-[2px] bg-gray-400 rounded-full" style={{ height: `${Math.max(20, Math.random() * 100)}%` }}></div>
                                             ))}
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-3 shrink-0">
-                                        <span className="text-sm font-medium text-gray-500">Voice 04</span>
+                                    <div className="flex items-center gap-3 shrink-0 -translate-x-3">
+                                        <span className="text-sm font-medium text-gray-500">Voice 02</span>
                                         <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Voice 4" className="w-8 h-8 rounded-full border border-gray-100" />
                                     </div>
                                 </div>
+
+
+
+
+
                             </div>
                         </div>
 
                         {/* Column 3: Enter Details Form */}
-                        <div className="bg-[#333333] rounded-2xl p-8 flex flex-col gap-6 shadow-xl h-full">
-                            <h3 className="text-xl font-bold text-white">Enter Details</h3>
+                        <div className=" bg-[#333333] rounded-2xl p-8 flex flex-col gap-6 shadow-xl min-h-100 min-w-90 translate-y-20 translate-x-30">
+                            <h3 className="text-2xl font-normal text-white translate-y-5 translate-x-3">Enter Details</h3>
 
-                            <div className="flex flex-col gap-4 flex-1">
+                            <div className="flex flex-col gap-4 flex-1 translate-y-5 translate-x-3">
                                 <input
                                     type="text"
                                     placeholder="123-456-7890"
-                                    className="bg-transparent border border-gray-500 text-white placeholder-gray-500 rounded-xl px-4 py-4 text-sm focus:outline-none focus:border-white transition-colors"
+                                    className=" h-10 w-80 bg-transparent border border-gray-400 text-white placeholder-gray-500 rounded-xl px-4 py-10 text-sm focus:outline-none  "
                                 />
                                 <input
                                     type="text"
                                     placeholder="Wilson"
-                                    className="bg-transparent border border-gray-500 text-white placeholder-gray-500 rounded-xl px-4 py-4 text-sm focus:outline-none focus:border-white transition-colors"
+                                    className="h-10 w-80 bg-transparent border border-gray-400 text-white placeholder-gray-500 rounded-xl px-4 py-4 text-sm focus:outline-none "
                                 />
                                 <input
                                     type="email"
                                     placeholder="wilson@company.com"
-                                    className="bg-transparent border border-gray-500 text-white placeholder-gray-500 rounded-xl px-4 py-4 text-sm focus:outline-none focus:border-white transition-colors"
+                                    className="h-10 w-80 bg-transparent border border-gray-500 text-white placeholder-gray-500 rounded-xl px-4 py-4 text-sm focus:outline-none "
                                 />
                             </div>
 
-                            <button className="w-full bg-white text-gray-900 rounded-xl py-4 font-semibold hover:bg-gray-100 transition-colors mt-auto">
+                            <a href="#call" className="flex items-center justify-center gap-2 bg-white text-black rounded-lg text-base h-15 w-60 font-semibold hover:bg-gray-700 transition translate-x-15 -translate-y-10">
                                 Get a Call
-                            </button>
+                            </a>
                         </div>
-
                     </div>
                 </div>
                 <div className='h-100'></div>
