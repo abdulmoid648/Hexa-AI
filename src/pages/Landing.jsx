@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import logo from '../assets/logo.png'
 import mobileMockup from '../assets/Mobile.png'
 import VoiceBars from '../components/VoiceBars'
-import { PhoneCall } from 'lucide-react'
+import { PhoneCall, FileUp } from 'lucide-react'
 import vIcon from '../assets/v.png'
 import gptIcon from '../assets/Gpt.png'
 import arrowsIcon from '../assets/Arrows.png'
@@ -210,11 +210,11 @@ export default function Landing() {
                         </div>
 
                         {/* Right: Gradient preview card */}
-                        <div className="w-full h-100 rounded-2xl overflow-hidden shadow-lg flex items-center justify-center relative md:translate-y-20 " style={{ background: 'linear-gradient(135deg, #4f9cf9 0%, #a78bfa 55%, #c084fc 100%)', transform: 'translateX(50px)' }}>
+                        <div className="w-full h-100 rounded-2xl overflow-hidden shadow-lg flex items-center justify-center relative md:translate-y-20  " style={{ background: 'linear-gradient(135deg, #4f9cf9 0%, #a78bfa 55%, #c084fc 100%)', transform: 'translateX(50px)' }}>
 
-                            <div className="flex gap-4 items-center">
+                            <div className="flex gap-4 items-center relative">
                                 {/* Knowledge Base widget - centered */}
-                                <div className="bg-white rounded-xl shadow-xl border border-gray-100 flex flex-col transform scale-90 hover:scale-100 transition-all duration-300 origin-center" style={{ width: '210px', height: '125px', padding: '12px', gap: '8px' }}>
+                                <div className={`bg-white rounded-xl shadow-xl border border-gray-100 flex flex-col transform transition-all duration-1000 origin-center md:-translate-x-20 md:-translate-y-20 ${showValues && selectedDocs.length > 0 ? 'scale-100' : 'scale-50 hover:scale-100'}`} style={{ width: '210px', height: '125px', padding: '12px', gap: '8px' }}>
                                     <div className="flex items-center gap-2 border-b border-gray-100" style={{ paddingBottom: '8px' }}>
                                         <div className="w-5 h-5 bg-yellow-400 rounded flex items-center justify-center text-xs">💡</div>
                                         <span className="text-xs font-bold text-gray-600">Knowledge Base</span>
@@ -232,9 +232,7 @@ export default function Landing() {
                                         className="flex items-center gap-2 bg-gray-50 rounded-lg border border-gray-100 cursor-pointer hover:bg-gray-100 transition-colors"
                                         style={{ padding: '6px 8px' }}
                                     >
-                                        <div className={`w-3 h-3 border rounded-full flex items-center justify-center ${selectedDocs.includes('terms') ? 'border-blue-400 bg-blue-50' : 'border-gray-300'}`}>
-                                            {selectedDocs.includes('terms') && <div className="w-1.5 h-1.5 bg-blue-400 rounded-full" />}
-                                        </div>
+                                        <FileUp className={`w-3 h-3 ${selectedDocs.includes('terms') ? 'text-gray-500' : 'text-gray-300'}`} />
                                         <span className="text-gray-500 font-medium" style={{ fontSize: '10px' }}>Terms & Conditions</span>
                                     </div>
                                     <div
@@ -242,16 +240,14 @@ export default function Landing() {
                                         className="flex items-center gap-2 bg-gray-50 rounded-lg border border-gray-100 cursor-pointer hover:bg-gray-100 transition-colors"
                                         style={{ padding: '6px 8px' }}
                                     >
-                                        <div className={`w-3 h-3 border rounded-full flex items-center justify-center ${selectedDocs.includes('privacy') ? 'border-blue-400 bg-blue-50' : 'border-gray-300'}`}>
-                                            {selectedDocs.includes('privacy') && <div className="w-1.5 h-1.5 bg-blue-400 rounded-full" />}
-                                        </div>
+                                        <FileUp className={`w-3 h-3 ${selectedDocs.includes('privacy') ? 'text-gray-500' : 'text-gray-300'}`} />
                                         <span className="text-gray-500 font-medium" style={{ fontSize: '10px' }}>Privacy Policy</span>
                                     </div>
                                 </div>
 
                                 {/* Extracted Values widget */}
                                 {showValues && selectedDocs.length > 0 && (
-                                    <div className="bg-white rounded-xl shadow-xl border border-gray-100 flex flex-col transform scale-100 transition-all duration-300" style={{ width: '210px', height: '125px', padding: '12px', gap: '8px' }}>
+                                    <div className="bg-white rounded-xl shadow-xl border border-gray-100 flex flex-col transform scale-100 transition-all duration-300 absolute left-full ml-4 top-0 md:-translate-x-30 md:-translate-y-10" style={{ width: '210px', height: '125px', padding: '12px', gap: '8px' }}>
                                         <div className="flex items-center gap-2 border-b border-gray-100" style={{ paddingBottom: '8px' }}>
                                             <div className="w-5 h-5 bg-green-400 rounded flex items-center justify-center text-xs text-white">✓</div>
                                             <span className="text-xs font-bold text-gray-600">
