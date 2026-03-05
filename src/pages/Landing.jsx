@@ -11,12 +11,25 @@ import circleIcon from '../assets/circle.png'
 import uaeFlag from '../assets/UAE.gif'
 import germanyFlag from '../assets/Germany.gif'
 import brazilFlag from '../assets/Brazil.gif'
+import qrCode from '../assets/CallQR.png'
 
 const features = [
-    "Auto-Sync Knowledge Base",
-    "Powerful Call Transfer Feature",
-    "Easy Appointment Booking",
-    "Navigate IVR"
+    {
+        title: "Auto-Sync Knowledge Base",
+        description: "Your AI agents stay up-to-date effortlessly by syncing directly with your company's knowledge base. No manual updates required."
+    },
+    {
+        title: "Powerful Call Transfer Feature",
+        description: "Intelligently route calls to human agents or specific departments when complex issues arise, maintaining high service standards."
+    },
+    {
+        title: "Easy Appointment Booking",
+        description: "Automate your scheduling process with AI agents that can check availability and book meetings directly into your CRM."
+    },
+    {
+        title: "Navigate IVR",
+        description: "Enable your AI to handle outbound and inbound calls that require navigating complex phone trees and menu systems."
+    }
 ];
 
 
@@ -27,6 +40,8 @@ export default function Landing() {
 
     const [selectedDocs, setSelectedDocs] = useState(['terms']);
     const [showValues, setShowValues] = useState(false);
+    const [showQr, setShowQr] = useState(false);
+    const [hoveredFeature, setHoveredFeature] = useState(null);
 
     const toggleDoc = (doc) => {
         setSelectedDocs(prev => prev.includes(doc) ? [] : [doc]);
@@ -57,13 +72,13 @@ export default function Landing() {
         <>
             {/* Hero Section */}
 
-            <section className="flex flex-col items-center justify-center min-h-[125vh] text-center px-4 pt-20 pb-16 bg-white overflow-hidden gap-7 mb-10">
+            <section className="flex flex-col items-center justify-center  md:min-h-[125vh] text-center px-4 pt-20 pb-16 bg-white overflow-hidden gap-7 mb-10">
                 {/* Heading */}
                 <div className='h-20'></div>
-                <h1 className="text-3xl md:text-5xl font-medium text-gray-900 leading-tight max-w-3xl ">
+                <h1 className="text-3xl md:text-5xl font-semibold text-gray-900 leading-tight max-w-3xl ">
                     Enterprise-Ready{' '}
                     <span
-                        className="font-bold"
+                        className="font-semibold"
                         style={{
                             background: 'linear-gradient(90deg, #ef4444 0%, #a855f7 50%, #3b82f6 100%)',
                             WebkitBackgroundClip: 'text',
@@ -88,13 +103,40 @@ export default function Landing() {
                 <div className="flex flex-col sm:flex-row gap-6 mb-20">
 
                     {/* Primary */}
-                    <a href="#call" className="flex items-center justify-center gap-2 bg-gray-800 text-white rounded-lg text-base h-12 w-44 font-semibold hover:bg-gray-700 transition">
-                        <PhoneCall className="w-5 h-5" />
-                        CALL GAIA
-                    </a>
+                    <div
+                        className="relative"
+                        onMouseEnter={() => setShowQr(true)}
+                        onMouseLeave={() => setShowQr(false)}
+                    >
+                        {/* QR Code Popup */}
+                        {showQr && (
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-6 w-50 h-50  bg-white rounded-[2rem] p-6 shadow-[0_20px_50px_rgba(59,130,246,0.2)] z-50 animate-in fade-in slide-in-from-bottom-4 duration-300">
+                                <div className="relative">
+                                    {/* Inner Light Blue Border/Glow for QR */}
+                                    <div className="aspect-square md:w-32 md:h-32 bg-white rounded-[2rem] border-[6px] border-cyan-400 flex items-center justify-center mb-5 overflow-hidden shadow-sm md:translate-x-9 md:translate-y-5">
+                                        <img
+                                            src={qrCode}
+                                            alt="Scan to call Gaia"
+                                            className="w-20 h-20 object-contain p-2"
+                                        />
+                                    </div>
+
+                                    <p className="text-gray-500 text-sm font-medium leading-[1.3] px-2 md:translate-y-8">
+                                        Scan the QR code to <br /> call Hexa AI
+                                    </p>
+                                </div>
+
+                            </div>
+                        )}
+
+                        <a href="#call" className="flex items-center justify-center gap-2 bg-gray-800 text-white rounded-lg text-sm md:h-9  md:w-36 font-semibold hover:bg-gray-700 transition">
+                            <PhoneCall className="w-3 h-3" />
+                            CALL GAIA
+                        </a>
+                    </div>
 
                     {/* Secondary */}
-                    <a href="#signup" className="flex items-center justify-center h-12 w-44 rounded-lg text-base font-semibold border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 transition">
+                    <a href="#signup" className="flex items-center justify-center md:h-9 md:w-36 rounded-lg text-sm font-semibold border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 transition">
                         TRY FOR FREE
                     </a>
 
@@ -138,21 +180,37 @@ export default function Landing() {
                     <div className="grid md:grid-cols-2 gap-30 items-center ">
 
                         {/* Left: Feature list */}
-                        <div className="flex flex-col">
+                        <div className="flex flex-col gap-2">
                             {features.map((feature, index) => (
-                                <div key={index} className="flex flex-col items-center">
-                                    <span className="text-base font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors" style={{ padding: '20px 0' }}>
-                                        {feature}
-                                    </span>
+                                <div
+                                    key={index}
+                                    className="flex flex-col items-center relative"
+                                    onMouseEnter={() => setHoveredFeature(index)}
+                                    onMouseLeave={() => setHoveredFeature(null)}
+                                >
+                                    <div className={`w-[70%] transition-all duration-500 ease-in-out rounded-3xl overflow-hidden md:translate-x-20 ${hoveredFeature === index ? 'bg-white shadow-[0_15px_50px_rgba(59,130,246,0.15)] border border-blue-50 p-8 z-30 mb-4' : 'p-0 z-10'}`}>
+                                        <div className="w-full text-center">
+                                            <span className={`text-base font-semibold cursor-pointer transition-all duration-300 block ${hoveredFeature === index ? 'text-gray-900 text-xl mb-4 text-center' : 'text-gray-700 py-5 hover:text-gray-900'}`}>
+                                                {feature.title}
+                                            </span>
+                                        </div>
+
+                                        <div className={`transition-all duration-500 ease-in-out  mx-auto ${hoveredFeature === index ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                            <p className="text-gray-500 text-base leading-relaxed text-left">
+                                                {feature.description}
+                                            </p>
+                                        </div>
+                                    </div>
+
                                     {index < features.length - 1 && (
-                                        <div className="h-px w-full bg-cyan-400" />
+                                        <div className="h-px w-95 bg-cyan-400 md:translate-x-20 opacity-100" />
                                     )}
                                 </div>
                             ))}
                         </div>
 
                         {/* Right: Gradient preview card */}
-                        <div className="w-full h-full rounded-2xl overflow-hidden shadow-lg flex items-center justify-center relative" style={{ background: 'linear-gradient(135deg, #4f9cf9 0%, #a78bfa 55%, #c084fc 100%)', transform: 'translateX(50px)' }}>
+                        <div className="w-full h-100 rounded-2xl overflow-hidden shadow-lg flex items-center justify-center relative md:translate-y-20 " style={{ background: 'linear-gradient(135deg, #4f9cf9 0%, #a78bfa 55%, #c084fc 100%)', transform: 'translateX(50px)' }}>
 
                             <div className="flex gap-4 items-center">
                                 {/* Knowledge Base widget - centered */}
@@ -219,6 +277,7 @@ export default function Landing() {
                         </div>
                     </div>
                 </div>
+                <div className='h-20'></div>
             </section>
 
             {/* Hexa Section */}
@@ -499,7 +558,7 @@ export default function Landing() {
                             ))}
 
                             {/* Central Hexa AI Node */}
-                            <div className=" w-[65px] h-[95px] absolute transform -translate-x-5 -translate-y-4 z-10" style={{ left: '50%', top: '87.5%' }}>
+                            <div className=" w-[65px] h-[95px] absolute transform -translate-x-5 -translate-y- z-10" style={{ left: '50%', top: '87.5%' }}>
                                 <div className="bg-white border border-blue-200/80 rounded-full py-2.5 px-6 shadow-[0_4px_15px_rgba(0,0,0,0.05)] flex items-center gap-2 ">
                                     <img src={logo} alt="Hexa Ai" className="h-6 w-auto translate-x-4" />
                                 </div>

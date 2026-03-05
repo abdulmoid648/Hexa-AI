@@ -12,8 +12,9 @@ export default function Footer() {
                     <span
                         className="text-9xl md:text-[13rem] font-bold tracking-wider translate-y-5"
                         style={{
-                            color: 'transparent',
-                            WebkitTextStroke: '1.5px rgba(255,255,255,0.6)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            WebkitTextStroke: '1.5px rgba(0,0,0,0.15)',
                         }}
                     >
                         Hexa Ai
