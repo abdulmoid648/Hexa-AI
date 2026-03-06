@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import logo from '../assets/logo.png'
 import mobileMockup from '../assets/Mobile.png'
 import VoiceBars from '../components/VoiceBars'
-import { PhoneCall, FileUp } from 'lucide-react'
+import { PhoneCall, FileUp, Check } from 'lucide-react'
 import vIcon from '../assets/v.png'
 import gptIcon from '../assets/Gpt.png'
 import arrowsIcon from '../assets/Arrows.png'
@@ -12,6 +12,7 @@ import uaeFlag from '../assets/UAE.gif'
 import germanyFlag from '../assets/Germany.gif'
 import brazilFlag from '../assets/Brazil.gif'
 import qrCode from '../assets/CallQR.png'
+import hippaIcon from '../assets/HIPPA.png'
 
 const features = [
     {
@@ -37,6 +38,8 @@ const features = [
 export default function Landing() {
     const [card4InView, setCard4InView] = useState(false);
     const card4Ref = useRef(null);
+    const [card5InView, setCard5InView] = useState(false);
+    const card5Ref = useRef(null);
 
     const [selectedDocs, setSelectedDocs] = useState(['terms']);
     const [showValues, setShowValues] = useState(false);
@@ -49,22 +52,23 @@ export default function Landing() {
 
     useEffect(() => {
         const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setCard4InView(true);
-                }
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        if (entry.target === card4Ref.current) setCard4InView(true);
+                        if (entry.target === card5Ref.current) setCard5InView(true);
+                    }
+                });
             },
             { threshold: 0.2 }
         );
 
-        if (card4Ref.current) {
-            observer.observe(card4Ref.current);
-        }
+        if (card4Ref.current) observer.observe(card4Ref.current);
+        if (card5Ref.current) observer.observe(card5Ref.current);
 
         return () => {
-            if (card4Ref.current) {
-                observer.unobserve(card4Ref.current);
-            }
+            if (card4Ref.current) observer.unobserve(card4Ref.current);
+            if (card5Ref.current) observer.unobserve(card5Ref.current);
         };
     }, []);
 
@@ -180,22 +184,22 @@ export default function Landing() {
                     <div className="grid md:grid-cols-2 gap-30 items-center ">
 
                         {/* Left: Feature list */}
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col gap-2 md:-translate-y-10">
                             {features.map((feature, index) => (
                                 <div
                                     key={index}
-                                    className="flex flex-col items-center relative"
+                                    className="flex flex-col items-center relative gap-6"
                                     onMouseEnter={() => setHoveredFeature(index)}
                                     onMouseLeave={() => setHoveredFeature(null)}
                                 >
-                                    <div className={`w-[70%] transition-all duration-500 ease-in-out rounded-3xl overflow-hidden md:translate-x-20 ${hoveredFeature === index ? 'bg-white shadow-[0_15px_50px_rgba(59,130,246,0.15)] border border-blue-50 p-8 z-30 mb-4' : 'p-0 z-10'}`}>
-                                        <div className="w-full text-center">
-                                            <span className={`text-base font-semibold cursor-pointer transition-all duration-300 block ${hoveredFeature === index ? 'text-gray-900 text-xl mb-4 text-center' : 'text-gray-700 py-5 hover:text-gray-900'}`}>
+                                    <div className={`w-[70%] transition-all duration-500 ease-in-out rounded-3xl overflow-hidden md:translate-x-20 ${hoveredFeature === index ? 'bg-white shadow-[0_15px_50px_rgba(59,130,246,0.15)] border border-blue-50 px-8 pt-4 pb-8 z-30 mb-4' : 'px-8 py-0 z-10'}`}>
+                                        <div className="w-full text-left">
+                                            <span className={`text-xl font-semibold cursor-pointer transition-all duration-300 block ${hoveredFeature === index ? 'text-gray-900 mb-4' : 'text-gray-700 py-5 hover:text-gray-900'}`}>
                                                 {feature.title}
                                             </span>
                                         </div>
 
-                                        <div className={`transition-all duration-500 ease-in-out  mx-auto ${hoveredFeature === index ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                        <div className={` w-[1000px]transition-all duration-500 ease-in-out mx-auto ${hoveredFeature === index ? 'max-h-100 opacity-100' : 'max-h-0 opacity-0'}`}>
                                             <p className="text-gray-500 text-base leading-relaxed text-left">
                                                 {feature.description}
                                             </p>
@@ -203,14 +207,14 @@ export default function Landing() {
                                     </div>
 
                                     {index < features.length - 1 && (
-                                        <div className="h-px w-95 bg-cyan-400 md:translate-x-20 opacity-100" />
+                                        <div className="h-px w-95 bg-cyan-400 md:translate-x-20 opacity-100 -translate-y-2" />
                                     )}
                                 </div>
                             ))}
                         </div>
 
                         {/* Right: Gradient preview card */}
-                        <div className="w-full h-100 rounded-2xl overflow-hidden shadow-lg flex items-center justify-center relative md:translate-y-20  " style={{ background: 'linear-gradient(135deg, #4f9cf9 0%, #a78bfa 55%, #c084fc 100%)', transform: 'translateX(50px)' }}>
+                        <div className="w-full h-90 rounded-2xl overflow-hidden shadow-lg flex items-center justify-center relative md:translate-y-5  " style={{ background: 'linear-gradient(135deg, #4f9cf9 0%, #a78bfa 55%, #c084fc 100%)', transform: 'translateX(50px)' }}>
 
                             <div className="flex gap-4 items-center relative">
                                 {/* Knowledge Base widget - centered */}
@@ -280,7 +284,7 @@ export default function Landing() {
             <section className="py-20 bg-white">
                 <div className='h-40'></div>
                 <div className="max-w-6xl  mx-auto px-4 translate-x-30 ">
-                    <h2 className="text-4xl font-semibold text-left text-gray-900 mb-16 max-w-6xl">
+                    <h2 className="text-4xl font-semibold text-left text-gray-900 mb-16 max-w-6xl md:-translate-x-15">
                         Build Enterprise-grade AI Voice Agents At scale
                     </h2>
                     <div className='h-20'></div>
@@ -300,22 +304,34 @@ export default function Landing() {
                             </div>
                             <div className="flex -mt-4">
                                 {/* HIPAA Logo */}
-                                <div className="w-16 h-16  rounded-full bg-white flex items-center justify-center p-2 shadow-sm -translate-y-4 translate-x-2">
-                                    <svg viewBox="0 0 24 24" className="w-10 h-10 text-blue-600 fill-current">
-                                        <path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z" />
-                                    </svg>
+                                <div className="w-15 h-15 rounded-full bg-white flex flex-col items-center justify-center p-1 shadow-sm -translate-y-4 translate-x-2">
+                                    <img src={hippaIcon} alt="HIPPA" className="w-10 h-10 object-contain mb-0.5" />
+                                    <span className="text-[10px] font-bold text-cyan-400 leading-tight md:-translate-y-2">HiPPA</span>
                                 </div>
                                 {/* SOC 2 Logo */}
-                                <div className="w-16 h-16 rounded-full bg-blue-700 flex flex-col items-center justify-center p-2 border border-blue-400 shadow-sm text-center -translate-y-4 translate-x-2">
+                                <div className="w-16 h-16 rounded-full bg-transparent flex flex-col items-center justify-center p-2 border-4 border-white shadow-sm text-center md:-translate-y-4 md:translate-x-8">
 
-                                    <span className="text-[8px] font-bold text-white leading-tight">AICPA</span>
-                                    <span className="text-[10px] font-black text-white leading-tight">SOC 2</span>
+                                    <span className="text-[10px] font-medium text-white leading-tight">AICPA</span>
+                                    <span className="text-[10px] font-medium text-white leading-tight">SOC 2</span>
                                 </div>
                                 {/* GDPR Logo */}
-                                <div className="w-16 h-16 rounded-full bg-indigo-900 flex items-center justify-center p-2 border border-indigo-400 shadow-sm relative -translate-y-4 translate-x-2">
-                                    <span className="text-[10px] font-bold text-white">GDPR</span>
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="w-12 h-12 border border-dotted border-white/30 rounded-full animate-spin-slow"></div>
+                                <div className="w-16 h-16 rounded-full bg-indigo-900 flex items-center justify-center p-2 border border-indigo-400 shadow-sm relative -translate-y-4 translate-x-14">
+                                    <span className="text-[12px] font-bold text-white z-10">GDPR</span>
+                                    <div className="absolute inset-0">
+                                        {[...Array(12)].map((_, i) => (
+                                            <div
+                                                key={i}
+                                                className="absolute inset-0 flex items-start justify-center"
+                                                style={{ transform: `rotate(${i * 30}deg)` }}
+                                            >
+                                                <svg
+                                                    viewBox="0 0 24 24"
+                                                    className="w-2.5 h-2.5 text-purple-200 fill-current mt-1"
+                                                >
+                                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                                </svg>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
 
@@ -474,7 +490,7 @@ export default function Landing() {
                         </div>
 
                         {/* Card 5: Reliable and Stable Platform */}
-                        <div className="rounded-[2rem] flex flex-col bg-[#f8fafc] overflow-hidden relative h-105 w-110 border border-gray-100 shadow-sm -translate-x-5">
+                        <div ref={card5Ref} className="rounded-[2rem] flex flex-col bg-[#f8fafc] overflow-hidden relative h-105 w-110 border border-gray-100 shadow-sm -translate-x-5">
                             <div className="relative z-10 translate-y-10 ">
 
                                 <h3 className="text-2xl font-semibold text-gray-900 mb-4 leading-tight translate-x-5">
@@ -484,10 +500,51 @@ export default function Landing() {
                                     With average 99.99% uptime and effortless fallback, Hexa AI ensures your phone callers are always production-ready.
                                 </p>
 
-                                <div className="flex items-center gap-2 mt-auto md:translate-x-5 md:translate-y-10">
-                                    <img src={logo} alt="Hexa Ai" className="h-8 w-auto" />
-                                    <span className="text-2xl text-gray-900 tracking-tight">Hexa AI</span>
+                                <div className="flex flex-col gap-8 mt-auto md:translate-x-5 md:translate-y-8 relative">
+                                    <div className="flex items-center gap-2">
+                                        <img src={logo} alt="Hexa Ai" className="h-8 w-auto" />
+                                        <span className="text-2xl text-gray-900 tracking-tight">Hexa AI</span>
+                                    </div>
 
+                                    <div className="relative flex justify-center items-center w-[85%] mx-auto h-[90px]">
+                                        <div
+                                            className="absolute flex items-center justify-start bg-gradient-to-r from-sky-100 to-fuchsia-100 rounded-lg p-2 shadow-sm overflow-hidden "
+                                            style={{
+                                                left: '50%',
+                                                transform: 'translateX(-50%)',
+                                                animation: card5InView ? 'expandBadge 6s ease-in-out infinite' : 'none',
+                                                width: '50px',
+                                                height: '60px'
+                                            }}
+                                        >
+                                            <div className="flex-shrink-0 w-8 h-8 rounded-full border-[1.5px] border-green-500 flex items-center justify-center bg-transparent translate-x-2">
+                                                <Check className="w-5 h-5 text-green-500 " strokeWidth={2.5} />
+                                            </div>
+                                            <span
+                                                className="text-gray-800 font-medium whitespace-nowrap overflow-hidden text-base translate-x-2"
+                                                style={{
+                                                    animation: card5InView ? 'typeText 6s steps(22) infinite' : 'none',
+                                                    width: '0px',
+                                                    opacity: 0,
+                                                    marginLeft: '0px'
+                                                }}
+                                            >
+                                                All Systems Operational
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <style>{`
+                                        @keyframes expandBadge {
+                                            0%, 10% { width: 50px; }
+                                            25%, 80% { width: 320px; }
+                                            90%, 100% { width: 50px; }
+                                        }
+                                        @keyframes typeText {
+                                            0%, 30% { width: 0px; opacity: 0; margin-left: 0px; }
+                                            45%, 80% { width: 220px; opacity: 1; margin-left: 12px; }
+                                            90%, 100% { width: 0px; opacity: 0; margin-left: 0px; }
+                                        }
+                                    `}</style>
                                 </div>
                             </div>
                         </div>
@@ -554,12 +611,12 @@ export default function Landing() {
                             ))}
 
                             {/* Central Hexa AI Node */}
-                            <div className=" w-[65px] h-[95px] absolute transform -translate-x-5 -translate-y- z-10" style={{ left: '50%', top: '87.5%' }}>
-                                <div className="bg-white border border-blue-200/80 rounded-full py-2.5 px-6 shadow-[0_4px_15px_rgba(0,0,0,0.05)] flex items-center gap-2 ">
-                                    <img src={logo} alt="Hexa Ai" className="h-6 w-auto translate-x-4" />
+                            <div className="absolute transform -translate-x-1/2 -translate-y-1/2 z-10  " style={{ left: '50%', top: '87.5%' }}>
+                                <div className="bg-white w-[120px] h-[50px] border border-blue-200/80 rounded-[1rem] py-3 px-6 shadow-[0_4px_15px_rgba(0,0,0,0.05)] flex items-center gap-3 whitespace-nowrap">
+                                    <img src={logo} alt="Hexa Ai" className="h-7 w-auto translate-x-2" />
+                                    <span className="font-semibold text-gray-900 text-lg">Hexa Ai</span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -723,21 +780,21 @@ export default function Landing() {
                                 <input
                                     type="text"
                                     placeholder="123-456-7890"
-                                    className=" h-15 w-90 bg-transparent border border-gray-400 text-white placeholder-gray-500 rounded-xl px-4 py-10 text-sm focus:outline-none  "
+                                    className=" h-15 w-90 bg-transparent border border-gray-400 text-white placeholder-gray-500 rounded-xl px-4 py-10 text-sm focus:outline-none  " style={{ paddingLeft: '10px' }}
                                 />
                                 <input
                                     type="text"
                                     placeholder="Wilson"
-                                    className="h-15 w-90 bg-transparent border border-gray-400 text-white placeholder-gray-500 rounded-xl px-4 py-4 text-sm focus:outline-none "
+                                    className="h-15 w-90 bg-transparent border border-gray-400 text-white placeholder-gray-500 rounded-xl px-4 py-4 text-sm focus:outline-none " style={{ paddingLeft: '10px' }}
                                 />
                                 <input
                                     type="email"
                                     placeholder="wilson@company.com"
-                                    className="h-15 w-90 bg-transparent border border-gray-500 text-white placeholder-gray-500 rounded-xl px-4 py-4 text-sm focus:outline-none "
+                                    className="h-15 w-90 bg-transparent border border-gray-500 text-white placeholder-gray-500 rounded-xl px-4 py-4 text-sm focus:outline-none " style={{ paddingLeft: '10px' }}
                                 />
                             </div>
 
-                            <a href="#call" className="flex items-center justify-center gap-2 bg-white text-black rounded-lg text-base h-15 w-60 font-semibold  translate-x-15 -translate-y-10">
+                            <a href="#call" className="flex items-center justify-center gap-2 bg-white text-black rounded-lg text-base h-15 w-90 font-semibold  md:translate-x-5 md:-translate-y-10">
                                 Get a Call
                             </a>
                         </div>
