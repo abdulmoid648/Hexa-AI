@@ -184,33 +184,94 @@ export default function Landing() {
                     <div className="grid md:grid-cols-2 gap-30 items-center ">
 
                         {/* Left: Feature list */}
-                        <div className="flex flex-col gap-2 md:-translate-y-10">
-                            {features.map((feature, index) => (
-                                <div
-                                    key={index}
-                                    className="flex flex-col items-center relative gap-6"
-                                    onMouseEnter={() => setHoveredFeature(index)}
-                                    onMouseLeave={() => setHoveredFeature(null)}
-                                >
-                                    <div className={`w-[70%] transition-all duration-500 ease-in-out rounded-3xl overflow-hidden md:translate-x-20 ${hoveredFeature === index ? 'bg-white shadow-[0_15px_50px_rgba(59,130,246,0.15)] border border-blue-50 px-8 pt-4 pb-8 z-30 mb-4' : 'px-8 py-0 z-10'}`}>
-                                        <div className="w-full text-left">
-                                            <span className={`text-xl font-semibold cursor-pointer transition-all duration-300 block ${hoveredFeature === index ? 'text-gray-900 mb-4' : 'text-gray-700 py-5 hover:text-gray-900'}`}>
-                                                {feature.title}
-                                            </span>
-                                        </div>
+                        <div className="flex flex-col gap-5 md:-translate-y-10">
 
-                                        <div className={` w-[1000px]transition-all duration-500 ease-in-out mx-auto ${hoveredFeature === index ? 'max-h-100 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                            <p className="text-gray-500 text-base leading-relaxed text-left">
-                                                {feature.description}
-                                            </p>
-                                        </div>
+                            {/* Feature 1 — Auto-Sync Knowledge Base */}
+                            <div
+                                className="flex flex-col items-center relative"
+                                onMouseEnter={() => setHoveredFeature(0)}
+                                onMouseLeave={() => setHoveredFeature(null)}
+                            >
+                                <div className={`mb-4 transition-all duration-500 ease-in-out rounded-3xl overflow-hidden md:translate-x-20 md:-translate-y-5 ${hoveredFeature === 0 ? 'bg-white shadow-[0_15px_50px_rgba(59,130,246,0.15)] border border-blue-50 px-8 pt-8 pb-12 z-30' : 'px-8 py-0 z-10'}`}>
+                                    <div className="w-full text-left">
+                                        <span className={`text-lg font-semibold cursor-pointer transition-all duration-300 block translate-x-7  ${hoveredFeature === 0 ? 'text-gray-900 mb-4' : 'text-gray-700 py-5 hover:text-gray-900'}`}>
+                                            Auto-Sync Knowledge Base
+                                        </span>
                                     </div>
-
-                                    {index < features.length - 1 && (
-                                        <div className="h-px w-95 bg-cyan-400 md:translate-x-20 opacity-100 -translate-y-2" />
-                                    )}
+                                    <div className={`transition-all duration-500 ease-in-out mx-auto ${hoveredFeature === 0 ? 'max-h-100 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                        <p className="text-gray-500 text-base leading-relaxed text-left">
+                                            Your AI agents stay up-to-date effortlessly by syncing directly with your company's knowledge base. No manual updates required.
+                                        </p>
+                                    </div>
                                 </div>
-                            ))}
+                                {/* Cyan line 1 */}
+                                <div className="mt-0 h-px w-95 bg-cyan-400 md:translate-x-10 translate-y-1 opacity-100" />
+                            </div>
+
+                            {/* Feature 2 — Powerful Call Transfer Feature */}
+                            <div
+                                className="flex flex-col items-center relative translate-y-7 gap-3"
+                                onMouseEnter={() => setHoveredFeature(1)}
+                                onMouseLeave={() => setHoveredFeature(null)}
+                            >
+                                <div className={`mb-4 transition-all duration-500 ease-in-out rounded-3xl overflow-hidden md:translate-x-20 md:-translate-y-5 ${hoveredFeature === 1 ? 'bg-white shadow-[0_15px_50px_rgba(59,130,246,0.15)] border border-blue-50 px-8 pt-8 pb-12 z-30' : 'px-8 py-0 z-10'}`}>
+                                    <div className="w-full text-left">
+                                        <span className={`text-lg font-semibold cursor-pointer transition-all duration-300 block translate-x-7 ${hoveredFeature === 1 ? 'text-gray-900 mb-4' : 'text-gray-700 py-5 hover:text-gray-900'}`}>
+                                            Powerful Call Transfer Feature
+                                        </span>
+                                    </div>
+                                    <div className={`transition-all duration-500 ease-in-out mx-auto ${hoveredFeature === 1 ? 'max-h-100 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                        <p className="text-gray-500 text-base leading-relaxed text-left">
+                                            Intelligently route calls to human agents or specific departments when complex issues arise, maintaining high service standards.
+                                        </p>
+                                    </div>
+                                </div>
+                                {/* Cyan line 2 */}
+                                <div className="mt-0 h-px w-95 bg-cyan-400 md:translate-x-10 -translate-y-1 opacity-100" />
+                            </div>
+
+                            {/* Feature 3 — Easy Appointment Booking */}
+                            <div
+                                className="flex flex-col items-center relative md:translate-y-10 gap-2"
+                                onMouseEnter={() => setHoveredFeature(2)}
+                                onMouseLeave={() => setHoveredFeature(null)}
+                            >
+                                <div className={`mb-4 transition-all duration-500 ease-in-out rounded-3xl overflow-hidden md:translate-x-20 md:-translate-y-5 ${hoveredFeature === 2 ? 'bg-white shadow-[0_15px_50px_rgba(59,130,246,0.15)] border border-blue-50 px-8 pt-8 pb-12 z-30' : 'px-8 py-0 z-10'}`}>
+                                    <div className="w-[70%] text-left">
+                                        <span className={`text-lg font-semibold cursor-pointer transition-all duration-300 block translate-x-7 ${hoveredFeature === 2 ? 'text-gray-900 mb-4' : 'text-gray-700 py-5 hover:text-gray-900'}`}>
+                                            Easy Appointment Booking
+                                        </span>
+                                    </div>
+                                    <div className={`transition-all duration-500 ease-in-out mx-auto ${hoveredFeature === 2 ? 'max-h-100 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                        <p className="text-gray-500 text-base leading-relaxed text-left">
+                                            Automate your scheduling process with AI agents that can check availability and book meetings directly into your CRM.
+                                        </p>
+                                    </div>
+                                </div>
+                                {/* Cyan line 3 */}
+                                <div className="mt-0 h-px w-95 bg-cyan-400 md:translate-x-10 -translate-y-1 opacity-100" />
+                            </div>
+
+                            {/* Feature 4 — Navigate IVR (no cyan line after last feature) */}
+                            <div
+                                className="flex flex-col items-center relative translate-y-15"
+                                onMouseEnter={() => setHoveredFeature(3)}
+                                onMouseLeave={() => setHoveredFeature(null)}
+                            >
+                                <div className={`mb-4 transition-all duration-500 ease-in-out rounded-3xl overflow-hidden md:translate-x-20 md:-translate-y-5 ${hoveredFeature === 3 ? 'bg-white shadow-[0_15px_50px_rgba(59,130,246,0.15)] border border-blue-50 px-8 pt-8 pb-12 z-30' : 'px-8 py-0 z-10'}`}>
+                                    <div className="w-full text-left">
+                                        <span className={`text-lg font-semibold cursor-pointer transition-all duration-300 block translate-x-7 ${hoveredFeature === 3 ? 'text-gray-900 mb-4' : 'text-gray-700 py-5 hover:text-gray-900'}`}>
+                                            Navigate IVR
+                                        </span>
+                                    </div>
+                                    <div className={`transition-all duration-500 ease-in-out mx-auto ${hoveredFeature === 3 ? 'max-h-100 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                        <p className="text-gray-500 text-base leading-relaxed text-left">
+                                            Enable your AI to handle outbound and inbound calls that require navigating complex phone trees and menu systems.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
                         {/* Right: Gradient preview card */}
@@ -378,26 +439,26 @@ export default function Landing() {
                             {/* Concentric Circles from Bottom Left */}
                             <div className="absolute inset-0 pointer-events-none">
                                 <svg viewBox="0 0 400 400" className="w-full h-full opacity-20">
-                                    <circle cx="0" cy="400" r="160" fill="none" stroke="white" strokeWidth="1" />
-                                    <circle cx="0" cy="400" r="260" fill="none" stroke="white" strokeWidth="1" />
-                                    <circle cx="0" cy="400" r="360" fill="none" stroke="white" strokeWidth="1" />
+                                    <circle cx="70" cy="400" r="120" fill="none" stroke="white" strokeWidth="1" />
+                                    <circle cx="60" cy="400" r="205" fill="none" stroke="white" strokeWidth="1" />
+                                    <circle cx="50" cy="400" r="310" fill="none" stroke="white" strokeWidth="1" />
                                 </svg>
                             </div>
 
                             {/* Flag Placeholders - EXACTLY ON LINES */}
                             <div className="absolute inset-0 pointer-events-none">
                                 {/* UAE Flag (Inner Circle - r=160, theta=45°) */}
-                                <div className="absolute left-[28.2%] bottom-[28.2%] w-15 h-15 rounded-full  shadow-2xl overflow-hidden flex translate-x-[-90%] -translate-y-[20%]">
+                                <div className="absolute left-[28.2%] bottom-[28.2%] w-15 h-15 rounded-full  shadow-2xl overflow-hidden flex -translate-x-20 -translate-y-[-5%]">
                                     <img src={uaeFlag} alt="UAE" className="w-full h-full object-cover" />
                                 </div>
 
                                 {/* Germany Flag (Middle Circle - r=260, theta=65°) */}
-                                <div className="absolute left-[27.5%] bottom-[59%] w-15 h-15 rounded-full shadow-2xl overflow-hidden flex flex-col translate-x-[100%] translate-y-[170%]">
+                                <div className="absolute left-[27.5%] bottom-[59%] w-15 h-15 rounded-full shadow-2xl overflow-hidden flex flex-col md:translate-x-27 md:translate-y-50">
                                     <img src={germanyFlag} alt="Germany" className="w-full h-full object-cover" />
                                 </div>
 
                                 {/* Brazil Flag (Outer Circle - r=360, theta=25°) */}
-                                <div className="absolute left-[81.5%] bottom-[38%] w-15 h-15 rounded-full  shadow-2xl overflow-hidden translate-x-[-50%] translate-y-[50%]">
+                                <div className="absolute left-[81.5%] bottom-[38%] w-15 h-15 rounded-full  shadow-2xl overflow-hidden translate-x-1 translate-y-40">
                                     <img src={brazilFlag} alt="Brazil" className="w-full h-full object-cover" />
                                 </div>
                             </div>
