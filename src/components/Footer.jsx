@@ -97,33 +97,34 @@ const Footer = () => {
                             </a>
                         </div>
 
-                        <div className="flex flex-col gap-3 sm:col-span-2">
+                        <div className="flex flex-col gap-3 sm:col-span-2 lg:col-span-1">
                             <h4 className="text-lg font-medium text-gray-900 mb-2">Use Cases</h4>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                <a href="#" className="text-base text-gray-500 hover:text-gray-700">
+                            <div className="flex flex-col gap-3">
+                                <a href="#" className="text-base text-gray-500 hover:text-gray-700 whitespace-nowrap">
                                     AI Receptionist
                                 </a>
-                                <a href="#" className="text-base text-gray-500 hover:text-gray-700">
+                                <a href="#" className="text-base text-gray-500 hover:text-gray-700 whitespace-nowrap">
                                     Customer Feedback
                                 </a>
-                                <a href="#" className="text-base text-gray-500 hover:text-gray-700">
+                                <a href="#" className="text-base text-gray-500 hover:text-gray-700 whitespace-nowrap">
                                     Ordering & Reordering
                                 </a>
-                                <a href="#" className="text-base text-gray-500 hover:text-gray-700">
+                                <a href="#" className="text-base text-gray-500 hover:text-gray-700 whitespace-nowrap">
                                     Call Centers
                                 </a>
-                                <a href="#" className="text-base text-gray-500 hover:text-gray-700">
+                                <a href="#" className="text-base text-gray-500 hover:text-gray-700 whitespace-nowrap">
                                     Healthcare
                                 </a>
-                                <a href="#" className="text-base text-gray-500 hover:text-gray-700">
+                                <a href="#" className="text-base text-gray-500 hover:text-gray-700 whitespace-nowrap">
                                     Sales & Leads
                                 </a>
                             </div>
                         </div>
                     </div>
+                    <div className="h-24" />
 
                     {/* Copyright */}
-                    <div className="border-t border-gray-300 pt-6">
+                    <div className=" pt-6">
                         <p className="text-sm text-gray-900 text-center sm:text-left">Copyright © Hexa Ai. All Rights Reserved</p>
                     </div>
                 </div>

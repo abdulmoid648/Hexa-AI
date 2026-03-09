@@ -4,6 +4,15 @@ import qrCode from "../assets/CallQR.png";
 import Voicebars from "@/components/Voicabars";
 import { PhoneCall } from "lucide-react";
 import gradientGif from "../assets/gradient.gif";
+import uaeFlag from "../assets/UAE.gif";
+import germanyFlag from "../assets/Germany.gif";
+import brazilFlag from "../assets/Brazil.gif";
+import logoImg from "../assets/logo.png";
+import arrowsIcon from "../assets/Arrows.png";
+import vIcon from "../assets/v.png";
+import gptIcon from "../assets/Gpt.png";
+import iIcon from "../assets/I.png";
+import circleIcon from "../assets/Circle.png";
 
 const features = [
     {
@@ -95,7 +104,7 @@ function PhoneIcon({ className = "h-4 w-4" }) {
     );
 }
 
-function UploadIcon({ className = "h-4 w-4" }) {
+function FileShareIcon({ className = "h-4 w-4" }) {
     return (
         <svg
             className={className}
@@ -107,9 +116,13 @@ function UploadIcon({ className = "h-4 w-4" }) {
             strokeLinejoin="round"
             aria-hidden="true"
         >
-            <path d="M12 16V4" />
-            <path d="m7 9 5-5 5 5" />
-            <path d="M4 20h16" />
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <circle cx="18" cy="16" r="1.5" />
+            <circle cx="12" cy="20" r="1.5" />
+            <circle cx="12" cy="13" r="1.5" />
+            <line x1="16.5" y1="16.5" x2="13.5" y2="19.5" />
+            <line x1="16.5" y1="15.5" x2="13.5" y2="13.5" />
         </svg>
     );
 }
@@ -308,32 +321,21 @@ function KnowledgeBaseBadge({ selected, label, onClick }) {
             onClick={onClick}
             className={`flex w-full items-center gap-3 rounded-2xl border px-4 py-3 text-left transition ${selected ? "border-slate-200 bg-slate-50 text-slate-700" : "border-slate-100 bg-white text-slate-400 hover:bg-slate-50"}`}
         >
-            <UploadIcon className={`h-4 w-4 ${selected ? "text-slate-500" : "text-slate-300"}`} />
+            <FileShareIcon className={`h-4 w-4 ${selected ? "text-slate-500" : "text-slate-300"}`} />
             <span className="text-xs font-semibold sm:text-sm">{label}</span>
         </button>
     );
 }
 
 function FlagCircle({ country }) {
-    if (country === "uae") {
-        return (
-            <div className="relative h-14 w-14 overflow-hidden rounded-full border-2 border-white/20 shadow-2xl sm:h-16 sm:w-16">
-                <div className="absolute inset-y-0 left-0 w-1/4 bg-red-500" />
-                <div className="absolute inset-y-0 right-0 w-3/4 bg-[linear-gradient(180deg,#22c55e_0%,#22c55e_33.33%,#ffffff_33.33%,#ffffff_66.66%,#111827_66.66%,#111827_100%)]" />
-            </div>
-        );
-    }
-
-    if (country === "germany") {
-        return (
-            <div className="h-14 w-14 overflow-hidden rounded-full border-2 border-white/20 bg-[linear-gradient(180deg,#111827_0%,#111827_33.33%,#dc2626_33.33%,#dc2626_66.66%,#f59e0b_66.66%,#f59e0b_100%)] shadow-2xl sm:h-16 sm:w-16" />
-        );
-    }
+    let flagSrc = "";
+    if (country === "uae") flagSrc = uaeFlag;
+    else if (country === "germany") flagSrc = germanyFlag;
+    else if (country === "brazil") flagSrc = brazilFlag;
 
     return (
-        <div className="relative grid h-14 w-14 place-items-center rounded-full border-2 border-white/20 bg-[#1f9d55] shadow-2xl sm:h-16 sm:w-16">
-            <div className="h-8 w-8 rotate-45 bg-yellow-300 sm:h-9 sm:w-9" />
-            <div className="absolute h-4.5 w-4.5 rounded-full bg-blue-700 sm:h-5 sm:w-5" />
+        <div className="relative h-14 w-14 overflow-hidden rounded-full border-2  shadow-2xl sm:h-16 sm:w-16 flex items-center justify-center bg-black/10">
+            <img src={flagSrc} alt={`${country} flag`} className="w-full h-full object-cover" />
         </div>
     );
 }
@@ -363,20 +365,35 @@ function ComplianceBadge({ label, variant }) {
 
     return (
         <div className="relative grid h-18 w-18 place-items-center rounded-full border border-indigo-400 bg-indigo-950 text-center shadow-lg shadow-slate-900/10 sm:h-20 sm:w-20">
-            <div className="absolute inset-0 rounded-full border border-white/10" />
-            <div className="text-sm font-bold text-white">{label}</div>
+            {/* Stars ring */}
+            <div className="absolute inset-1.5 flex items-center justify-center">
+                {[...Array(12)].map((_, i) => (
+                    <div
+                        key={`star-${i}`}
+                        className="absolute h-full w-0.5"
+                        style={{ transform: `rotate(${i * 30}deg)` }}
+                    >
+                        <div className="h-1.5 w-1.5 translate-y-[-1px]">
+                            <svg viewBox="0 0 24 24" fill="white" className="h-full w-full opacity-60">
+                                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.401 8.165-7.335-3.857-7.335 3.857 1.401-8.165-5.934-5.787 8.2-1.192z" />
+                            </svg>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <div className="relative z-10 text-sm font-bold text-white tracking-widest">{label}</div>
         </div>
     );
 }
 
-function IntegrationNode({ label, accent, x, y }) {
+function IntegrationNode({ label, icon, accent, x, y }) {
     return (
         <div className="absolute z-10 -translate-x-1/2 -translate-y-1/2" style={{ left: x, top: y }}>
             <div className="rounded-[1.05rem] border border-cyan-200 bg-white/80 p-2 shadow-[0_8px_28px_rgba(15,23,42,0.08)] backdrop-blur-sm sm:p-3">
                 <div
                     className={`grid h-12 w-12 place-items-center rounded-[0.9rem] bg-gradient-to-br ${accent} text-sm font-semibold text-slate-900 shadow-inner sm:h-14 sm:w-14`}
                 >
-                    {label}
+                    {icon ? <img src={icon} alt="" className="h-7 w-7 object-contain" /> : label}
                 </div>
             </div>
         </div>
@@ -396,11 +413,11 @@ const Landing = () => {
 
     const integrationNodes = useMemo(
         () => [
-            { label: "V", accent: "from-cyan-100 to-cyan-300", x: "10%", y: "62.5%" },
-            { label: "GPT", accent: "from-violet-100 to-violet-300", x: "30%", y: "37.5%" },
-            { label: "<> ", accent: "from-blue-100 to-blue-300", x: "50%", y: "12.5%" },
-            { label: "I", accent: "from-fuchsia-100 to-fuchsia-300", x: "70%", y: "37.5%" },
-            { label: "O", accent: "from-slate-100 to-slate-300", x: "90%", y: "62.5%" },
+            { icon: vIcon, x: "10%", y: "62.5%" },
+            { icon: gptIcon, x: "30%", y: "37.5%" },
+            { icon: arrowsIcon, x: "50%", y: "12.5%" },
+            { icon: iIcon, x: "70%", y: "37.5%" },
+            { icon: circleIcon, x: "90%", y: "62.5%" },
         ],
         [],
     );
@@ -470,11 +487,11 @@ const Landing = () => {
         }
 
         .slide-in {
-          animation: slideInLeft 0.8s ease-out forwards;
+          animation: slideInLeft 0.8s ease-out both;
         }
 
         .line-in {
-          animation: fadeLine 0.9s ease-out forwards;
+          animation: fadeLine 0.9s ease-out both;
         }
 
         .uptime-badge {
@@ -486,7 +503,7 @@ const Landing = () => {
         }
 
         @keyframes pulseBar {
-          0%, 100% { transform: scaleY(0.45); opacity: 0.5; }
+          0%, 100% { transform: scaleY(0.15); opacity: 0.4; }
           50% { transform: scaleY(1); opacity: 1; }
         }
 
@@ -502,7 +519,7 @@ const Landing = () => {
 
         @keyframes fadeLine {
           from { opacity: 0; stroke-dashoffset: 28; }
-          to { opacity: 0.5; stroke-dashoffset: 0; }
+          to { opacity: 0.6; stroke-dashoffset: 0; }
         }
 
         @keyframes expandBadge {
@@ -522,7 +539,7 @@ const Landing = () => {
                 {/* Hero Section */}
                 <section className="flex flex-col items-center justify-center min-h-screen lg:min-h-[125vh] text-center px-4 pt-10 md:pt-20 pb-16 bg-white overflow-hidden gap-7 mb-10 relative">
                     {/* Heading */}
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 leading-[1.1] max-w-4xl mt-10 md:mt-20">
+                    <h1 className="text-4xl md:text-4xl lg:text-6xl  text-gray-900 leading-[1.1] max-w-4xl mt-10 md:mt-20">
                         Enterprise-Ready{" "}
                         <span
                             className="font-semibold"
@@ -614,8 +631,8 @@ const Landing = () => {
                 {/* Features Section */}
                 <section className="bg-[#f0f2f5] py-16 sm:py-20 lg:py-24">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                        <div className="mx-auto max-w-3xl text-center">
-                            <h2 className="text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+                        <div className="mx-auto max-w-3xl text-left ml-5">
+                            <h2 className="max-w-none whitespace-nowrap text-base tracking-tight text-slate-900 sm:text-3xl lg:text-5xl">
                                 Powerful AI Voice Agent Creation Features
                             </h2>
                         </div>
@@ -663,14 +680,18 @@ const Landing = () => {
                             <div className="relative overflow-hidden rounded-[2rem] bg-[linear-gradient(135deg,#4f9cf9_0%,#a78bfa_55%,#c084fc_100%)] p-6 shadow-[0_18px_60px_rgba(99,102,241,0.16)] sm:p-8 lg:min-h-[440px]">
                                 <div className="floating-orb absolute -left-10 top-8 h-28 w-28 rounded-full bg-white/10 blur-2xl" />
                                 <div className="floating-orb-delayed absolute -right-4 bottom-6 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
-                                <div className="relative grid gap-5 lg:grid-cols-[minmax(0,220px)_minmax(0,1fr)] lg:items-start lg:gap-6">
+                                <div className="relative grid gap-5 lg:grid-cols-[minmax(0,220px)_minmax(0,1fr)] lg:items-start lg:gap-3">
                                     {/* Left Card */}
                                     <div
-                                        className={`w-[260px] h-fit mt-10 ml-4 rounded-[1.35rem] border border-white/60 bg-white p-4 shadow-xl transition-all duration-500 origin-top-left hover:scale-[1] sm:p-5 ${showValues && selectedDoc ? "scale-[1]" : "scale-50 opacity-80"}`}
+                                        className={`w-[260px] h-fit mt-6 rounded-[1.35rem] border border-white/60 bg-white p-4 shadow-xl transition-all duration-500 origin-top-left hover:scale-[1] sm:p-5 ${showValues && selectedDoc ? "scale-[1]" : "scale-50 opacity-80"}`}
                                     >
                                         <div className="mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
-                                            <div className="grid h-6 w-6 place-items-center rounded-md bg-amber-400 text-[11px] font-bold text-slate-900">
-                                                KB
+                                            <div className="grid h-6 w-6 place-items-center rounded-md bg-amber-400 text-slate-900">
+                                                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M9 18h6" />
+                                                    <path d="M10 22h4" />
+                                                    <path d="M12 2a7 7 0 0 1 7 7c0 2.6-1.4 4.9-3.5 6.2-.5.3-.5.8-.5 1.3V17H9v-.5c0-.5 0-1-.5-1.3A7 7 0 0 1 12 2Z" />
+                                                </svg>
                                             </div>
                                             <span className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500">Knowledge Base</span>
                                             <button
@@ -698,11 +719,11 @@ const Landing = () => {
                                     </div>
 
                                     <div
-                                        className={`h-[200px] mt-20 ml-4 rounded-[1.35rem] border border-slate-100 bg-white p-4 shadow-xl transition-all duration-300 sm:p-5 ${showValues && selectedDoc ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0 pointer-events-none lg:translate-y-8"}`}
+                                        className={`h-[200px] mt-12 rounded-[1.35rem] border border-slate-100 bg-white p-4 shadow-xl transition-all duration-300 sm:p-5 ${showValues && selectedDoc ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0 pointer-events-none lg:translate-y-8"}`}
                                     >
                                         <div className="mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
-                                            <div className="grid h-6 w-6 place-items-center rounded-md bg-emerald-400 text-white">
-                                                <CheckIcon className="h-3.5 w-3.5" />
+                                            <div className="grid h-6 w-6 place-items-center rounded-md bg-amber-400 text-slate-900">
+                                                <FileShareIcon className="h-3.5 w-3.5" />
                                             </div>
                                             <span className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
                                                 {activeDocLabel || "Extracted Values"}
@@ -733,7 +754,7 @@ const Landing = () => {
                 {/* Enterprise Section */}
                 <section className="bg-white py-16 sm:py-20 lg:py-24">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                        <h2 className="max-w-4xl text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+                        <h2 className="max-w-none whitespace-nowrap text-base tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
                             Build Enterprise-grade AI Voice Agents At scale
                         </h2>
 
@@ -758,13 +779,23 @@ const Landing = () => {
                                 <p className="mt-3 max-w-sm text-base leading-7 text-blue-50/95">
                                     Natural, smooth and empathetic AI conversations with only 500ms latency.
                                 </p>
-                                <div className="mt-10 flex h-14 items-center justify-center gap-2">
-                                    {[...Array(21)].map((_, i) => (
+                                <div className="mt-10 flex h-20 items-center justify-center gap-[3px] px-2">
+                                    {[
+                                        [28, 1.1, 0.00], [52, 0.9, 0.08], [70, 1.3, 0.16], [44, 1.0, 0.24], [80, 0.8, 0.32],
+                                        [58, 1.2, 0.40], [90, 1.0, 0.48], [36, 1.4, 0.56], [74, 0.9, 0.64], [62, 1.1, 0.72],
+                                        [86, 0.85, 0.80], [48, 1.3, 0.88], [76, 1.0, 0.96], [40, 1.2, 0.60], [66, 0.95, 0.44],
+                                        [84, 1.15, 0.28], [54, 1.35, 0.12], [72, 0.88, 0.52], [42, 1.05, 0.36], [68, 1.25, 0.20], [56, 0.92, 0.68],
+                                    ].map(([h, dur, delay], i) => (
                                         <div
                                             key={`api-${i}`}
-                                            className="voice-bar w-1.5 bg-black rounded-full"
-                                            style={{ height: `${Math.max(20, Math.random() * 100)}%`, animationDelay: `${i * 0.07}s` }}
-                                        ></div>
+                                            className="w-1.5 flex-shrink-0 rounded-full"
+                                            style={{
+                                                height: `${h}%`,
+                                                backgroundColor: 'black',
+                                                transformOrigin: 'center center',
+                                                animation: `pulseBar ${dur}s ease-in-out ${delay}s infinite`,
+                                            }}
+                                        />
                                     ))}
                                 </div>
                             </div>
@@ -787,13 +818,27 @@ const Landing = () => {
                                     </svg>
                                 </div>
 
-                                <div className="absolute bottom-10 left-8 sm:left-12">
+                                {/* Desktop flags — absolutely positioned, hidden on mobile */}
+                                <div className="absolute bottom-10 left-8 sm:left-[10%] sm:bottom-[31%] hidden sm:block">
                                     <FlagCircle country="uae" />
                                 </div>
-                                <div className="absolute right-10 top-20 sm:right-16 sm:top-24">
+                                <div className="absolute right-10 top-20 sm:right-[29%] sm:top-[65%] hidden sm:block">
                                     <FlagCircle country="germany" />
                                 </div>
-                                <div className="absolute bottom-20 right-6 sm:bottom-14 sm:right-10">
+                                <div className="absolute bottom-20 right-6 sm:bottom-[3%] sm:right-[5%] hidden sm:block">
+                                    <FlagCircle country="brazil" />
+                                </div>
+
+                                {/* Mobile flags — row with dotted connecting lines, visible only on mobile */}
+                                <div className="relative mt-8 flex items-center justify-center sm:hidden">
+                                    <FlagCircle country="uae" />
+                                    <svg className="flex-1 h-6 pointer-events-none" viewBox="0 0 60 10" preserveAspectRatio="none">
+                                        <line x1="0" y1="5" x2="60" y2="5" stroke="white" strokeWidth="2" strokeDasharray="4 5" opacity="0.6" />
+                                    </svg>
+                                    <FlagCircle country="germany" />
+                                    <svg className="flex-1 h-6 pointer-events-none" viewBox="0 0 60 10" preserveAspectRatio="none">
+                                        <line x1="0" y1="5" x2="60" y2="5" stroke="white" strokeWidth="2" strokeDasharray="4 5" opacity="0.6" />
+                                    </svg>
                                     <FlagCircle country="brazil" />
                                 </div>
                             </div>
@@ -809,20 +854,24 @@ const Landing = () => {
                                     </p>
                                 </div>
 
-                                <div className="relative mt-10 grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,84px)] md:items-center">
+                                <div className="relative mt-10 grid grid-cols-[1fr_44px_36px] gap-0 items-start md:grid-cols-[minmax(0,1fr)_minmax(0,84px)] md:items-center md:gap-6">
                                     <div className="relative">
                                         <div className="grid gap-3 sm:max-w-[280px]">
                                             {[5, 30, 80, 130, 45].map((num, index) => (
                                                 <div
                                                     key={num}
-                                                    className="flex items-center gap-4 rounded-2xl border border-white/20 bg-white/95 px-4 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+                                                    className="flex items-center gap-3 ml-4 w-25 rounded-2xl border border-white/20 bg-white/95 px-3 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] z-10"
                                                     style={{
                                                         opacity: card4InView ? 1 : 0,
-                                                        animation: card4InView ? `slideInLeft 0.8s ease-out forwards ${index * 0.1}s` : "none",
+                                                        animation: card4InView ? `slideInLeft 0.8s ease-out both ${index * 0.1}s` : "none",
                                                     }}
                                                 >
-                                                    <div className="grid h-11 w-11 place-items-center rounded-2xl bg-slate-50 text-slate-900 shadow-inner">
-                                                        <PhoneIcon className="h-4 w-4" />
+                                                    <div className="flex items-center justify-center p-1 opacity-80">
+                                                        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.35 1.78.68 2.62a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.46-1.25a2 2 0 0 1 2.11-.45c.84.33 1.72.56 2.62.68A2 2 0 0 1 22 16.92z"></path>
+                                                            <path className="ring-phone" d="M14.05 2a9 9 0 0 1 8 7.94"></path>
+                                                            <path className="ring-phone" d="M14.05 6A5 5 0 0 1 18 10"></path>
+                                                        </svg>
                                                     </div>
                                                     <span className="text-base font-medium text-slate-900">{num}</span>
                                                 </div>
@@ -830,43 +879,85 @@ const Landing = () => {
                                         </div>
 
                                         <svg
-                                            className="pointer-events-none absolute inset-0 hidden h-full w-full md:block"
-                                            viewBox="0 0 480 240"
+                                            className="pointer-events-none absolute left-32 top-0 hidden h-full w-[calc(100%-8rem)] md:block z-0"
+                                            viewBox="0 0 400 240"
                                             preserveAspectRatio="none"
+                                            style={{ overflow: "visible" }}
                                         >
                                             {[
-                                                { y1: 22, y2: 24 },
-                                                { y1: 55, y2: 68 },
-                                                { y1: 100, y2: 114 },
-                                                { y1: 145, y2: 156 },
-                                                { y1: 190, y2: 198 },
+                                                { y1: 10, y2: -10 },
+                                                { y1: 15, y2: 15 },
+                                                { y1: 20, y2: 43 },
+                                                { y1: 25, y2: 66 },
+                                                { y1: 30, y2: 95 },
                                             ].map((line, index) => (
                                                 <line
                                                     key={index}
-                                                    x1="150"
+                                                    x1="-30"
                                                     y1={line.y1}
-                                                    x2="448"
+                                                    x2="570"
                                                     y2={line.y2}
                                                     stroke="white"
-                                                    strokeWidth="1.5"
-                                                    strokeDasharray="2 5"
+                                                    strokeWidth="2"
+                                                    strokeDasharray="4 6"
                                                     style={{
-                                                        opacity: card4InView ? 0.5 : 0,
-                                                        animation: card4InView ? `fadeLine 0.9s ease-out forwards ${index * 0.12}s` : "none",
+                                                        opacity: card4InView ? 0.6 : 0,
+                                                        animation: card4InView ? `fadeLine 0.9s ease-out both ${index * 0.12}s` : "none",
                                                     }}
                                                 />
                                             ))}
                                         </svg>
                                     </div>
 
-                                    <div className="flex flex-row justify-start gap-3 md:flex-col md:items-end md:justify-center">
+                                    <div className="absolute right-5   bottom-35  pr-4 py-8 flex flex-col justify-between items-end z-20 pointer-events-none hidden md:flex gap-1 ">
                                         {avatarUrls.map((url, index) => (
                                             <div
                                                 key={url}
-                                                className="h-10 w-10 overflow-hidden rounded-full border-2 border-white/80 bg-purple-200 shadow-[0_8px_30px_rgba(0,0,0,0.2)] sm:h-12 sm:w-12"
+                                                className="h-6 w-6 overflow-hidden  rounded-full border-[3px] border-white shadow-[0_8px_30px_rgba(0,0,0,0.2)] sm:h-8 sm:w-8 pointer-events-none"
                                                 style={{
                                                     opacity: card4InView ? 1 : 0,
-                                                    animation: card4InView ? `slideInLeft 0.8s ease-out forwards ${index * 0.15}s` : "none",
+                                                    animation: card4InView ? `slideInLeft 0.8s ease-out both ${index * 0.15 + 0.5}s` : "none",
+                                                }}
+                                            >
+                                                <img src={url} alt="Person" className="h-full w-full object-cover" />
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* Mobile dotted lines — only visible on mobile, connects cards to avatars */}
+                                    <svg
+                                        className="block md:hidden self-stretch w-full pointer-events-none z-0"
+                                        viewBox="0 0 44 240"
+                                        preserveAspectRatio="none"
+                                        style={{ overflow: "visible" }}
+                                    >
+                                        {[20, 68, 116, 164, 212].map((y, index) => (
+                                            <line
+                                                key={index}
+                                                x1="0"
+                                                y1={y}
+                                                x2="44"
+                                                y2={y}
+                                                stroke="white"
+                                                strokeWidth="2"
+                                                strokeDasharray="4 6"
+                                                style={{
+                                                    opacity: card4InView ? 0.6 : 0,
+                                                    animation: card4InView ? `fadeLine 0.9s ease-out both ${index * 0.12}s` : "none",
+                                                }}
+                                            />
+                                        ))}
+                                    </svg>
+
+                                    {/* Mobile avatars — vertical column on right, connected via dots */}
+                                    <div className="flex flex-col justify-start items-center gap-3 md:hidden pointer-events-none pt-[6px]">
+                                        {avatarUrls.map((url, index) => (
+                                            <div
+                                                key={`mobile-${url}`}
+                                                className="h-8 w-8 overflow-hidden rounded-full border-[3px] border-white shadow-[0_8px_30px_rgba(0,0,0,0.2)] pointer-events-none flex-shrink-0"
+                                                style={{
+                                                    opacity: card4InView ? 1 : 0,
+                                                    animation: card4InView ? `slideInLeft 0.8s ease-out both ${index * 0.15 + 0.5}s` : "none",
                                                 }}
                                             >
                                                 <img src={url} alt="Person" className="h-full w-full object-cover" />
@@ -878,7 +969,7 @@ const Landing = () => {
 
                             <div
                                 ref={card5Ref}
-                                className="overflow-hidden rounded-[2rem] border border-slate-100 bg-slate-50 p-6 shadow-sm sm:min-h-[420px] sm:p-8"
+                                className="overflow-hidden rounded-[2rem] border border-slate-100 bg-slate-50 p-6 shadow-sm sm:min-h-[320px] sm:p-8"
                             >
                                 <h3 className="text-2xl font-semibold leading-tight text-slate-900">
                                     Reliable and Stable Platform <br /> You can trust
@@ -888,8 +979,11 @@ const Landing = () => {
                                     production-ready.
                                 </p>
 
-                                <div className="mt-10 space-y-8">
-                                    <BrandLockup compact />
+                                <div className="mt-10 space-y-4">
+                                    <div className="flex items-center gap-3">
+                                        <img src={logoImg} alt="Hexa AI" className="h-10 w-auto" />
+                                        <span className="text-2xl font-bold text-slate-900">Hexa AI</span>
+                                    </div>
 
                                     <div className="flex min-h-[110px] items-center justify-center rounded-[1.75rem] bg-white px-4">
                                         <div
@@ -937,29 +1031,37 @@ const Landing = () => {
                             </div>
 
                             <div className="relative mx-auto w-full max-w-[34rem] aspect-[5/4]">
-                                <svg viewBox="0 0 500 400" className="absolute inset-0 h-full w-full">
-                                    <path d="M 250 350 L 70 350 A 20 20 0 0 1 50 330 L 50 250" stroke="#e2e8f0" strokeWidth="2.5" fill="none" />
-                                    <path d="M 250 350 L 430 350 A 20 20 0 0 0 450 330 L 450 250" stroke="#e2e8f0" strokeWidth="2.5" fill="none" />
-                                    <path d="M 50 250 L 50 170 A 20 20 0 0 1 70 150 L 150 150" stroke="#e2e8f0" strokeWidth="2.5" fill="none" />
-                                    <path d="M 150 150 L 150 70 A 20 20 0 0 1 170 50 L 250 50" stroke="#e2e8f0" strokeWidth="2.5" fill="none" />
-                                    <path d="M 250 50 L 330 50 A 20 20 0 0 1 350 70 L 350 150" stroke="#e2e8f0" strokeWidth="2.5" fill="none" />
-                                    <path d="M 350 150 L 430 150 A 20 20 0 0 1 450 170 L 450 250" stroke="#e2e8f0" strokeWidth="2.5" fill="none" />
-                                </svg>
+                                {/* 
+                                    To move the ENTIRE structure (nodes + lines) together:
+                                    Adjust the 'translate-x' and 'translate-y' classes or add 'top-[...]' / 'left-[...]' to this div:
+                                */}
+                                <div className="relative h-full w-full md:translate-y-70">
+                                    <svg viewBox="0 0 500 400" className="absolute inset-0 h-full w-full">
+                                        <path d="M 250 350 L 70 350 A 20 20 0 0 1 50 330 L 50 250" stroke="#e2e8f0" strokeWidth="2.5" fill="none" />
+                                        <path d="M 250 350 L 430 350 A 20 20 0 0 0 450 330 L 450 250" stroke="#e2e8f0" strokeWidth="2.5" fill="none" />
+                                        <path d="M 50 250 L 50 170 A 20 20 0 0 1 70 150 L 150 150" stroke="#e2e8f0" strokeWidth="2.5" fill="none" />
+                                        <path d="M 150 150 L 150 70 A 20 20 0 0 1 170 50 L 250 50" stroke="#e2e8f0" strokeWidth="2.5" fill="none" />
+                                        <path d="M 250 50 L 330 50 A 20 20 0 0 1 350 70 L 350 150" stroke="#e2e8f0" strokeWidth="2.5" fill="none" />
+                                        <path d="M 350 150 L 430 150 A 20 20 0 0 1 450 170 L 450 250" stroke="#e2e8f0" strokeWidth="2.5" fill="none" />
+                                    </svg>
 
-                                {integrationNodes.map((node) => (
-                                    <IntegrationNode key={`${node.label}-${node.x}-${node.y}`} {...node} />
-                                ))}
+                                    {integrationNodes.map((node) => (
+                                        <IntegrationNode key={`${node.label}-${node.x}-${node.y}`} {...node} />
+                                    ))}
 
-                                <div className="absolute left-1/2 top-[87.5%] z-10 -translate-x-1/2 -translate-y-1/2">
-                                    <div className="flex items-center gap-3 rounded-[1.15rem] border border-blue-200/80 bg-white px-5 py-3 shadow-[0_8px_28px_rgba(15,23,42,0.08)]">
-                                        <div className="scale-90">
-                                            <BrandLockup compact />
+                                    <div className="absolute left-1/2 top-[87.5%] z-10 -translate-x-1/2 -translate-y-1/2">
+                                        <div className="flex items-center gap-3 rounded-[1.15rem] border border-blue-200/80 bg-white px-5 py-3 shadow-[0_8px_28px_rgba(15,23,42,0.08)]">
+                                            <div className="flex items-center gap-3">
+                                                <img src={logoImg} alt="Hexa AI" className="h-10 w-auto" />
+                                                <span className="text-xl font-bold tracking-tight text-slate-900">Hexa AI</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div className="md:h-70" />
                 </section>
 
                 {/* Live Demo Section */}
@@ -974,7 +1076,7 @@ const Landing = () => {
                 >
                     {/* Overlay to reduce GIF opacity */}
                     <div className="absolute inset-0 bg-white/70"></div>
-                    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="text-center">
                             <h2 className="relative inline-block text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
                                 Try Our Live Demo
@@ -1015,15 +1117,23 @@ const Landing = () => {
                                                 </div>
                                             </div>
 
-                                            <div className="hidden min-w-0 flex-1 sm:flex sm:items-center sm:justify-center">
-                                                <div className="flex h-8 items-center gap-[3px]">
-                                                    {(voice.active ? denseWave : passiveWave).map((height, index) => (
+                                            <div className="min-w-0 flex-1 flex items-center justify-center">
+                                                <div className="flex h-8 w-full items-center gap-[3px]">
+                                                    {[
+                                                        [28, 1.10, 0.00], [52, 0.90, 0.08], [70, 1.30, 0.16], [44, 1.00, 0.24], [80, 0.80, 0.32],
+                                                        [58, 1.20, 0.40], [90, 1.00, 0.48], [36, 1.40, 0.56], [74, 0.90, 0.64], [62, 1.10, 0.72],
+                                                        [86, 0.85, 0.80], [48, 1.30, 0.88], [76, 1.00, 0.96], [40, 1.20, 0.60], [66, 0.95, 0.44],
+                                                        [84, 1.15, 0.28], [54, 1.35, 0.12], [72, 0.88, 0.52], [42, 1.05, 0.36], [68, 1.25, 0.20],
+                                                    ].map(([h, dur, delay], index) => (
                                                         <span
                                                             key={`${voice.name}-${index}`}
-                                                            className={`${voice.active ? "voice-bar bg-slate-800" : "bg-slate-300"} w-[2px] rounded-full`}
+                                                            className={`min-w-0 flex-1 rounded-full ${voice.active ? "bg-slate-800" : "bg-slate-300"}`}
                                                             style={{
-                                                                height: `${Math.round(height * (voice.active ? 0.35 : 0.3))}px`,
-                                                                animationDelay: `${index * 0.07}s`,
+                                                                height: `${Math.round(h * 0.39)}px`,
+                                                                transformOrigin: 'center center',
+                                                                animation: voice.active
+                                                                    ? `pulseBar ${dur}s ease-in-out ${delay}s infinite`
+                                                                    : 'none',
                                                             }}
                                                         />
                                                     ))}
@@ -1047,7 +1157,7 @@ const Landing = () => {
                                 </div>
                             </div>
 
-                            <div className="rounded-[2rem] bg-[#333333] p-6 shadow-xl sm:p-8">
+                            <div className="rounded-[2rem] bg-black p-6  sm:p-8">
                                 <h3 className="text-2xl font-normal text-white">Enter Details</h3>
 
                                 <div className="mt-6 space-y-4">
