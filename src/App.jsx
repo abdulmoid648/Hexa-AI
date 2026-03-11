@@ -1,12 +1,19 @@
+import { Routes, Route } from "react-router-dom"
 import Navbar from './components/Navbar'
-import Landing from './pages/Landing'
+import Page from './components/Page'
+import IntegrationsPage from './components/IntegrationsPage'
 import Footer from './components/Footer'
+import CTA from './components/CTA'
 
 function App() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden w-full">
       <Navbar />
-      <Landing />
+      <Routes>
+        <Route path="/" element={<Page />} />
+        <Route path="/integrations" element={<IntegrationsPage />} />
+      </Routes>
+      <CTA />
       <Footer />
     </div>
   )
