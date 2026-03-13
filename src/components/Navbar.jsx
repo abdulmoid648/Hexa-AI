@@ -6,10 +6,16 @@ const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const navLinks = [
+        { name: 'Product', path: '/product' },
         { name: 'Pricing', path: '/#pricing' },
-        { name: 'Product', path: '/#product' },
         { name: 'Integrations', path: '/integrations' },
     ];
+
+    const ChevronDown = () => (
+        <svg className="w-4 h-4 ml-1 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+    );
 
     return (
         <nav className="w-full bg-white/80 backdrop-blur-xl border-b border-gray-200 h-20 sticky top-0 z-50 px-4 sm:px-6 lg:px-8">
@@ -27,9 +33,10 @@ const Navbar = () => {
                         <Link
                             key={link.name}
                             to={link.path}
-                            className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-150"
+                            className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-150 flex items-center"
                         >
                             {link.name}
+                            {link.hasDropdown && <ChevronDown />}
                         </Link>
                     ))}
                 </div>
@@ -44,22 +51,11 @@ const Navbar = () => {
                     </Link>
                     <Link
                         to="/signup"
-                        className="inline-flex items-center justify-center gap-2 bg-gray-900 text-white text-xs font-medium rounded-lg hover:bg-gray-800 transition-all duration-150 h-10 px-5"
+                        className="inline-flex items-center justify-center gap-2 bg-[#2D2D2D] text-white text-sm font-medium rounded-xl hover:bg-gray-800 transition-all duration-150 h-11 px-6 shadow-sm"
                     >
                         Get Started
-                        <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                            />
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7-7 7" />
                         </svg>
                     </Link>
                 </div>
@@ -89,17 +85,18 @@ const Navbar = () => {
                         <Link
                             key={link.name}
                             to={link.path}
-                            className="text-base font-medium text-gray-700 hover:text-gray-900 transition-colors"
+                            className="text-base font-medium text-gray-700 hover:text-gray-900 transition-colors flex items-center justify-between"
                             onClick={() => setMenuOpen(false)}
                         >
                             {link.name}
+                            {link.hasDropdown && <ChevronDown />}
                         </Link>
                     ))}
                     <div className="h-px bg-gray-100 w-full my-2"></div>
                     <Link to="/login" className="text-base text-gray-700 font-medium" onClick={() => setMenuOpen(false)}>Login</Link>
                     <Link
                         to="/signup"
-                        className="inline-flex items-center justify-center gap-2 bg-gray-900 text-white text-base font-medium px-5 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+                        className="inline-flex items-center justify-center gap-2 bg-[#2D2D2D] text-white text-base font-medium px-5 py-3 rounded-xl hover:bg-gray-800 transition-colors"
                         onClick={() => setMenuOpen(false)}
                     >
                         Get Started →
