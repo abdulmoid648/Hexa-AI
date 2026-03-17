@@ -4,9 +4,12 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .no-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 }
 
@@ -44,54 +47,157 @@ body {
 }
 
 @keyframes pulseBar {
-  0%, 100% { 
-    transform: scaleY(0.15); 
-    opacity: 0.4; 
+
+  0%,
+  100% {
+    transform: scaleY(0.15);
+    opacity: 0.4;
   }
-  50% { 
-    transform: scaleY(1); 
-    opacity: 1; 
+
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
   }
 }
 
 @keyframes floatOrb {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -16px, 0); }
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -16px, 0);
+  }
 }
 
 @keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-20px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes fadeLine {
-  from { opacity: 0; stroke-dashoffset: 28; }
-  to { opacity: 0.6; stroke-dashoffset: 0; }
+  from {
+    opacity: 0;
+    stroke-dashoffset: 28;
+  }
+
+  to {
+    opacity: 0.6;
+    stroke-dashoffset: 0;
+  }
 }
 
 @keyframes expandBadge {
-  0%, 10% { width: 64px; }
-  25%, 80% { width: min(100%, 320px); }
-  90%, 100% { width: 64px; }
+  0%, 10% {
+    width: 64px;
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  30%, 80% {
+    width: min(100%, 320px);
+    opacity: 1;
+  }
+  90%, 100% {
+    width: min(100%, 320px);
+    opacity: 0;
+  }
 }
 
 @keyframes typeText {
-  0%, 30% { max-width: 0; opacity: 0; margin-left: 0; }
-  45%, 80% { max-width: 220px; opacity: 1; margin-left: 12px; }
-  90%, 100% { max-width: 0; opacity: 0; margin-left: 0; }
+  0%, 30% {
+    max-width: 0;
+    opacity: 0;
+    margin-left: 0;
+  }
+  45%, 80% {
+    max-width: 220px;
+    opacity: 1;
+    margin-left: 12px;
+  }
+  90%, 100% {
+    max-width: 220px;
+    opacity: 0;
+    margin-left: 12px;
+  }
 }
 
 /* How Section Icon Animations */
 @keyframes icon-pop-group-1 {
-  0%, 100% { opacity: 0; transform: scale(0.6); }
-  5%, 70% { opacity: 1; transform: scale(1); }
-  80%, 95% { opacity: 0; transform: scale(1.1); }
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  5%,
+  70% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  80%,
+  95% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
 }
 
 @keyframes icon-pop-group-2 {
-  0%, 30%, 100% { opacity: 0; transform: scale(0.6); }
-  35%, 70% { opacity: 1; transform: scale(1); }
-  80%, 95% { opacity: 0; transform: scale(1.1); }
+
+  0%,
+  30%,
+  100% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  35%,
+  70% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  80%,
+  95% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-text-shimmer {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.15) 40%,
+    rgba(139, 92, 246, 0.9) 50%,
+    rgba(255, 255, 255, 0.15) 60%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  background-size: 200% auto;
+  animation: textShimmer 4s linear infinite;
 }
 
 .animate-icon-group-1 {
@@ -100,4 +206,14 @@ body {
 
 .animate-icon-group-2 {
   animation: icon-pop-group-2 6s infinite;
+}
+
+@keyframes bgSmooth {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+.animate-bg-smooth {
+  animation: bgSmooth 15s ease-in-out infinite;
 }

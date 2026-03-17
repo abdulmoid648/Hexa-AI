@@ -1,25 +1,32 @@
 import logo from "../assets/logo.png";
-import gradientGif from "../assets/gradient.gif";
+import footerGif from "../assets/Footer.gif";
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 const Footer = () => {
     return (
         <footer
             className="w-full relative overflow-hidden"
             style={{
-                backgroundImage: `url(${gradientGif})`,
+                backgroundImage: `linear-gradient(to bottom, transparent 0%, transparent 128px, rgba(255, 255, 255, 0.4) 180px, rgba(255, 255, 255, 0.9) 100%), url(${footerGif})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
             }}
         >
-            {/* Overlay for readability */}
-            <div className="absolute inset-0"></div>
+            {/* Removed global overlay as per user request to target only content area below */}
 
             <div className="relative z-10">
                 {/* Gradient Banner */}
-                <div className="w-full h-24 md:h-32 relative overflow-hidden">
+                <div className="w-full h-24 md:h-38 relative overflow-hidden">
                     {/* Large faded "Hexa AI" text */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-                        <span className="text-6xl sm:text-7xl md:text-9xl lg:text-[13rem] font-bold tracking-wider translate-y-2 md:translate-y-5 text-white opacity-30 whitespace-nowrap">
+                        <span
+                            className="text-6xl sm:text-7xl md:text-9xl lg:text-[17rem] font-medium tracking-wider mt-10  translate-y-2 md:translate-y-5 whitespace-nowrap"
+                            style={{
+                                background: "linear-gradient(90deg, rgba(14,165,233,1) 0%, rgba(238,16,229,1) 100%)",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                                opacity: 0.11
+                            }}
+                        >
                             Hexa Ai
                         </span>
                     </div>

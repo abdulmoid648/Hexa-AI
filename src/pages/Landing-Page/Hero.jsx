@@ -10,17 +10,9 @@ const Hero = () => {
     return (
         <section className="flex flex-col items-center justify-center min-h-screen lg:min-h-[125vh] text-center px-4 pt-10 md:pt-20 pb-16 bg-white overflow-hidden gap-7 mb-10 relative">
             {/* Heading */}
-            <h1 className="text-4xl md:text-4xl lg:text-6xl  text-gray-900 leading-[1.1] max-w-4xl mt-10 md:mt-20">
+            <h1 className="text-4xl md:text-4xl lg:text-5xl  text-gray-900 leading-[1.1] max-w-4xl mt-10 md:mt-20">
                 Enterprise-Ready{" "}
-                <span
-                    className="font-semibold"
-                    style={{
-                        background: "linear-gradient(90deg, #ef4444 0%, #a855f7 50%, #3b82f6 100%)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        backgroundClip: "text",
-                    }}
-                >
+                <span className="bg-[linear-gradient(90deg,#e7646c_0%,#8b6aa8_50%,#4f8edc_100%)] bg-clip-text text-transparent font-medium">
                     Voice AI Agents
                 </span>
                 <br />
@@ -96,7 +88,7 @@ const Hero = () => {
             </div>
 
             {/* Spacer for next section */}
-            <div className="h-20 md:h-40"></div>
+            <div className="h-20 md:h-20"></div>
         </section>
     );
 };

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import featureImg from "../../assets/Feature.png";
 
 const features = [
     {
@@ -115,8 +116,8 @@ const Features = () => {
                     </h2>
                 </div>
 
-                <div className="mt-14 grid items-center gap-10 lg:grid-cols-[0.98fr_1.02fr] lg:gap-14">
-                    <div className="space-y-0">
+                <div className="mt-14 grid items-start gap-10 lg:grid-cols-[0.98fr_1.02fr] lg:gap-14">
+                    <div className="space-y-0 lg:mt-6 self-start">
                         {features.map((feature, index) => {
                             const isActive = activeFeature === index;
 
@@ -131,19 +132,19 @@ const Features = () => {
                                         className="block w-full text-left"
                                     >
                                         <div
-                                            className={`overflow-hidden rounded-[1.75rem] px-4 py-6  transition duration-300 sm:px-6 md:max-w-[430px] ${isActive ? "bg-white shadow-[0_18px_50px_rgba(59,130,246,0.12)] ring-1 ring-blue-50" : "bg-transparent"}`}
+                                            className={`overflow-hidden rounded-[1.75rem] px-4 py-6 transition-all duration-300 sm:px-6 md:max-w-[450px] ${isActive ? "bg-white shadow-[0_18px_50px_rgba(59,130,246,0.12)] ring-1 ring-blue-50" : "bg-transparent"}`}
                                         >
                                             <div className="flex items-start justify-between gap-4">
                                                 <span
-                                                    className={`text-lg font-semibold transition ${isActive ? "text-slate-900" : "text-slate-700"}`}
+                                                    className={`text-2xl font-semibold transition-colors duration-300 ${isActive ? "text-slate-900" : "text-slate-700"}`}
                                                 >
                                                     {feature.title}
                                                 </span>
                                             </div>
                                             <div
-                                                className={`overflow-hidden transition-all duration-500 ${isActive ? "mt-2 max-h-10 max-w-md opacity-100" : "max-h-0 opacity-0"}`}
+                                                className={`overflow-hidden transition-all duration-700 ease-in-out ${isActive ? "mt-4 max-h-[150px] opacity-100" : "max-h-0 opacity-0"}`}
                                             >
-                                                <p className="max-w-xl text-sm leading-5 text-slate-500">{feature.description}</p>
+                                                <p className="max-w-xl text-md leading-6 text-slate-500">{feature.description}</p>
                                             </div>
                                         </div>
                                     </button>
@@ -155,20 +156,28 @@ const Features = () => {
                         })}
                     </div>
 
-                    <div className="relative overflow-hidden rounded-[2rem] bg-[linear-gradient(135deg,#4f9cf9_0%,#a78bfa_55%,#c084fc_100%)] p-6 shadow-[0_18px_60px_rgba(99,102,241,0.16)] sm:p-8 lg:min-h-[440px]">
-                        <div className="floating-orb absolute -left-10 top-8 h-28 w-28 rounded-full bg-white/10 blur-2xl" />
-                        <div className="floating-orb-delayed absolute -right-4 bottom-6 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
+                    <div
+                        className="relative overflow-hidden rounded-[1rem] p-6 shadow-[0_18px_60px_rgba(99,102,241,0.16)] sm:p-8 lg:min-h-[440px] bg-cover bg-center bg-no-repeat"
+                        style={{ backgroundImage: `url(${featureImg})` }}
+                    >
                         <div className="relative grid gap-5 lg:grid-cols-[minmax(0,220px)_minmax(0,1fr)] lg:items-start lg:gap-3">
                             {/* Left Card */}
                             <div
-                                className={`w-[260px] h-fit mt-6 rounded-[1.35rem] border border-white/60 bg-white p-4 shadow-xl transition-all duration-500 origin-top-left hover:scale-[1] sm:p-5 ${showValues && selectedDoc ? "scale-[1]" : "scale-50 opacity-80"}`}
+                                className={`w-[260px] h-fit mt-16 ml-4 rounded-[1.35rem] border border-white/60 bg-white p-4 shadow-xl transition-all duration-500 origin-top-left hover:scale-[1] sm:p-5 ${showValues && selectedDoc ? "scale-[1]" : "scale-50 opacity-80"}`}
                             >
                                 <div className="mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
-                                    <div className="grid h-6 w-6 place-items-center rounded-md bg-amber-400 text-slate-900">
-                                        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M9 18h6" />
-                                            <path d="M10 22h4" />
-                                            <path d="M12 2a7 7 0 0 1 7 7c0 2.6-1.4 4.9-3.5 6.2-.5.3-.5.8-.5 1.3V17H9v-.5c0-.5 0-1-.5-1.3A7 7 0 0 1 12 2Z" />
+                                    <div className="grid h-7 w-7 place-items-center">
+                                        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            {/* Rays */}
+                                            <path d="M12 1V3M4.22 4.22L5.64 5.64M1 12H3M4.22 19.78L5.64 18.36" stroke="#475569" strokeWidth="2" strokeLinecap="round" />
+                                            <path d="M19.78 4.22L18.36 5.64M23 12H21M19.78 19.78L18.36 18.36" stroke="#475569" strokeWidth="2" strokeLinecap="round" />
+                                            {/* Bulb Base */}
+                                            <path d="M9 20H15M10 22H14" stroke="#475569" strokeWidth="2" strokeLinecap="round" />
+                                            {/* Bulb Body */}
+                                            <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" fill="#FBBF24" />
+                                            {/* Gear inside */}
+                                            <path d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z" fill="white" />
+                                            <path d="M12 9V10M12 14V15M9 12H10M14 12H15M9.88 9.88L10.59 10.59M13.41 13.41L14.12 14.12M9.88 14.12L10.59 13.41M13.41 10.59L14.12 9.88" stroke="white" strokeWidth="1" strokeLinecap="round" />
                                         </svg>
                                     </div>
                                     <span className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500">Knowledge Base</span>
@@ -178,11 +187,11 @@ const Features = () => {
                                         className="ml-auto grid h-6 w-6 place-items-center rounded-md bg-amber-400 text-slate-900 transition hover:bg-amber-300"
                                         aria-label="Open extracted values"
                                     >
-                                        <PlusIcon className="h-3.5 w-3.5" />
+                                        <PlusIcon className="h-3.5 w-3.5 text-white" />
                                     </button>
                                 </div>
 
-                                <div className="space-y-3">
+                                <div className="space-y-3  ">
                                     <KnowledgeBaseBadge
                                         label="Terms & Conditions"
                                         selected={selectedDoc === "terms"}
@@ -197,11 +206,11 @@ const Features = () => {
                             </div>
 
                             <div
-                                className={`h-[200px] mt-12 rounded-[1.35rem] border border-slate-100 bg-white p-4 shadow-xl transition-all duration-300 sm:p-5 ${showValues && selectedDoc ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0 pointer-events-none lg:translate-y-8"}`}
+                                className={`h-[215px] lg:w-[250px] mt-12 lg:mt-24 lg:translate-x-5 rounded-xl border border-slate-100 bg-white p-4 shadow-xl transition-all duration-500 ease-out sm:p-5 origin-top-left ${showValues && selectedDoc ? "translate-y-0 translate-x-0 opacity-100 scale-100" : "translate-y-4 -translate-x-12 opacity-0 scale-50 pointer-events-none lg:translate-y-8"}`}
                             >
                                 <div className="mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
-                                    <div className="grid h-6 w-6 place-items-center rounded-md bg-amber-400 text-slate-900">
-                                        <FileShareIcon className="h-3.5 w-3.5" />
+                                    <div className="grid h-6 w-6 place-items-center rounded-sm border border-slate-100 bg-white shadow-sm transition">
+                                        <FileShareIcon className="h-3.5 w-3.5 text-slate-500" />
                                     </div>
                                     <span className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
                                         {activeDocLabel || "Extracted Values"}
@@ -216,11 +225,19 @@ const Features = () => {
                                     </button>
                                 </div>
 
-                                <div className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3">
-                                    <div className="text-sm font-semibold text-slate-700">{activeDocLabel || "Select a document"}</div>
-                                    <div className="mt-1 text-xs font-medium text-slate-400">
-                                        {selectedDoc ? "Added to KB • Ready" : "Waiting for a file selection"}
-                                    </div>
+                                <div className="space-y-3 px-1">
+                                    {[
+                                        { label: "Sales Policy" },
+                                        { label: "Customer Service" },
+                                        { label: "Leaves Policy" },
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex items-center gap-3">
+                                            <div className="flex h-7 w-7 items-center justify-center rounded-md border border-slate-100 bg-white shadow-sm ">
+                                                <FileShareIcon className="h-3.5 w-3.5 text-slate-500" />
+                                            </div>
+                                            <span className="text-sm font-medium text-slate-500">{item.label}</span>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
