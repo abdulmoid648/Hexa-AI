@@ -1,22 +1,28 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom"
 import Navbar from './components/Navbar'
 import Page from './components/Page'
 import IntegrationsPage from './components/IntegrationsPage'
 import ProductPage from './components/ProductPage'
+import Login from './pages/Auth/Login'
 import Footer from './components/Footer'
 import CTA from './components/CTA'
 
 function App() {
+  const location = useLocation();
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden w-full">
-      <Navbar />
+      {!isAuthPage && <Navbar />}
       <Routes>
         <Route path="/" element={<Page />} />
         <Route path="/integrations" element={<IntegrationsPage />} />
         <Route path="/product" element={<ProductPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Login />} />
       </Routes>
-      <CTA />
-      <Footer />
+      {!isAuthPage && <CTA />}
+      {!isAuthPage && <Footer />}
     </div>
   )
 }

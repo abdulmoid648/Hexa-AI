@@ -163,7 +163,7 @@ const Features = () => {
                         <div className="relative grid gap-5 lg:grid-cols-[minmax(0,220px)_minmax(0,1fr)] lg:items-start lg:gap-3">
                             {/* Left Card */}
                             <div
-                                className={`w-[260px] h-fit mt-16 ml-4 rounded-[1.35rem] border border-white/60 bg-white p-4 shadow-xl transition-all duration-500 origin-top-left hover:scale-[1] sm:p-5 ${showValues && selectedDoc ? "scale-[1]" : "scale-50 opacity-80"}`}
+                                className={`w-[260px] h-fit mt-16 ml-4 rounded-xl border border-white/60 bg-white p-4 shadow-xl transition-all duration-500 origin-top-left hover:scale-[1] sm:p-5 ${showValues && selectedDoc ? "scale-[1]" : "scale-50 opacity-80"}`}
                             >
                                 <div className="mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
                                     <div className="grid h-7 w-7 place-items-center">
@@ -206,7 +206,7 @@ const Features = () => {
                             </div>
 
                             <div
-                                className={`h-[215px] lg:w-[250px] mt-12 lg:mt-24 lg:translate-x-5 rounded-xl border border-slate-100 bg-white p-4 shadow-xl transition-all duration-500 ease-out sm:p-5 origin-top-left ${showValues && selectedDoc ? "translate-y-0 translate-x-0 opacity-100 scale-100" : "translate-y-4 -translate-x-12 opacity-0 scale-50 pointer-events-none lg:translate-y-8"}`}
+                                className={`h-[205px] lg:w-[240px] mt-12 lg:mt-24 lg:translate-x-5 rounded-lg border border-slate-100 bg-white p-4 shadow-xl transition-all duration-500 ease-out sm:p-5 origin-top-left ${showValues && selectedDoc ? "translate-y-0 translate-x-0 opacity-100 scale-100" : "translate-y-4 -translate-x-12 opacity-0 scale-50 pointer-events-none lg:translate-y-8"}`}
                             >
                                 <div className="mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
                                     <div className="grid h-6 w-6 place-items-center rounded-sm border border-slate-100 bg-white shadow-sm transition">
