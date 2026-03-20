@@ -55,6 +55,28 @@ function ChevronDownIcon({ className = "h-4 w-4" }) {
         </svg>
     );
 }
+function Waveform({ color = "bg-slate-400", scale = 0.38, className = "" }) {
+    return (
+        <div className={`flex h-8 items-center gap-[2px] ${className}`}>
+            {[
+                [28, 1.10, 0.00], [52, 0.90, 0.08], [70, 1.30, 0.16], [44, 1.00, 0.24], [80, 0.80, 0.32],
+                [58, 1.20, 0.40], [90, 1.00, 0.48], [36, 1.40, 0.56], [74, 0.90, 0.64], [62, 1.10, 0.72],
+                [86, 0.85, 0.80], [48, 1.30, 0.88], [76, 1.00, 0.96], [40, 1.20, 0.60], [66, 0.95, 0.44],
+                [84, 1.15, 0.28], [54, 1.35, 0.12], [72, 0.88, 0.52], [42, 1.05, 0.36], [68, 1.25, 0.20],
+            ].map(([h, dur, delay], i) => (
+                <span
+                    key={i}
+                    className={`min-w-0 flex-1 rounded-full ${color}`}
+                    style={{
+                        height: `${Math.round(h * scale)}px`,
+                        transformOrigin: 'center',
+                        animation: `pulseBar ${dur}s ease-in-out ${delay}s infinite`,
+                    }}
+                />
+            ))}
+        </div>
+    );
+}
 
 function PlayIcon({ className = "h-4 w-4" }) {
     return (
@@ -141,25 +163,8 @@ const LiveDemo = () => {
 
                                             {/* Waveform — only visible when collapsed */}
                                             {!isOpen && (
-                                                <div className="min-w-0 flex-1 flex items-center">
-                                                    <div className="flex h-8 w-full items-center gap-[2px]">
-                                                        {[
-                                                            [28, 1.10, 0.00], [52, 0.90, 0.08], [70, 1.30, 0.16], [44, 1.00, 0.24], [80, 0.80, 0.32],
-                                                            [58, 1.20, 0.40], [90, 1.00, 0.48], [36, 1.40, 0.56], [74, 0.90, 0.64], [62, 1.10, 0.72],
-                                                            [86, 0.85, 0.80], [48, 1.30, 0.88], [76, 1.00, 0.96], [40, 1.20, 0.60], [66, 0.95, 0.44],
-                                                            [84, 1.15, 0.28], [54, 1.35, 0.12], [72, 0.88, 0.52], [42, 1.05, 0.36], [68, 1.25, 0.20],
-                                                        ].map(([h, dur, delay], i) => (
-                                                            <span
-                                                                key={i}
-                                                                className="min-w-0 flex-1 rounded-full bg-slate-400"
-                                                                style={{
-                                                                    height: `${Math.round(h * 0.38)}px`,
-                                                                    transformOrigin: 'center',
-                                                                    animation: `pulseBar ${dur}s ease-in-out ${delay}s infinite`,
-                                                                }}
-                                                            />
-                                                        ))}
-                                                    </div>
+                                                <div className="min-w-0 flex-1 flex items-center pr-2">
+                                                    <Waveform className="w-full" color="bg-slate-400" />
                                                 </div>
                                             )}
 
@@ -178,7 +183,7 @@ const LiveDemo = () => {
                                                     transition={{ duration: 0.28, ease: "easeInOut" }}
                                                     className="overflow-hidden border-t border-slate-100"
                                                 >
-                                                    <div className="px-4 pt-4 pb-5 flex flex-col gap-4">
+                                                    <div className="px-5 pt-4 pb-5 flex flex-col gap-4">
                                                         {/* Full name + star */}
                                                         <div className="flex items-center gap-1.5">
                                                             <span className="text-lg font-bold text-slate-900">
@@ -194,24 +199,11 @@ const LiveDemo = () => {
                                                         {/* Long description */}
                                                         <p className="text-sm text-slate-500 leading-relaxed">{voice.longDescription}</p>
 
-                                                        {/* Waveform — shown here when expanded */}
-                                                        <div className="flex h-8 w-full items-center gap-[2px]">
-                                                            {[
-                                                                [28, 1.10, 0.00], [52, 0.90, 0.08], [70, 1.30, 0.16], [44, 1.00, 0.24], [80, 0.80, 0.32],
-                                                                [58, 1.20, 0.40], [90, 1.00, 0.48], [36, 1.40, 0.56], [74, 0.90, 0.64], [62, 1.10, 0.72],
-                                                                [86, 0.85, 0.80], [48, 1.30, 0.88], [76, 1.00, 0.96], [40, 1.20, 0.60], [66, 0.95, 0.44],
-                                                                [84, 1.15, 0.28], [54, 1.35, 0.12], [72, 0.88, 0.52], [42, 1.05, 0.36], [68, 1.25, 0.20],
-                                                            ].map(([h, dur, delay], i) => (
-                                                                <span
-                                                                    key={i}
-                                                                    className="min-w-0 flex-1 rounded-full bg-slate-400"
-                                                                    style={{
-                                                                        height: `${Math.round(h * 0.38)}px`,
-                                                                        transformOrigin: 'center',
-                                                                        animation: `pulseBar ${dur}s ease-in-out ${delay}s infinite`,
-                                                                    }}
-                                                                />
-                                                            ))}
+                                                        {/* Waveform — exactly alike the closed one */}
+                                                        <div className="flex items-center">
+                                                            <div className="w-[110px]">
+                                                                <Waveform className="w-full" color="bg-slate-400" />
+                                                            </div>
                                                         </div>
 
                                                         {/* Tags */}
