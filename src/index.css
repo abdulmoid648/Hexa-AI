@@ -9,9 +9,13 @@
 }
 
 @layer base {
-  *, ::before, ::after {
+
+  *,
+  ::before,
+  ::after {
     font-family: var(--font-sans);
   }
+
   body {
     font-family: var(--font-sans);
     margin: 0;
@@ -26,8 +30,10 @@
   }
 
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 }
 
@@ -52,6 +58,28 @@ html {
 
 .floating-orb-delayed {
   animation: floatOrb 8s ease-in-out infinite 1.8s;
+}
+
+@keyframes waveRipple {
+  0%, 100% { transform: scaleY(0.15); opacity: 0.4; }
+  12.5% { transform: scaleY(1); opacity: 1; }
+  25% { transform: scaleY(0.15); opacity: 0.4; }
+  37.5% { transform: scaleY(0.4); opacity: 0.6; }
+  50% { transform: scaleY(0.15); opacity: 0.4; }
+  62.5% { transform: scaleY(0.75); opacity: 0.8; }
+  75% { transform: scaleY(0.15); opacity: 0.4; }
+  87.5% { transform: scaleY(0.5); opacity: 0.7; }
+}
+
+@keyframes pumpBar {
+  0%, 100% {
+    transform: scaleY(0.4);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
 }
 
 @keyframes pulseBar {
@@ -104,6 +132,22 @@ html {
   }
 }
 
+@keyframes slideInLeftLoop {
+  0% { opacity: 0; transform: translateX(-20px); }
+  15% { opacity: 1; transform: translateX(0); }
+  75% { opacity: 1; transform: translateX(0); }
+  90% { opacity: 0; transform: translateX(20px); }
+  100% { opacity: 0; transform: translateX(20px); }
+}
+
+@keyframes fadeLineLoop {
+  0% { opacity: 0; stroke-dashoffset: 28; }
+  15% { opacity: 0.6; stroke-dashoffset: 0; }
+  75% { opacity: 0.6; stroke-dashoffset: 0; }
+  90% { opacity: 0; stroke-dashoffset: -28; }
+  100% { opacity: 0; stroke-dashoffset: -28; }
+}
+
 @keyframes expandBadge {
   0%, 10% {
     width: 64px;
@@ -111,31 +155,40 @@ html {
     transform: scale(0.8);
   }
   20% {
+    width: 64px; /* Holds square shape while fading in */
     opacity: 1;
     transform: scale(1);
   }
   30%, 80% {
     width: min(100%, 320px);
     opacity: 1;
+    transform: scale(1);
   }
   90%, 100% {
     width: min(100%, 320px);
     opacity: 0;
+    transform: scale(1);
   }
 }
 
 @keyframes typeText {
-  0%, 30% {
+
+  0%,
+  30% {
     max-width: 0;
     opacity: 0;
     margin-left: 0;
   }
-  45%, 80% {
+
+  45%,
+  80% {
     max-width: 220px;
     opacity: 1;
     margin-left: 12px;
   }
-  90%, 100% {
+
+  90%,
+  100% {
     max-width: 220px;
     opacity: 0;
     margin-left: 12px;
@@ -190,20 +243,19 @@ html {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
 }
 
 .animate-text-shimmer {
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.15) 40%,
-    rgba(139, 92, 246, 0.9) 50%,
-    rgba(255, 255, 255, 0.15) 60%,
-    rgba(255, 255, 255, 0.15) 100%
-  );
+  background-image: linear-gradient(to right,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.15) 40%,
+      rgba(139, 92, 246, 0.9) 50%,
+      rgba(255, 255, 255, 0.15) 60%,
+      rgba(255, 255, 255, 0.15) 100%);
   background-size: 200% auto;
   animation: textShimmer 4s linear infinite;
 }
@@ -217,9 +269,17 @@ html {
 }
 
 @keyframes bgSmooth {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 0%; }
-  100% { background-position: 0% 0%; }
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 0%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
 }
 
 .animate-bg-smooth {

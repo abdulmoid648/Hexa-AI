@@ -175,11 +175,9 @@ const Enterprise = () => {
                         </p>
                         <div className="mt-10 flex h-20 items-center justify-center gap-[3px] px-2">
                             {[
-                                [28, 1.1, 0.00], [52, 0.9, 0.08], [70, 1.3, 0.16], [44, 1.0, 0.24], [80, 0.8, 0.32],
-                                [58, 1.2, 0.40], [90, 1.0, 0.48], [36, 1.4, 0.56], [74, 0.9, 0.64], [62, 1.1, 0.72],
-                                [86, 0.85, 0.80], [48, 1.3, 0.88], [76, 1.0, 0.96], [40, 1.2, 0.60], [66, 0.95, 0.44],
-                                [84, 1.15, 0.28], [54, 1.35, 0.12], [72, 0.88, 0.52], [42, 1.05, 0.36], [68, 1.25, 0.20], [56, 0.92, 0.68],
-                            ].map(([h, dur, delay], i) => (
+                                28, 52, 70, 44, 80, 58, 90, 36, 74, 62,
+                                86, 48, 76, 40, 66, 84, 54, 72, 42, 68, 56
+                            ].map((h, i) => (
                                 <div
                                     key={`api-${i}`}
                                     className="w-1.5 flex-shrink-0 rounded-full"
@@ -187,7 +185,7 @@ const Enterprise = () => {
                                         height: `${h}%`,
                                         backgroundColor: 'black',
                                         transformOrigin: 'center center',
-                                        animation: `pulseBar ${dur}s ease-in-out ${delay}s infinite`,
+                                        animation: `pumpBar 1.2s ease-in-out ${i * 0.05}s infinite`,
                                     }}
                                 />
                             ))}
@@ -261,7 +259,7 @@ const Enterprise = () => {
                                             className="flex items-center gap-3 ml-8  w-25 rounded-2xl border border-white/20 bg-white/95 px-3 py-2.5  shadow-[0_8px_30px_rgba(0,0,0,0.12)] z-10"
                                             style={{
                                                 opacity: card4InView ? 1 : 0,
-                                                animation: card4InView ? `slideInLeft 0.8s ease-out both ${index * 0.1}s` : "none",
+                                                animation: card4InView ? `slideInLeftLoop 4.5s ease-in-out infinite ${index * 0.1}s` : "none",
                                             }}
                                         >
                                             <div className="flex items-center justify-center p-1 opacity-80 h-2  ">
@@ -300,7 +298,7 @@ const Enterprise = () => {
                                             strokeDasharray="4 6"
                                             style={{
                                                 opacity: card4InView ? 0.6 : 0,
-                                                animation: card4InView ? `fadeLine 0.9s ease-out both ${index * 0.12}s` : "none",
+                                                animation: card4InView ? `fadeLineLoop 4.5s ease-in-out infinite ${index * 0.1}s` : "none",
                                             }}
                                         />
                                     ))}
@@ -314,7 +312,7 @@ const Enterprise = () => {
                                         className="h-6 w-6 overflow-hidden  rounded-full border-[3px] border-white shadow-[0_8px_30px_rgba(0,0,0,0.2)] sm:h-8 sm:w-8 pointer-events-none"
                                         style={{
                                             opacity: card4InView ? 1 : 0,
-                                            animation: card4InView ? `slideInLeft 0.8s ease-out both ${index * 0.15 + 0.5}s` : "none",
+                                            animation: card4InView ? `slideInLeftLoop 4.5s ease-in-out infinite ${index * 0.1}s` : "none",
                                         }}
                                     >
                                         <img src={url} alt="Person" className="h-full w-full object-cover" />
@@ -341,7 +339,7 @@ const Enterprise = () => {
                                         strokeDasharray="4 6"
                                         style={{
                                             opacity: card4InView ? 0.6 : 0,
-                                            animation: card4InView ? `fadeLine 0.9s ease-out both ${index * 0.12}s` : "none",
+                                            animation: card4InView ? `fadeLineLoop 4.5s ease-in-out infinite ${index * 0.1}s` : "none",
                                         }}
                                     />
                                 ))}
@@ -355,7 +353,7 @@ const Enterprise = () => {
                                         className="h-8 w-8 overflow-hidden rounded-full border-[3px] border-white shadow-[0_8px_30px_rgba(0,0,0,0.2)] pointer-events-none flex-shrink-0"
                                         style={{
                                             opacity: card4InView ? 1 : 0,
-                                            animation: card4InView ? `slideInLeft 0.8s ease-out both ${index * 0.15 + 0.5}s` : "none",
+                                            animation: card4InView ? `slideInLeftLoop 4.5s ease-in-out infinite ${index * 0.1}s` : "none",
                                         }}
                                     >
                                         <img src={url} alt="Person" className="h-full w-full object-cover" />
@@ -385,14 +383,14 @@ const Enterprise = () => {
 
 
                             <div
-                                className="uptime-badge mx-auto flex h-[64px] items-center justify-start overflow-hidden rounded-lg bg-gradient-to-r from-sky-100 to-fuchsia-100 px-4 shadow-sm "
+                                className="uptime-badge mx-auto flex h-[64px] items-center justify-start overflow-hidden rounded-2xl bg-gradient-to-r from-sky-100 to-fuchsia-100 px-[14px] shadow-sm "
                                 style={{ animation: card5InView ? "expandBadge 6s ease-in-out infinite" : "none" }}
                             >
-                                <div className="grid h-9 w-9 flex-shrink-0 place-items-center rounded-full border border-emerald-500 text-emerald-500">
+                                <div className="grid h-9 w-9 flex-shrink-0 place-items-center rounded-full border-2 border-emerald-500 text-emerald-500">
                                     <CheckIcon className="h-5 w-5" />
                                 </div>
                                 <span
-                                    className="uptime-text overflow-hidden whitespace-nowrap text-base  text-slate-800"
+                                    className="uptime-text overflow-hidden whitespace-nowrap text-base font-medium text-slate-800"
                                     style={{ animation: card5InView ? "typeText 6s ease-in-out infinite" : "none" }}
                                 >
                                     All Systems Operational

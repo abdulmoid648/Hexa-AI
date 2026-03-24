@@ -55,22 +55,22 @@ function ChevronDownIcon({ className = "h-4 w-4" }) {
         </svg>
     );
 }
-function Waveform({ color = "bg-slate-400", scale = 0.38, className = "" }) {
+function Waveform({ color = "bg-slate-400", scale = 0.38, className = "", isMoving = false }) {
     return (
-        <div className={`flex h-8 items-center gap-[2px] ${className}`}>
+        <div className={`flex h-8  items-center gap-[2px] sm:gap-[3px] overflow-hidden ${className}`}>
             {[
-                [28, 1.10, 0.00], [52, 0.90, 0.08], [70, 1.30, 0.16], [44, 1.00, 0.24], [80, 0.80, 0.32],
-                [58, 1.20, 0.40], [90, 1.00, 0.48], [36, 1.40, 0.56], [74, 0.90, 0.64], [62, 1.10, 0.72],
-                [86, 0.85, 0.80], [48, 1.30, 0.88], [76, 1.00, 0.96], [40, 1.20, 0.60], [66, 0.95, 0.44],
-                [84, 1.15, 0.28], [54, 1.35, 0.12], [72, 0.88, 0.52], [42, 1.05, 0.36], [68, 1.25, 0.20],
-            ].map(([h, dur, delay], i) => (
+                28, 52, 70, 44, 80,
+                58, 90, 36, 74, 62,
+                86, 48, 76, 40, 66,
+                84, 54, 72, 42, 68
+            ].map((h, i) => (
                 <span
                     key={i}
-                    className={`min-w-0 flex-1 rounded-full ${color}`}
+                    className={`w-[10.5px] sm:w-[3px] flex-shrink-0 rounded-full ${color}`}
                     style={{
                         height: `${Math.round(h * scale)}px`,
                         transformOrigin: 'center',
-                        animation: `pulseBar ${dur}s ease-in-out ${delay}s infinite`,
+                        animation: isMoving ? `pumpBar 1.2s ease-in-out ${i * 0.05}s infinite` : 'none',
                     }}
                 />
             ))}
@@ -88,6 +88,7 @@ function PlayIcon({ className = "h-4 w-4" }) {
 
 const LiveDemo = () => {
     const [expandedVoice, setExpandedVoice] = useState(null);
+    const [playingVoice, setPlayingVoice] = useState("Roger");
     const toggleVoice = (name) => setExpandedVoice(prev => prev === name ? null : name);
 
     return (
@@ -104,7 +105,7 @@ const LiveDemo = () => {
             <div className="absolute inset-0 bg-white/80"></div>
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center ">
-                    <h2 className="relative inline-block text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl lg:text-4xl">
+                    <h2 className="relative inline-block text-3xl  tracking-tight text-gray-900 sm:text-4xl lg:text-4xl">
                         Try Our Live Demo
                     </h2>
                     <p className="mt-6 text-base leading-7 text-gray-900 sm:text-lg">
@@ -133,6 +134,9 @@ const LiveDemo = () => {
                         <div className="space-y-4">
                             {voices.map((voice, index) => {
                                 const isOpen = expandedVoice === voice.name;
+                                const isPlaying = playingVoice === voice.name;
+                                const accent = isPlaying ? "bg-sky-500" : "bg-slate-500";
+                                const hasStar = isPlaying;
                                 return (
                                     <div
                                         key={voice.name}
@@ -142,29 +146,37 @@ const LiveDemo = () => {
                                         {/* ── Closed row (always visible) ── */}
                                         <div className="flex items-center gap-3 px-3 py-3">
                                             {/* Play button */}
-                                            <div className={`grid h-10 w-10 flex-shrink-0 place-items-center rounded-xl text-white ${voice.accent}`}>
+                                            <div
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setPlayingVoice(voice.name);
+                                                }}
+                                                className={`grid h-10 w-10 flex-shrink-0 place-items-center rounded-xl text-white ${accent} hover:opacity-90 transition-opacity`}
+                                            >
                                                 <div className="grid h-6 w-6 place-items-center rounded-full border-2 border-white/90">
                                                     <PlayIcon className="h-3 w-3" />
                                                 </div>
                                             </div>
 
                                             {/* Name + description */}
-                                            <div className="min-w-0 flex-shrink-0 w-28">
-                                                <div className="flex items-center gap-1">
-                                                    <span className="text-sm font-bold text-slate-900 truncate">{voice.name}</span>
-                                                    {voice.star && (
-                                                        <svg className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                                            <div className={`min-w-0 transition-all duration-300 ${isOpen ? 'flex-1' : 'flex-shrink-0 w-28'}`}>
+                                                <div className="flex items-center gap-1.5">
+                                                    <span className={`text-slate-900 transition-all truncate ${isOpen ? 'text-lg ' : 'text-sm'}`}>
+                                                        {voice.name}{isOpen && <span className="font-normal text-slate-900"> – {voice.description}</span>}
+                                                    </span>
+                                                    {hasStar && (
+                                                        <svg className={`text-amber-400 flex-shrink-0 transition-all ${isOpen ? 'h-5 w-5' : 'h-3.5 w-3.5'}`} viewBox="0 0 24 24" fill="currentColor">
                                                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z" />
                                                         </svg>
                                                     )}
                                                 </div>
-                                                <p className="text-xs text-slate-400 truncate">{voice.description}</p>
+                                                {!isOpen && <p className="text-xs text-slate-400 truncate">{voice.description}</p>}
                                             </div>
 
                                             {/* Waveform — only visible when collapsed */}
                                             {!isOpen && (
                                                 <div className="min-w-0 flex-1 flex items-center pr-2">
-                                                    <Waveform className="w-full" color="bg-slate-400" />
+                                                    <Waveform className="w-full" color="bg-slate-900" isMoving={isPlaying} />
                                                 </div>
                                             )}
 
@@ -184,25 +196,13 @@ const LiveDemo = () => {
                                                     className="overflow-hidden border-t border-slate-100"
                                                 >
                                                     <div className="px-5 pt-4 pb-5 flex flex-col gap-4">
-                                                        {/* Full name + star */}
-                                                        <div className="flex items-center gap-1.5">
-                                                            <span className="text-lg font-bold text-slate-900">
-                                                                {voice.name} – {voice.description}
-                                                            </span>
-                                                            {voice.star && (
-                                                                <svg className="h-5 w-5 text-amber-400 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                                                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z" />
-                                                                </svg>
-                                                            )}
-                                                        </div>
-
                                                         {/* Long description */}
-                                                        <p className="text-sm text-slate-500 leading-relaxed">{voice.longDescription}</p>
+                                                        <p className="text-sm text-slate-400 leading-relaxed">{voice.longDescription}</p>
 
-                                                        {/* Waveform — exactly alike the closed one */}
+                                                        {/* Waveform  */}
                                                         <div className="flex items-center">
                                                             <div className="w-[110px]">
-                                                                <Waveform className="w-full" color="bg-slate-400" />
+                                                                <Waveform className="w-full" color="bg-slate-900" isMoving={isPlaying} />
                                                             </div>
                                                         </div>
 
