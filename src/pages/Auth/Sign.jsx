@@ -3,7 +3,7 @@ import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
-const Login = () => {
+const Sign = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,8 +22,8 @@ const Login = () => {
 
             {/* Main Content */}
             <div className="w-full max-w-md px-6 py-5 relative z-10 flex flex-col items-left mt-20">
-                <h1 className="text-3xl font-semibold text-gray-900  mb-2">Welcome Back!</h1>
-                <p className="text-black text-sm mb-10 text-left font-medium">Sign in to access your portal </p>
+                <h1 className="text-3xl font-semibold text-gray-900  mb-2">Create an Account</h1>
+                <p className="text-black text-sm mb-10 text-left font-medium">Sign in to use Hexa AI portal </p>
 
                 <form className="w-full space-y-6">
                     {/* Email Field */}
@@ -66,10 +66,6 @@ const Login = () => {
                             </button>
                         </div>
 
-                        <Link to="/login" className="text-cyan-400  text-sm ml-70">
-                            Forgot Password?
-                        </Link>
-
                     </div>
 
                     {/* Submit Button */}
@@ -108,9 +104,9 @@ const Login = () => {
                 </div>
 
                 <p className="mt-5 text-sm text-gray-500 font-medium pl-17">
-                    Don't have an account?{" "}
-                    <Link to="/signup" className="text-cyan-400 font-bold hover:underline ml-1">
-                        Sign Up
+                    Already have an account?{" "}
+                    <Link to="/login" className="text-cyan-400 font-bold hover:underline ml-1">
+                        Sign In
                     </Link>
                 </p>
             </div>
@@ -118,4 +114,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Sign;

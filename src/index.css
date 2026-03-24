@@ -2,7 +2,7 @@
 
 @theme {
   /* FONT SWITCHER: Change "DM Sans" to "Times New Roman" below to switch the whole site */
-  --font-sans: "DM Sans", sans-serif;
+  --font-sans: "Inter", sans-serif;
   --color-text-dark: #2d2d2d;
   --breakpoint-xs: 480px;
   --breakpoint-4xl: 1920px;

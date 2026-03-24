@@ -4,6 +4,7 @@ import Page from './components/Page'
 import IntegrationsPage from './components/IntegrationsPage'
 import ProductPage from './components/ProductPage'
 import Login from './pages/Auth/Login'
+import Sign from './pages/Auth/Sign'
 import Footer from './components/Footer'
 import CTA from './components/CTA'
 
@@ -19,7 +20,7 @@ function App() {
         <Route path="/integrations" element={<IntegrationsPage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Login />} />
+        <Route path="/signup" element={<Sign />} />
       </Routes>
       {!isAuthPage && <CTA />}
       {!isAuthPage && <Footer />}
