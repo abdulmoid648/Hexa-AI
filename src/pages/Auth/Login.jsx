@@ -15,10 +15,10 @@ const Login = () => {
             <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-100/30 blur-[120px] rounded-full pointer-events-none" />
 
             {/* Logo - Positioned top left */}
-            <div className="absolute top-8 left-50 flex items-center gap-2">
+            <Link to="/" className="absolute top-8 left-10 lg:left-40 flex items-center gap-2">
                 <img src={logo} alt="Hexa Ai" className="h-10 w-auto" />
                 <span className="text-2xl font-medium text-gray-900">Hexa AI</span>
-            </div>
+            </Link>
 
             {/* Main Content */}
             <div className="w-full max-w-md px-6 py-5 relative z-10 flex flex-col items-left mt-20">
@@ -66,7 +66,7 @@ const Login = () => {
                             </button>
                         </div>
 
-                        <Link to="/login" className="text-cyan-400  text-sm ml-70">
+                        <Link to="/login" className="text-cyan-400  text-sm lg:ml-70">
                             Forgot Password?
                         </Link>
 

@@ -24,7 +24,7 @@ const Navbar = () => {
                 {/* Left: Logo */}
                 <Link to="/" className="flex items-center gap-2 shrink-0">
                     <img src={logo} alt="Hexa AI Logo" className="h-8 w-auto" />
-                    <span className="text-2xl font-semibold text-gray-900 tracking-tight">Hexa AI</span>
+                    <span className="text-2xl  text-gray-900 tracking-tight">Hexa AI</span>
                 </Link>
 
                 {/* Center: Nav Links (Desktop) */}
@@ -33,7 +33,7 @@ const Navbar = () => {
                         <Link
                             key={link.name}
                             to={link.path}
-                            className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-150 flex items-center"
+                            className="text-base font-medium text-gray-600 hover:text-gray-900 transition-colors duration-150 flex items-center"
                         >
                             {link.name}
                             {link.hasDropdown && <ChevronDown />}

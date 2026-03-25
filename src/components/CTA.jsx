@@ -6,7 +6,7 @@ const CTA = () => {
             <div className="mx-auto max-w-4xl">
                 <h2 className="text-3xl font-medium leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
                     Time to Hire Your{" "}
-                    <span className="bg-[linear-gradient(90deg,#ef4444_0%,#a855f7_50%,#3b82f6_100%)] bg-clip-text font-bold text-transparent">
+                    <span className="bg-[linear-gradient(90deg,#e7646c_0%,#8b6aa8_50%,#4f8edc_100%)] bg-clip-text font-bold text-transparent">
                         AI Call Center
                     </span>
                 </h2>

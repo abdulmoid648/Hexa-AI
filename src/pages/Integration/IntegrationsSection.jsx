@@ -69,7 +69,7 @@ const IntegrationsHero = () => (
 const IntegrationsGrid = () => {
     const [activeTab, setActiveTab] = useState("Automation");
     return (
-        <div className="relative bg-[#f0f9ff]/50 border-t border-gray-100/50">
+        <div className="relative bg-sky-50 border-t border-gray-100/50">
             <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white to-transparent pointer-events-none" />
             <div className="max-w-4xl mx-auto px-4 py-16">
                 <div className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar gap-3 pb-8 border-b border-gray-200/60">
