@@ -4,6 +4,8 @@ import Page from './components/Page'
 import IntegrationsPage from './components/IntegrationsPage'
 import ProductPage from './components/ProductPage'
 import BookAppointmentPage from './pages/Product/Book Appointment/BookAppointmentPage'
+import KnowledgeBasePage from './pages/Product/Knowledge Base/KnowledgeBasePage'
+import NavigateIVRPage from './pages/Product/Navigate IVR/NavigateIVRPage'
 import Login from './pages/Auth/Login'
 import Sign from './pages/Auth/Sign'
 import Footer from './components/Footer'
@@ -21,6 +23,8 @@ function App() {
         <Route path="/integrations" element={<IntegrationsPage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/product/book-appointment" element={<BookAppointmentPage />} />
+        <Route path="/product/knowledge-base" element={<KnowledgeBasePage />} />
+        <Route path="/product/navigate-ivr" element={<NavigateIVRPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Sign />} />
       </Routes>

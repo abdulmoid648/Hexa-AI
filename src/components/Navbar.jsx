@@ -1,10 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
+    const timeoutRef = useRef(null);
+
+    const handleMouseEnter = (name) => {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        setActiveDropdown(name);
+    };
+
+    const handleMouseLeave = () => {
+        timeoutRef.current = setTimeout(() => {
+            setActiveDropdown(null);
+        }, 150); // Small delay for better UX
+    };
 
     useEffect(() => {
         if (activeDropdown) {
@@ -26,8 +38,8 @@ const Navbar = () => {
         Build: [
             { name: "Call Transfer", path: "/product" },
             { name: "Book Appointments", path: "/product/book-appointment" },
-            { name: "Knowledge Base", path: "#" },
-            { name: "Navigate IVR", path: "#" },
+            { name: "Knowledge Base", path: "/product/knowledge-base" },
+            { name: "Navigate IVR", path: "/product/navigate-ivr" },
         ],
         Deploy: [
             { name: "Verified Phone Numbers", path: "#" },
@@ -59,8 +71,8 @@ const Navbar = () => {
                         <div
                             key={link.name}
                             className="relative h-full flex items-center"
-                            onMouseEnter={() => link.hasDropdown && setActiveDropdown(link.name)}
-                            onMouseLeave={() => setActiveDropdown(null)}
+                            onMouseEnter={() => link.hasDropdown && handleMouseEnter(link.name)}
+                            onMouseLeave={() => link.hasDropdown && handleMouseLeave()}
                         >
                             <Link
                                 to={link.path}
@@ -72,7 +84,7 @@ const Navbar = () => {
 
                             {/*  Menu for Product */}
                             {link.name === 'Product' && activeDropdown === 'Product' && (
-                                <div className="absolute top-25 left-40 w-[1000px] h-[400px] bg-white border border-gray-100 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] p-10 z-50 animate-dropdown-fade">
+                                <div className="absolute top-20 left-40 w-[1000px] h-[400px] bg-white border border-gray-100 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] p-10 z-50 animate-dropdown-fade">
                                     <div className="flex gap-20 justify-center  ">
                                         {Object.entries(productDropdown).map(([category, items], idx) => (
                                             <div key={category} className={`${idx < 2 ? 'border-r border-gray-300 pr-12' : ''}`}>
