@@ -22,23 +22,29 @@ const BulbIcon = ({ className = "h-6 w-6" }) => (
 
 const KnowledgeStep = () => {
     return (
-        <section className="py-24 bg-white overflow-hidden">
+        <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6">
-                <h2 className="text-4xl font-medium text-gray-900 mb-20 text-center lg:text-left tracking-tight">
+                <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-16 tracking-tight">
                     Step by step to use a knowledge base?                </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div className="grid md:grid-cols-3 gap-8">
 
                     {/* Step 1: Create Knowledge Base */}
-                    <div className="flex flex-col bg-[#F8F9FA]/40 rounded-[2.5rem] border border-gray-100/50 p-2 shadow-sm hover:shadow-md transition-all duration-300 group">
+                    <div className="rounded-3xl border border-[#EDF5FD] bg-white p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
+                        {/* Visual Top Half */}
                         <div
-                            className="relative h-[360px] mt-3 w-full flex items-center justify-center p-8 overflow-hidden rounded-[2rem] bg-cover bg-center"
-                            style={{ backgroundImage: `url(${Step1})` }}
+                            className="relative h-[350px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8"
+                            style={{
+                                backgroundImage: `url(${Step1})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat'
+                            }}
                         >
                             <div className="absolute inset-0 bg-gradient-to-tr from-[#FDF2F8] to-[#EEF2FF] opacity-90"></div>
 
                             {/* Knowledge Base Mockup */}
-                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.05)] border border-gray-100 p-5 w-full max-w-[220px] transform group-hover:scale-105 transition-transform duration-500">
+                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-5 w-full max-w-[220px]">
                                 <div className="flex items-center justify-between mb-6">
                                     <div className="flex items-center gap-2">
                                         <div className="grid h-7 w-7 place-items-center">
@@ -62,26 +68,33 @@ const KnowledgeStep = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="px-8 pt-8 pb-6">
-                            <h3 className="text-[22px] font-semibold text-gray-900 mb-4 leading-snug tracking-tight">
+                        {/* Text Bottom Half */}
+                        <div className="px-2 pb-4 flex flex-col">
+                            <h3 className="text-[22px] font-semibold text-[#333333] mb-3 tracking-tight">
                                 Create a knowledge base in Hexa Ai
                             </h3>
-                            <p className="text-gray-400 text-sm leading-relaxed">
+                            <p className="text-[14px] text-[#6b7280] leading-relaxed">
                                 Navigate to the “Knowledge Base” tab and click the “Add” button. Choose your source: URL, File, or Text.
                             </p>
                         </div>
                     </div>
 
                     {/* Step 2: Add to Agent */}
-                    <div className="flex flex-col bg-[#F8F9FA]/40 rounded-[2.5rem] border border-gray-100/50 p-2 shadow-sm hover:shadow-md transition-all duration-300 group">
+                    <div className="rounded-3xl border border-[#EDF5FD] bg-white p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
+                        {/* Visual Top Half */}
                         <div
-                            className="relative h-[360px] mt-3 w-full flex items-center justify-center p-8 overflow-hidden rounded-[2rem] bg-cover bg-center"
-                            style={{ backgroundImage: `url(${Step2})` }}
+                            className="relative h-[350px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8"
+                            style={{
+                                backgroundImage: `url(${Step2})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat'
+                            }}
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-[#FEF2F2] to-[#FFF7ED] opacity-90"></div>
 
                             {/* Source Selection Mockup */}
-                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.05)] border border-gray-100 p-5 w-full max-w-[190px] transform group-hover:scale-105 transition-transform duration-500">
+                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-5 w-full max-w-[190px]">
                                 <div className="bg-gray-100/50 rounded-lg p-2.5 mb-4 flex items-center gap-2 border border-gray-100">
                                     <img src={FileIcon} alt="File" className="w-4 h-4" />
                                     <span className="text-[10px] font-bold text-gray-600">Customer Service</span>
@@ -102,26 +115,33 @@ const KnowledgeStep = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="px-8 pt-8 pb-6">
-                            <h3 className="text-[22px] font-semibold text-gray-900 mb-4 leading-snug tracking-tight">
+                        {/* Text Bottom Half */}
+                        <div className="px-2 pb-4 flex flex-col">
+                            <h3 className="text-[22px] font-semibold text-[#333333] mb-3 tracking-tight">
                                 Add the knowledge base to your agent
                             </h3>
-                            <p className="text-gray-400 text-sm leading-relaxed">
+                            <p className="text-[14px] text-[#6b7280] leading-relaxed">
                                 In the agent editor, select your knowledge items for accurate responses.
                             </p>
                         </div>
                     </div>
 
                     {/* Step 3: Playground */}
-                    <div className="flex flex-col bg-[#F8F9FA]/40 rounded-[2.5rem] border border-gray-100/50 p-2 shadow-sm hover:shadow-md transition-all duration-300 group">
+                    <div className="rounded-3xl border border-[#EDF5FD] bg-white p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
+                        {/* Visual Top Half */}
                         <div
-                            className="relative h-[360px] mt-3 w-full flex items-center justify-center p-8 overflow-hidden rounded-[2rem] bg-cover bg-center"
-                            style={{ backgroundImage: `url(${Step3})` }}
+                            className="relative h-[350px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8"
+                            style={{
+                                backgroundImage: `url(${Step3})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat'
+                            }}
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-[#EEF2FF] to-[#E0E7FF] opacity-90"></div>
 
                             {/* Playground Mockup */}
-                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.05)] border border-gray-100 p-4 w-full max-w-[260px] transform group-hover:scale-105 transition-transform duration-500">
+                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-4 w-full max-w-[260px]">
                                 <div className="flex items-center justify-between mb-3">
                                     <span className="text-[11px] font-medium text-gray-400">Knowledge Base</span>
                                     <div className="w-5 h-5 rounded-md bg-[#FFBE00] flex items-center justify-center text-white">
@@ -144,11 +164,12 @@ const KnowledgeStep = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="px-8 pt-8 pb-6">
-                            <h3 className="text-[22px] font-semibold text-gray-900 mb-4 leading-snug tracking-tight">
+                        {/* Text Bottom Half */}
+                        <div className="px-2 pb-4 flex flex-col">
+                            <h3 className="text-[22px] font-semibold text-[#333333] mb-3 tracking-tight">
                                 Test the knowledge base in the playground
                             </h3>
-                            <p className="text-gray-400 text-sm leading-relaxed">
+                            <p className="text-[14px] text-[#6b7280] leading-relaxed">
                                 Ask a related question in the test LLM area to verify the knowledge base integration.
                             </p>
                         </div>

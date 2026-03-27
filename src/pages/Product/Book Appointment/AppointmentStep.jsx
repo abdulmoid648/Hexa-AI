@@ -5,23 +5,29 @@ import Step3 from '../../../assets/Product/Book Appointment/Step3.gif';
 
 const AppointmentStep = () => {
     return (
-        <section className="py-24 bg-white overflow-hidden">
+        <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6">
-                <h2 className="text-4xl font-medium text-gray-900 mb-20 text-center lg:text-left tracking-tight">
+                <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-16 tracking-tight">
                     Step by Step to use Appointment Booking
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div className="grid md:grid-cols-3 gap-8">
 
                     {/* Step 1: Functions */}
-                    <div className="flex flex-col h-full bg-[#F8F9FA]/40 rounded-[2.5rem] border border-gray-100/50 p-2 shadow-sm hover:shadow-md transition-all duration-300 group">
+                    <div className="rounded-3xl border border-[#EDF5FD] bg-white p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
+                        {/* Visual Top Half */}
                         <div
-                            className="relative  h-[360px] mt-3  w-[90] flex items-center justify-center p-8 overflow-hidden rounded-[2rem] bg-cover bg-center"
-                            style={{ backgroundImage: `url(${Step1})` }}
+                            className="relative h-[350px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8"
+                            style={{
+                                backgroundImage: `url(${Step1})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat'
+                            }}
                         >
                             <div className="absolute inset-0 bg-white/90"></div>
                             {/* Functions Mockup */}
-                            <div className="relative z-10 bg-white rounded-[2rem] shadow-[0_12px_40px_rgba(0,0,0,0.06)] border border-gray-100 p-6 w-full max-w-[280px] transform group-hover:scale-[1.02] transition-transform duration-500">
+                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-5 w-full max-w-[280px]">
                                 <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-100">
                                     <span className="text-gray-500 text-sm font-medium">Functions</span>
                                     <div className="w-6 h-6 rounded-md bg-[#FFBE00] flex items-center justify-center shadow-sm">
@@ -67,29 +73,32 @@ const AppointmentStep = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* Text Content */}
-                        <div className="px-8 pt-8 pb-10">
-                            <h3 className="text-[22px] font-semibold text-gray-900 mb-4 leading-snug tracking-tight">
+                        {/* Text Bottom Half */}
+                        <div className="px-2 pb-4 flex flex-col">
+                            <h3 className="text-[22px] font-semibold text-[#333333] mb-3 tracking-tight">
                                 Create Appointment Booking Functions
                             </h3>
-                            <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                                Start by creating an AI agent tailored for appointment booking.
-                            </p>
-                            <p className="text-gray-400 text-sm leading-relaxed">
-                                Add the "Check Availability" and "Book Appointments" functions to your agent.
+                            <p className="text-[14px] text-[#6b7280] leading-relaxed">
+                                Start by creating an AI agent tailored for appointment booking and add the "Check Availability" and "Book Appointments" functions.
                             </p>
                         </div>
                     </div>
 
                     {/* Step 2: Prompt */}
-                    <div className="flex flex-col h-full bg-[#F8F9FA]/40 rounded-xl border border-gray-100/50 p-2 shadow-sm hover:shadow-md transition-all duration-300 group">
+                    <div className="rounded-3xl border border-[#EDF5FD] bg-white p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
+                        {/* Visual Top Half */}
                         <div
-                            className="relative h-[360px] mt-3   w-full flex items-center justify-center p-8 overflow-hidden rounded-[2rem] bg-cover bg-center"
-                            style={{ backgroundImage: `url(${Step3})` }}
+                            className="relative h-[350px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8"
+                            style={{
+                                backgroundImage: `url(${Step3})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat'
+                            }}
                         >
                             <div className="absolute inset-0 bg-white/70"></div>
                             {/* Prompt Mockup */}
-                            <div className="relative z-10 bg-white rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.06)] border border-gray-100 p-6 w-full max-w-[280px] h-[240px] transform group-hover:scale-[1.02] transition-transform duration-500">
+                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-6 w-full max-w-[280px] h-[240px]">
                                 <div className="flex items-center justify-between mb-4">
                                     <span className="text-gray-400 text-sm font-medium">Prompt</span>
                                     <div className="w-6 h-6 rounded-md bg-[#FFBE00] flex items-center justify-center shadow-sm">
@@ -110,28 +119,32 @@ const AppointmentStep = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="px-8 pt-8 pb-10">
-                            <h3 className="text-[22px] font-semibold text-gray-900 mb-4 leading-snug tracking-tight">
+                        {/* Text Bottom Half */}
+                        <div className="px-2 pb-4 flex flex-col">
+                            <h3 className="text-[22px] font-semibold text-[#333333] mb-3 tracking-tight">
                                 Set Up & Add Function Logic to Prompts
                             </h3>
-                            <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                                Define the scenarios where the appointment booking functions will be triggered.
-                            </p>
-                            <p className="text-gray-400 text-sm leading-relaxed">
-                                Example: Call the "Check Availability" function and provide available slots to the customer.
+                            <p className="text-[14px] text-[#6b7280] leading-relaxed">
+                                Define the scenarios where the appointment booking functions will be triggered, such as providing available slots to the customer.
                             </p>
                         </div>
                     </div>
 
                     {/* Step 3: Bookings */}
-                    <div className="flex flex-col h-full bg-[#F8F9FA]/40 rounded-xl border border-gray-100/50 p-2 shadow-sm hover:shadow-md transition-all duration-300 group ">
+                    <div className="rounded-3xl border border-[#EDF5FD] bg-white p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
+                        {/* Visual Top Half */}
                         <div
-                            className="relative h-[360px] mt-3 ml-1 w-90 flex items-center justify-center p-8 overflow-hidden rounded-[2rem] bg-cover bg-center "
-                            style={{ backgroundImage: `url(${Step2})` }}
+                            className="relative h-[350px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8"
+                            style={{
+                                backgroundImage: `url(${Step2})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat'
+                            }}
                         >
                             <div className="absolute inset-0 bg-white/60"></div>
                             {/* Bookings Mockup */}
-                            <div className="relative z-10 bg-white rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.06)] border border-gray-100 p-2 w-full max-w-[280px] transform group-hover:scale-[1.02] transition-transform duration-500">
+                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-2 w-full max-w-[280px]">
                                 <div className="flex items-center justify-between mb-2">
                                     <span className="text-gray-400 text-sm font-semibold tracking-tight translate-x-2">Bookings</span>
                                     <div className="w-6 h-6 rounded-md bg-[#FFBE00] flex items-center justify-center shadow-sm -translate-x-1">
@@ -162,15 +175,13 @@ const AppointmentStep = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="px-8 pt-8 pb-10">
-                            <h3 className="text-[22px] font-semibold text-gray-900 mb-4 leading-snug tracking-tight">
+                        {/* Text Bottom Half */}
+                        <div className="px-2 pb-4 flex flex-col">
+                            <h3 className="text-[22px] font-semibold text-[#333333] mb-3 tracking-tight">
                                 Monitor Appointments and Optimize
                             </h3>
-                            <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                                Once an appointment is booked, view it directly on the dashboard.
-                            </p>
-                            <p className="text-gray-400 text-sm leading-relaxed">
-                                Review and refine your agent's prompts to further enhance customer interactions and optimize results.
+                            <p className="text-[14px] text-[#6b7280] leading-relaxed">
+                                Once an appointment is booked, view it directly on the dashboard and refine your agent's prompts to further enhance customer interactions.
                             </p>
                         </div>
                     </div>

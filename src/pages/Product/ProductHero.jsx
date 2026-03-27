@@ -1,8 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductHeroImg from '../../assets/ProductHero.gif';
 
 const ProductHero = () => {
     const [showTransfer, setShowTransfer] = useState(false);
+    const [showTransferCard, setShowTransferCard] = useState(false);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setShowTransfer(prev => {
+                const next = !prev;
+                if (next) {
+                    // Start scaling up, wait for it to finish (700ms), then show card
+                    setTimeout(() => setShowTransferCard(true), 700);
+                } else {
+                    // Hide card immediately, then scale down
+                    setShowTransferCard(false);
+                }
+                return next;
+            });
+        }, 4000); // Increased interval to account for staggering
+
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <section className="relative pt-32 pb-24 overflow-hidden bg-white">
@@ -50,7 +69,6 @@ const ProductHero = () => {
                                         <button
                                             onClick={(e) => {
                                                 e.stopPropagation(); // prevent double toggle
-                                                setShowTransfer(!showTransfer)
                                             }}
                                             className="bg-amber-400 p-1 rounded hover:bg-amber-300 transition-colors"
                                         >
@@ -79,62 +97,62 @@ const ProductHero = () => {
                                 </div>
 
                                 {/* Transfer Call Card */}
-                                {showTransfer && (
-                                    <div className="relative w-70  md:2-96  bg-white rounded-xl shadow-2xl border border-gray-100 p-5 z-20 
-                                    animate-in fade-in zoom-in-50 slide-in-from-right-12 duration-500 ease-out transform
+                                <div className={`relative w-70 md:2-96 bg-white rounded-xl shadow-2xl border border-gray-100 p-5 z-20 
+                                    transition-all duration-[1000ms] ease-in-out
                                     translate-x-40 translate-y-20
                                     sm:translate-x-28 sm:translate-y-30
                                     md:translate-x-52 md:translate-y-38
-                                    scale-45 sm:scale-55 md:scale-70 origin-top-left">
-                                        <div className="flex items-center justify-between mb-4">
-                                            <h3 className="text-sm font-bold text-gray-900 tracking-tight">Transfer Call</h3>
-                                            <button
-                                                onClick={() => setShowTransfer(false)}
-                                                className="w-6 h-6 rounded-lg bg-amber-400 flex items-center justify-center text-white hover:bg-amber-300 transition-colors"
-                                            >
-                                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
-                                                </svg>
-                                            </button>
-                                        </div>
+                                    scale-45 sm:scale-55 md:scale-70 origin-top-left
+                                    ${showTransferCard ? 'opacity-100 translate-y-20' : 'opacity-0 translate-y-28 pointer-events-none'}`}>
+                                    <div className="flex items-center justify-between mb-4">
+                                        <h3 className="text-sm font-bold text-gray-900 tracking-tight">Transfer Call</h3>
+                                        <button
+                                            onClick={() => setShowTransfer(false)}
+                                            className="w-6 h-6 rounded-lg bg-amber-400 flex items-center justify-center text-white hover:bg-amber-300 transition-colors"
+                                        >
+                                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
 
-                                        <div className="mb-6">
-                                            <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Transfer to</label>
-                                            <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100 flex items-center justify-between">
-                                                <span className="text-xs font-medium text-gray-500">+ 571 1234 2345</span>
-                                            </div>
+                                    <div className="mb-6">
+                                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Transfer to</label>
+                                        <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100 flex items-center justify-between">
+                                            <span className="text-xs font-medium text-gray-500">+ 571 1234 2345</span>
                                         </div>
+                                    </div>
 
-                                        <div className="mb-6">
-                                            <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-3">Type</label>
-                                            <div className="grid grid-cols-2 gap-3">
-                                                <div className="bg-gray-50 border border-gray-100 rounded-2xl p-3 flex items-center justify-between">
-                                                    <div className="space-y-1">
-                                                        <span className="text-[10px] font-bold text-gray-900 block">Cold Transfer</span>
-                                                        <span className="text-[8px] text-gray-400 block leading-[1.2]">AI transfers without speaking</span>
-                                                    </div>
-                                                    <div className="w-3 h-3 rounded-full border-2 border-gray-200"></div>
+                                    <div className="mb-6">
+                                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-3">Type</label>
+                                        <div className="grid grid-cols-2 gap-3">
+                                            <div className="bg-gray-50 border border-gray-100 rounded-2xl p-3 flex items-center justify-between">
+                                                <div className="space-y-1">
+                                                    <span className="text-[10px] font-bold text-gray-900 block">Cold Transfer</span>
+                                                    <span className="text-[8px] text-gray-400 block leading-[1.2]">AI transfers without speaking</span>
                                                 </div>
-                                                <div className="bg-white border-2 border-blue-500 rounded-2xl p-3 flex items-center justify-between shadow-sm">
-                                                    <div className="space-y-1">
-                                                        <span className="text-[10px] font-bold text-gray-900 block">Warm Transfer</span>
-                                                        <span className="text-[8px] text-gray-400 block leading-[1.2]">AI briefs the next agent after transfer</span>
-                                                    </div>
-                                                    <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                                                </div>
+                                                <div className="w-3 h-3 rounded-full border-2 border-gray-200"></div>
                                             </div>
-                                        </div>
-
-                                        <div>
-                                            <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Handoff Message</label>
-                                            <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100 min-h-[80px]">
-                                                <span className="text-[10px] text-gray-400 leading-relaxed italic">
-                                                    Say hello to the agent and summarize the user problem to him.
-                                                </span>
+                                            <div className="bg-white border-2 border-blue-500 rounded-2xl p-3 flex items-center justify-between shadow-sm">
+                                                <div className="space-y-1">
+                                                    <span className="text-[10px] font-bold text-gray-900 block">Warm Transfer</span>
+                                                    <span className="text-[8px] text-gray-400 block leading-[1.2]">AI briefs the next agent after transfer</span>
+                                                </div>
+                                                <div className="w-3 h-3 rounded-full bg-blue-500"></div>
                                             </div>
                                         </div>
                                     </div>
-                                )}
+
+                                    <div>
+                                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Handoff Message</label>
+                                        <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100 min-h-[80px]">
+                                            <span className="text-[10px] text-gray-400 leading-relaxed italic">
+                                                Say hello to the agent and summarize the user problem to him.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

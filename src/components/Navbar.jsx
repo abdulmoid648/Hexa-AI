@@ -42,10 +42,10 @@ const Navbar = () => {
             { name: "Navigate IVR", path: "/product/navigate-ivr" },
         ],
         Deploy: [
-            { name: "Verified Phone Numbers", path: "#" },
+            { name: "Verified Phone Numbers", path: "/product/verified-phone-numbers" },
         ],
         Monitor: [
-            { name: "Post Call Analysis", path: "#" }
+            { name: "Post Call Analysis", path: "/product/post-call-analysis" }
         ]
     };
 
@@ -77,6 +77,7 @@ const Navbar = () => {
                             <Link
                                 to={link.path}
                                 className={`text-base font-medium transition-colors duration-150 flex items-center h-full ${activeDropdown === link.name ? "text-[#00A3FF]" : "text-gray-600 hover:text-gray-900"}`}
+                                onClick={() => setActiveDropdown(null)}
                             >
                                 {link.name}
                                 {link.hasDropdown && <ChevronDown isOpen={activeDropdown === link.name} />}
@@ -84,22 +85,23 @@ const Navbar = () => {
 
                             {/*  Menu for Product */}
                             {link.name === 'Product' && activeDropdown === 'Product' && (
-                                <div className="absolute top-20 left-40 w-[1000px] h-[400px] bg-white border border-gray-100 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] p-10 z-50 animate-dropdown-fade">
+                                <div className="absolute top-25 left-40 w-[1000px] h-[400px] bg-white border border-gray-100 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] p-10 z-50 animate-dropdown-fade">
                                     <div className="flex gap-20 justify-center  ">
                                         {Object.entries(productDropdown).map(([category, items], idx) => (
                                             <div key={category} className={`${idx < 2 ? 'border-r border-gray-300 pr-12' : ''}`}>
                                                 <h3 className="text-[#00A3FF]   text-base mb-6">{category}</h3>
                                                 <ul className="space-y-6">
-                                                    {items.map((item) => (
-                                                        <li key={item.name}>
-                                                            <Link
-                                                                to={item.path}
-                                                                className="text-gray-500 hover:text-gray-900 text-[15px] font-medium transition-colors"
-                                                            >
-                                                                {item.name}
-                                                            </Link>
-                                                        </li>
-                                                    ))}
+                                                     {items.map((item) => (
+                                                         <li key={item.name}>
+                                                             <Link
+                                                                 to={item.path}
+                                                                 className="text-gray-500 hover:text-gray-900 text-[12px] font-medium transition-colors"
+                                                                 onClick={() => setActiveDropdown(null)}
+                                                             >
+                                                                 {item.name}
+                                                             </Link>
+                                                         </li>
+                                                     ))}
                                                 </ul>
                                             </div>
                                         ))}
@@ -115,12 +117,14 @@ const Navbar = () => {
                     <Link
                         to="/login"
                         className="text-sm text-gray-700 font-medium hover:text-gray-900 transition-colors duration-150"
+                        onClick={() => setActiveDropdown(null)}
                     >
                         Login
                     </Link>
                     <Link
                         to="/signup"
                         className="inline-flex items-center justify-center gap-2 bg-[#2D2D2D] text-white text-sm font-medium rounded-xl hover:bg-gray-800 transition-all duration-150 h-11 px-6 shadow-sm"
+                        onClick={() => setActiveDropdown(null)}
                     >
                         Get Started
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
