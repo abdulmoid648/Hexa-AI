@@ -1,18 +1,44 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState(null);
+
+    useEffect(() => {
+        if (activeDropdown) {
+            document.body.classList.add('nav-dropdown-open');
+        } else {
+            document.body.classList.remove('nav-dropdown-open');
+        }
+        return () => document.body.classList.remove('nav-dropdown-open');
+    }, [activeDropdown]);
 
     const navLinks = [
-        { name: 'Product', path: '/product' },
+        { name: 'Product', path: '/product', hasDropdown: true },
+        { name: 'Use Cases', path: '#' },
         { name: 'Pricing', path: '/#pricing' },
         { name: 'Integrations', path: '/integrations' },
     ];
 
-    const ChevronDown = () => (
-        <svg className="w-4 h-4 ml-1 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    const productDropdown = {
+        Build: [
+            { name: "Call Transfer", path: "/product" },
+            { name: "Book Appointments", path: "/product/book-appointment" },
+            { name: "Knowledge Base", path: "#" },
+            { name: "Navigate IVR", path: "#" },
+        ],
+        Deploy: [
+            { name: "Verified Phone Numbers", path: "#" },
+        ],
+        Monitor: [
+            { name: "Post Call Analysis", path: "#" }
+        ]
+    };
+
+    const ChevronDown = ({ isOpen }) => (
+        <svg className={`w-4 h-4 ml-1 transition-all duration-300 ${isOpen ? "text-[#00A3FF] rotate-180 opacity-100" : "opacity-50"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
     );
@@ -28,16 +54,47 @@ const Navbar = () => {
                 </Link>
 
                 {/* Center: Nav Links (Desktop) */}
-                <div className="hidden md:flex items-center gap-8">
+                <div className="hidden md:flex items-center gap-8 h-full">
                     {navLinks.map((link) => (
-                        <Link
+                        <div
                             key={link.name}
-                            to={link.path}
-                            className="text-base font-medium text-gray-600 hover:text-gray-900 transition-colors duration-150 flex items-center"
+                            className="relative h-full flex items-center"
+                            onMouseEnter={() => link.hasDropdown && setActiveDropdown(link.name)}
+                            onMouseLeave={() => setActiveDropdown(null)}
                         >
-                            {link.name}
-                            {link.hasDropdown && <ChevronDown />}
-                        </Link>
+                            <Link
+                                to={link.path}
+                                className={`text-base font-medium transition-colors duration-150 flex items-center h-full ${activeDropdown === link.name ? "text-[#00A3FF]" : "text-gray-600 hover:text-gray-900"}`}
+                            >
+                                {link.name}
+                                {link.hasDropdown && <ChevronDown isOpen={activeDropdown === link.name} />}
+                            </Link>
+
+                            {/*  Menu for Product */}
+                            {link.name === 'Product' && activeDropdown === 'Product' && (
+                                <div className="absolute top-25 left-40 w-[1000px] h-[400px] bg-white border border-gray-100 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] p-10 z-50 animate-dropdown-fade">
+                                    <div className="flex gap-20 justify-center  ">
+                                        {Object.entries(productDropdown).map(([category, items], idx) => (
+                                            <div key={category} className={`${idx < 2 ? 'border-r border-gray-300 pr-12' : ''}`}>
+                                                <h3 className="text-[#00A3FF]   text-base mb-6">{category}</h3>
+                                                <ul className="space-y-6">
+                                                    {items.map((item) => (
+                                                        <li key={item.name}>
+                                                            <Link
+                                                                to={item.path}
+                                                                className="text-gray-500 hover:text-gray-900 text-[15px] font-medium transition-colors"
+                                                            >
+                                                                {item.name}
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     ))}
                 </div>
 
@@ -102,6 +159,14 @@ const Navbar = () => {
                         Get Started →
                     </Link>
                 </div>
+            )}
+
+            {/* Clickaway overlay to close dropdown */}
+            {activeDropdown && (
+                <div
+                    className="fixed inset-0 top-20 z-40"
+                    onMouseEnter={() => setActiveDropdown(null)}
+                />
             )}
         </nav>
     );

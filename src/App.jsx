@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Page from './components/Page'
 import IntegrationsPage from './components/IntegrationsPage'
 import ProductPage from './components/ProductPage'
+import BookAppointmentPage from './pages/Product/Book Appointment/BookAppointmentPage'
 import Login from './pages/Auth/Login'
 import Sign from './pages/Auth/Sign'
 import Footer from './components/Footer'
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Page />} />
         <Route path="/integrations" element={<IntegrationsPage />} />
         <Route path="/product" element={<ProductPage />} />
+        <Route path="/product/book-appointment" element={<BookAppointmentPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Sign />} />
       </Routes>

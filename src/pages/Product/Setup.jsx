@@ -1,4 +1,7 @@
 import React from 'react';
+import Setup1 from '../../assets/Setup1.gif';
+import Setup2 from '../../assets/Setup2.gif';
+import Setup3 from '../../assets/Setup3.gif';
 
 const Setup = () => {
     return (
@@ -13,9 +16,17 @@ const Setup = () => {
                     {/* Step 1 */}
                     <div className="rounded-3xl border border-[#EDF5FD] bg-white p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
                         {/* Visual Top Half */}
-                        <div className="relative h-[320px] w-full flex items-center justify-center p-6 bg-white shrink-0 rounded-2xl overflow-hidden mb-8">
-                            {/* Background Gradient */}
-                            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-pink-200/50 via-fuchsia-100/20 to-[#E8F0F8]"></div>
+                        <div
+                            className="relative h-[350px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8"
+                            style={{
+                                backgroundImage: `url(${Setup3})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat'
+                            }}
+                        >
+                            {/* White overlay for better text readability */}
+                            <div className="absolute inset-0 bg-white/85"></div>
 
                             {/* Inner Mockup */}
                             <div className="relative z-10 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-5 w-full max-w-[280px]">
@@ -59,7 +70,17 @@ const Setup = () => {
                     {/* Step 2 */}
                     <div className="rounded-3xl border border-[#EDF5FD] bg-white p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
                         {/* Visual Top Half */}
-                        <div className="relative h-[320px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8 bg-gradient-to-b from-rose-200 via-orange-100 to-orange-50">
+                        <div
+                            className="relative h-[350px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8"
+                            style={{
+                                backgroundImage: `url(${Setup2})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat'
+                            }}
+                        >
+                            {/* White overlay for better text readability */}
+                            <div className="absolute inset-0 bg-white/55"></div>
 
                             {/* Inner Mockup */}
                             <div className="relative z-10 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-3  max-w-[280px]  scale-90 origin-center">
@@ -120,14 +141,24 @@ const Setup = () => {
                     </div>
 
                     {/* Step 3 */}
-                    <div className="rounded-3xl border border-[#EDF5FD] bg-white p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
+                    <div className="rounded-3xl border border-[#EDF5FD] bg-white p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full ">
                         {/* Visual Top Half */}
-                        <div className="relative h-[320px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8 bg-gradient-to-b from-[#C8CAFF] to-[#B5D8F2]">
+                        <div
+                            className="relative h-[350px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8"
+                            style={{
+                                backgroundImage: `url(${Setup1})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat'
+                            }}
+                        >
+                            {/* White overlay for better text readability */}
+                            <div className="absolute inset-0 bg-white/55"></div>
 
                             {/* Inner Mockup */}
-                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-6 w-full max-w-[280px]">
-                                <div className="flex items-center justify-between mb-6">
-                                    <span className="text-gray-700 font-semibold text-sm">Prompt</span>
+                            <div className="relative z-10 bg-[#FCFBFC] rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-6 w-full max-w-[280px] max-h-[250px]">
+                                <div className="flex  items-center justify-between mb-6">
+                                    <span className="text-gray-700   text-sm">Prompt</span>
                                     <div className="w-5 h-5 rounded bg-yellow-400 flex items-center justify-center">
                                         <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -142,7 +173,7 @@ const Setup = () => {
                                             <span className="font-semibold text-gray-700 block mb-1">Step 03</span>
                                             Thank you for answering all the questions. I'd like to connect you with one of our specialized sales repetitive.
                                         </p>
-                                        <p className="text-[10px] text-gray-800 font-medium leading-relaxed italic">
+                                        <p className="text-[10px] text-gray-800 font-medium leading-relaxed">
                                             "If the user said yes, call 'transfer_call' to transfer the call to a human."
                                         </p>
                                     </div>

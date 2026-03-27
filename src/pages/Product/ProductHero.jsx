@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ProductHeroImg from '../../assets/ProductHero.gif';
 
 const ProductHero = () => {
     const [showTransfer, setShowTransfer] = useState(false);
@@ -22,14 +23,27 @@ const ProductHero = () => {
 
                     {/* Right Side: Visual Mockup */}
                     <div className="relative">
-                        {/* Background Purple Container */}
-                        <div className="bg-[#E9E4FF]/90 rounded-xl p-8 sm:p-12 h-[350px] sm:h-[480px] md:h-[450px]  flex items-center justify-center relative overflow-hidden transition-all duration-500">
-                            <div className="relative flex items-center justify-center -translate-y-8 -translate-x-4 md:-translate-y-12 md:-translate-x-12 lg:-translate-y-20 lg:-translate-x-15">
+                        {/* Main Container */}
+                        <div className="rounded-xl p-8 sm:p-12 h-[350px] sm:h-[480px] md:h-[450px] flex items-center justify-center relative overflow-hidden transition-all duration-500">
+
+                            {/* Background Layer with Filters (isolated from cards) */}
+                            <div
+                                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                                style={{
+                                    backgroundImage: `url(${ProductHeroImg})`,
+                                }}
+                            />
+
+                            {/* Lightening Overlay */}
+                            <div className="absolute inset-0 bg-white/70 pointer-events-none" />
+
+                            {/* Content Layer (Cards) */}
+                            <div className="relative z-10 flex items-center justify-center -translate-y-8 -translate-x-4 md:-translate-y-12 md:-translate-x-12 lg:-translate-y-20 lg:-translate-x-15">
 
                                 {/* Functions Card */}
                                 <div
                                     onClick={() => !showTransfer && setShowTransfer(true)}
-                                    className={` absolute origin-top-left  transition-all duration-700 ease-in-out bg-white rounded-2xl shadow-xl p-5 z-10 cursor-pointer 
+                                    className={` absolute  origin-top-left  transition-all duration-700 ease-in-out bg-white rounded-2xl shadow-xl p-5 z-10 cursor-pointer 
                                 ${showTransfer ? 'w-64 sm:w-72 transform rotate-0 scale-90' : 'w-64 sm:w-72 transform rotate-0 scale-50 hover:scale-90'}`}>
                                     <div className="flex items-center justify-between mb-3">
                                         <span className="text-gray-600 font-semibold text-xs tracking-tight">Functions</span>

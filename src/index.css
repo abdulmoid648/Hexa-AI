@@ -61,21 +61,57 @@ html {
 }
 
 @keyframes waveRipple {
-  0%, 100% { transform: scaleY(0.15); opacity: 0.4; }
-  12.5% { transform: scaleY(1); opacity: 1; }
-  25% { transform: scaleY(0.15); opacity: 0.4; }
-  37.5% { transform: scaleY(0.4); opacity: 0.6; }
-  50% { transform: scaleY(0.15); opacity: 0.4; }
-  62.5% { transform: scaleY(0.75); opacity: 0.8; }
-  75% { transform: scaleY(0.15); opacity: 0.4; }
-  87.5% { transform: scaleY(0.5); opacity: 0.7; }
-}
 
-@keyframes pumpBar {
-  0%, 100% {
+  0%,
+  100% {
+    transform: scaleY(0.15);
+    opacity: 0.4;
+  }
+
+  12.5% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  25% {
+    transform: scaleY(0.15);
+    opacity: 0.4;
+  }
+
+  37.5% {
     transform: scaleY(0.4);
     opacity: 0.6;
   }
+
+  50% {
+    transform: scaleY(0.15);
+    opacity: 0.4;
+  }
+
+  62.5% {
+    transform: scaleY(0.75);
+    opacity: 0.8;
+  }
+
+  75% {
+    transform: scaleY(0.15);
+    opacity: 0.4;
+  }
+
+  87.5% {
+    transform: scaleY(0.5);
+    opacity: 0.7;
+  }
+}
+
+@keyframes pumpBar {
+
+  0%,
+  100% {
+    transform: scaleY(0.4);
+    opacity: 0.6;
+  }
+
   50% {
     transform: scaleY(1);
     opacity: 1;
@@ -133,38 +169,84 @@ html {
 }
 
 @keyframes slideInLeftLoop {
-  0% { opacity: 0; transform: translateX(-20px); }
-  15% { opacity: 1; transform: translateX(0); }
-  75% { opacity: 1; transform: translateX(0); }
-  90% { opacity: 0; transform: translateX(20px); }
-  100% { opacity: 0; transform: translateX(20px); }
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  15% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  75% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  90% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
 }
 
 @keyframes fadeLineLoop {
-  0% { opacity: 0; stroke-dashoffset: 28; }
-  15% { opacity: 0.6; stroke-dashoffset: 0; }
-  75% { opacity: 0.6; stroke-dashoffset: 0; }
-  90% { opacity: 0; stroke-dashoffset: -28; }
-  100% { opacity: 0; stroke-dashoffset: -28; }
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 28;
+  }
+
+  15% {
+    opacity: 0.6;
+    stroke-dashoffset: 0;
+  }
+
+  75% {
+    opacity: 0.6;
+    stroke-dashoffset: 0;
+  }
+
+  90% {
+    opacity: 0;
+    stroke-dashoffset: -28;
+  }
+
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -28;
+  }
 }
 
 @keyframes expandBadge {
-  0%, 10% {
+
+  0%,
+  10% {
     width: 64px;
     opacity: 0;
     transform: scale(0.8);
   }
+
   20% {
-    width: 64px; /* Holds square shape while fading in */
+    width: 64px;
+    /* Holds square shape while fading in */
     opacity: 1;
     transform: scale(1);
   }
-  30%, 80% {
+
+  30%,
+  80% {
     width: min(100%, 320px);
     opacity: 1;
     transform: scale(1);
   }
-  90%, 100% {
+
+  90%,
+  100% {
     width: min(100%, 320px);
     opacity: 0;
     transform: scale(1);
@@ -284,4 +366,55 @@ html {
 
 .animate-bg-smooth {
   animation: bgSmooth 15s ease-in-out infinite;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.animate-dropdown-fade {
+  animation: dropdownFadeIn 0.3s ease-out forwards;
+}
+
+.custom-backdrop-blur {
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+@keyframes backdropFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+body.nav-dropdown-open::after {
+  content: "";
+  position: fixed;
+  top: 80px;
+  /* Below the 80px navbar */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 163, 255, 0.1);
+  /* Blue tint instead of dark tint */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 30;
+  /* Below the nav (z-50) but above content */
+  pointer-events: none;
+  /* Allows the React overlay to catch hover events */
+  animation: backdropFadeIn 0.3s ease-out forwards;
 }
