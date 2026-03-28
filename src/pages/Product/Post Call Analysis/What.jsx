@@ -1,5 +1,6 @@
 import React from 'react';
 import FeatureGif from '../../../assets/Product/Verified Phone Numbers/VerifiedFeature.gif';
+import SelectorIcon from '../../../assets/Product/Post Call Analysis/SelectorIcon.png';
 import { AlignLeft, Hash, Sliders } from 'lucide-react';
 
 const What = () => {
@@ -20,7 +21,7 @@ const What = () => {
             description: "Quantitative measurements. Example: Transaction amounts, call duration, or satisfaction."
         },
         {
-            icon: <Sliders className="w-5 h-5 text-[#111827]" />,
+            icon: <img src={SelectorIcon} alt="Selector" className="w-6 h-6 object-contain" />,
             title: "Selector",
             description: "Categorization from a fixed list. Example: Issue types, product categories, or resolution status"
         }
@@ -36,14 +37,14 @@ const What = () => {
                 }}
             />
             {/* Lightening Overlay */}
-            <div className="absolute inset-0 bg-white/70 pointer-events-none" />
+            <div className="absolute inset-0 bg-white/90 pointer-events-none" />
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">
                 <div className="mb-20 max-w-4xl">
-                    <h2 className="text-3xl md:text-[44px] font-medium text-[#111827] mb-6">
+                    <h2 className="text-2xl md:text-[44px] font-medium text-[#111827] mb-6">
                         What is post call analysis?
                     </h2>
-                    <p className="text-[#6B7280] text-lg leading-relaxed">
+                    <p className="text-[#6B7280] text-base leading-relaxed">
                         Post-call analysis is a powerful feature that automatically analyzes customer conversations after they have ended, helping you derive valuable insights from your calls. We provide several built-in analysis categories, and you can create custom categories to match your specific business needs.
                     </p>
                 </div>
@@ -53,15 +54,15 @@ const What = () => {
                     {features.map((feature, idx) => (
                         <div
                             key={idx}
-                            className="bg-white/40 backdrop-blur-sm p-8 rounded-[1.5rem] border border-gray-100 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
+                            className="bg-gray-50 backdrop-blur-sm p-6 rounded-[1.5rem] border border-gray-100 shadow-lg transition-all duration-300 flex flex-col h-full"
                         >
-                            <div className="w-12 h-12 bg-[#F0FBFF] rounded-xl flex items-center justify-center mb-10 shadow-sm border border-[#E0F4FF]">
+                            <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center mb-10 shadow-sm border border-[#E0F4FF]">
                                 {feature.icon}
                             </div>
-                            <h4 className="text-xl font-bold text-[#111827] mb-4">
+                            <h4 className="text-lg  text-[#111827] mb-4">
                                 {feature.title}
                             </h4>
-                            <p className="text-[#6B7280] text-sm leading-relaxed">
+                            <p className="text-[#6B7280] text-xs leading-relaxed">
                                 {feature.description}
                             </p>
                         </div>

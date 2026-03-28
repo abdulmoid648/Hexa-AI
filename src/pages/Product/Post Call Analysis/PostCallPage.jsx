@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PostHero from './PostHero';
 import What from './What';
+import PostStep from './PostStep';
 
 const PostCallPage = () => {
     useEffect(() => {
@@ -11,6 +12,7 @@ const PostCallPage = () => {
         <div className="bg-white">
             <PostHero />
             <What />
+            <PostStep />
         </div>
     );
 };

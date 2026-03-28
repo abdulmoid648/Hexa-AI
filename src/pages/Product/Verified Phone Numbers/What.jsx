@@ -29,7 +29,7 @@ const What = () => {
         <section className="relative py-24 overflow-hidden bg-white">
             {/* Background GIF */}
             <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat "
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat     "
                 style={{
                     backgroundImage: `url(${FeatureGif})`,
                 }}
@@ -49,7 +49,8 @@ const What = () => {
                             <img
                                 src={ScamImg}
                                 alt="Phone displaying Scam Likely"
-                                className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
+                                className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                                style={{ objectPosition: '40% center' }}
                             />
                         </div>
                     </div>
