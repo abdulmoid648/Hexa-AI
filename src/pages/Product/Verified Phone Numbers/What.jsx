@@ -1,5 +1,5 @@
 import React from 'react';
-import ScamImg from '../../../assets/Product/Verified Phone Numbers/Scam.png';
+import ScamImg from '../../../assets/Product/Verified Phone Numbers/Scam (2).png';
 import IncomingIcon from '../../../assets/Product/Verified Phone Numbers/Incoming call.png';
 import OutgoingIcon from '../../../assets/Product/Verified Phone Numbers/Outgoing.png';
 import DocumentIcon from '../../../assets/Product/Verified Phone Numbers/Document.png';
@@ -56,7 +56,7 @@ const What = () => {
                     </div>
 
                     {/* Right: Content */}
-                    <div className="space-y-8 mb-20 lg:max-w-md lg:-ml-30  ">
+                    <div className="space-y-8 mb-20  lg:-ml-40  ">
                         <div>
                             <h3 className="text-xl  text-[#111827] mb-6">
                                 Prevent "Scam Likely" or "Unknown" Tag
@@ -78,10 +78,9 @@ const What = () => {
                     {features.map((feature, idx) => (
                         <div
                             key={idx}
-                            className={`p-10 rounded-[2rem] bg-white transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border-2 ${feature.isHighlighted ? 'border-[#0081e6] ring-1 ring-[#0081e6] ring-opacity-10' : 'border-transparent'
-                                }`}
+                            className={`p-10 rounded-[1rem] bg-gray-50 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border-2 border-transparent`}
                         >
-                            <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-8 shadow-sm">
+                            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-8 shadow-sm">
                                 {feature.icon}
                             </div>
                             <h4 className="text-xl font-bold text-[#111827] mb-4">

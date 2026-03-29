@@ -5,6 +5,7 @@ import Step2 from '../../../assets/Product/Knowledge Base/Step2.gif';
 import Step3 from '../../../assets/Product/Knowledge Base/Step3.gif';
 import FileIcon from '../../../assets/File forward dual tone icon.png';
 
+
 const BulbIcon = ({ className = "h-6 w-6" }) => (
     <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         {/* Rays */}
@@ -18,6 +19,12 @@ const BulbIcon = ({ className = "h-6 w-6" }) => (
         <path d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z" fill="white" />
         <path d="M12 9V10M12 14V15M9 12H10M14 12H15M9.88 9.88L10.59 10.59M13.41 13.41L14.12 14.12M9.88 14.12L10.59 13.41M13.41 10.59L14.12 9.88" stroke="white" strokeWidth="1" strokeLinecap="round" />
     </svg>
+);
+
+const DocIcon = ({ active }) => (
+    <div className="relative shrink-0 flex items-center justify-center w-[18px] h-[18px]">
+        <img src={FileIcon} alt="File" className={`w-[16px] h-[16px] ${active ? '' : 'opacity-100'}`} />
+    </div>
 );
 
 const KnowledgeStep = () => {
@@ -44,26 +51,29 @@ const KnowledgeStep = () => {
                             <div className="absolute inset-0 bg-gradient-to-tr from-[#FDF2F8] to-[#EEF2FF] opacity-90"></div>
 
                             {/* Knowledge Base Mockup */}
-                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-5 w-full max-w-[220px]">
-                                <div className="flex items-center justify-between mb-6">
-                                    <div className="flex items-center gap-2">
-                                        <div className="grid h-7 w-7 place-items-center">
-                                            <BulbIcon className="h-6 w-6" />
+                            <div className="relative z-10 bg-[#FAFAFA] rounded-[10px] shadow-[0_15px_40px_-5px_rgba(0,0,0,0.1)] border border-white/60 overflow-hidden w-full max-w-[240px]">
+                                <div className="flex items-center justify-between px-4 pt-[18px] pb-3">
+                                    <div className="flex items-center gap-2.5">
+                                        <div className="grid place-items-center">
+                                            <BulbIcon className="h-5 w-5" />
                                         </div>
-                                        <span className="text-[11px] font-bold text-gray-700 tracking-tight">Knowledge Base</span>
+                                        <span className="text-[14px] font-[600] text-[#333333] tracking-tight hover:text-black">Knowledge Base</span>
                                     </div>
-                                    <div className="w-5 h-5 rounded bg-[#FFBE00] flex items-center justify-center text-white">
-                                        <Plus className="w-3.5 h-3.5" strokeWidth={3} />
+                                    <div className="w-[26px] h-[26px] rounded-[6px] bg-[#FFBE00] flex items-center justify-center -mr-1 shadow-sm">
+                                        <Plus className="w-[18px] h-[18px] text-white" strokeWidth={3} />
                                     </div>
                                 </div>
-                                <div className="space-y-2">
-                                    <div className="flex items-center gap-2 bg-gray-100/80 p-2 rounded-lg border border-gray-100">
-                                        <FileText className="w-3.5 h-3.5 text-gray-400" strokeWidth={2} />
-                                        <span className="text-[10px] font-bold text-gray-700">Terms & Conditions</span>
+                                <div className="pb-[14px] pt-1 flex flex-col">
+                                    <div className="flex items-center gap-2 bg-gray-100 border-y border-[#EAEAEA] px-5 py-2.5">
+                                        <div className='flex items-center gap-2 w-full bg-gray-200 rounded-sm p-2 mr-2 '>
+
+                                            <DocIcon active={true} badgeColor="bg-[#3B82F6]" />
+                                            <span className="text-[12px] font-[500] text-[#333333]">Terms & Conditions</span>
+                                        </div>
                                     </div>
-                                    <div className="flex items-center gap-2 p-2 rounded-lg">
-                                        <FileText className="w-3.5 h-3.5 text-gray-300" strokeWidth={2} />
-                                        <span className="text-[10px] font-medium text-gray-400">Privacy Policy</span>
+                                    <div className="flex items-center gap-2 px-5 py-2.5">
+                                        <DocIcon active={false} />
+                                        <span className="text-[12px] font-[500] text-[#6b7280]">Privacy Policy</span>
                                     </div>
                                 </div>
                             </div>
@@ -91,26 +101,30 @@ const KnowledgeStep = () => {
                                 backgroundRepeat: 'no-repeat'
                             }}
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#FEF2F2] to-[#FFF7ED] opacity-90"></div>
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#FEF2F2] to-[#FFF7ED] opacity-50"></div>
 
                             {/* Source Selection Mockup */}
-                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-5 w-full max-w-[190px]">
-                                <div className="bg-gray-100/50 rounded-lg p-2.5 mb-4 flex items-center gap-2 border border-gray-100">
-                                    <img src={FileIcon} alt="File" className="w-4 h-4" />
-                                    <span className="text-[10px] font-bold text-gray-600">Customer Service</span>
+                            <div className="relative z-10 bg-[#FAFAFA] rounded-[10px] shadow-[0_15px_40px_-5px_rgba(0,0,0,0.1)] border border-[#EDEDED] overflow-hidden w-full max-w-[240px] mx-auto">
+                                <div className="bg-gray-100 px-5 py-[7px]  flex items-center  border-b border-[#D4D4D4]/40 ">
+                                    <div className='flex items-center gap-2 w-full bg-gray-200 rounded-sm p-2 mr-2 '>
+                                        <DocIcon active={true} badgeColor="bg-[#475569]" />
+                                        <span className="text-[12px] font-[600] text-gray-600 tracking-tight">Customer Service</span>
+                                    </div>
                                 </div>
-                                <div className="space-y-2.5 ml-1">
-                                    <div className="flex items-center gap-2">
-                                        <img src={FileIcon} alt="File" className="w-3 h-3 opacity-50" />
-                                        <span className="text-[9px] font-medium text-gray-400">Sales Policy</span>
+
+
+                                <div className="flex flex-col py-2">
+                                    <div className="flex items-center gap-2 px-5 py-2">
+                                        <DocIcon active={false} />
+                                        <span className="text-[9px] font-[500] text-gray-600">Sales Policy</span>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <img src={FileIcon} alt="File" className="w-3 h-3" />
-                                        <span className="text-[9px]  text-gray-700">Customer Service</span>
+                                    <div className="flex items-center gap-2 px-5 py-2">
+                                        <DocIcon active={true} badgeColor="bg-[#3B82F6]" />
+                                        <span className="text-[9px] font-[500] text-gray-600">Customer Service</span>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <img src={FileIcon} alt="File" className="w-3 h-3 opacity-50" />
-                                        <span className="text-[9px] font-medium text-gray-400">Leaves Policy</span>
+                                    <div className="flex items-center gap-2 px-5 py-2">
+                                        <DocIcon active={false} />
+                                        <span className="text-[9px] font-[500] text-gray-600">Leaves Policy</span>
                                     </div>
                                 </div>
                             </div>
@@ -141,25 +155,26 @@ const KnowledgeStep = () => {
                             <div className="absolute inset-0 bg-gradient-to-br from-[#EEF2FF] to-[#E0E7FF] opacity-90"></div>
 
                             {/* Playground Mockup */}
-                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-4 w-full max-w-[260px]">
-                                <div className="flex items-center justify-between mb-3">
-                                    <span className="text-[11px] font-medium text-gray-400">Knowledge Base</span>
+                            <div className="relative z-10 bg-white rounded-lg shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-3 w-full max-w-[280px]">
+                                <div className="flex items-center justify-between mb-2">
+                                    <span className="text-[10px] font-medium text-gray-600">Knowledge Base</span>
                                     <div className="w-5 h-5 rounded-md bg-[#FFBE00] flex items-center justify-center text-white">
                                         <X className="w-3.5 h-3.5" strokeWidth={3} />
                                     </div>
                                 </div>
-                                <p className="text-[10px] text-gray-400 mb-4 font-medium opacity-80">Chat with Hexa Ai</p>
-                                <div className="bg-gray-50/50 p-4 rounded-xl border border-gray-100 mb-4">
-                                    <p className="text-[9px] font-medium text-gray-400 leading-relaxed">
+                                <hr className="border-gray-100 mb-1" />
+                                <p className="text-[9px] text-gray-400 mb-1 font-medium opacity-80">Chat with Hexa Ai</p>
+                                <div className="bg-gray-50/50 p-3 rounded-xl border border-gray-100 mb-2">
+                                    <p className="text-[8px] font-medium text-gray-400 leading-relaxed">
                                         To test the knowledge base, ask related questions in the test LLM area. The agent will automatically use the knowledge base content in its responses without needing prompt updates.
                                     </p>
                                 </div>
-                                <div className="relative">
-                                    <div className="bg-white border border-gray-100 rounded-lg p-2 flex items-center justify-between">
-                                        <span className="text-[9px] text-gray-400">Hi, How to test...</span>
-                                        <div className="bg-[#00A3FF] w-5 h-5 rounded flex items-center justify-center">
-                                            <SendHorizontal className="w-3 h-3 text-white" strokeWidth={2.5} />
-                                        </div>
+                                <div className="flex items-center gap-2 w-full ">
+                                    <div className="bg-white border border-gray-100 shadow-sm rounded-lg p-1.5 flex-1 flex items-center">
+                                        <span className="text-[9px] text-gray-600 font-medium">Hi, How to test...</span>
+                                    </div>
+                                    <div className="bg-[#00A3FF] w-[26px] h-[26px] rounded-full flex shrink-0 items-center justify-center shadow-md">
+                                        <SendHorizontal className="w-[10px] h-[10px] text-white -rotate-45 -ml-[1px] mt-[1px]" strokeWidth={2.5} />
                                     </div>
                                 </div>
                             </div>

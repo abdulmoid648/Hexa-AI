@@ -17,7 +17,7 @@ const NavigateStep = () => {
                         <div
                             className="relative h-[350px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8"
                             style={{
-                                backgroundImage: `url(${Step3})`,
+                                backgroundImage: `url(${Step1})`,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat'
@@ -144,7 +144,7 @@ const NavigateStep = () => {
                         <div
                             className="relative h-[350px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8"
                             style={{
-                                backgroundImage: `url(${Step1})`,
+                                backgroundImage: `url(${Step3})`,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat'

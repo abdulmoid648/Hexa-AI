@@ -2,6 +2,8 @@ import React from 'react';
 import Step1 from '../../../assets/Product/Navigate IVR/Step1.gif';
 import Step2 from '../../../assets/Product/Navigate IVR/Step2.gif';
 import Step3 from '../../../assets/Product/Navigate IVR/Step3.gif';
+import CheckIcon from '../../../assets/Product/Verified Phone Numbers/Check.png';
+import PhoneIcon from '../../../assets/Product/Verified Phone Numbers/Phone.png';
 const VerifiedStep = () => {
     return (
         <section className="py-24 bg-white">
@@ -18,13 +20,13 @@ const VerifiedStep = () => {
                         <div
                             className="relative h-[350px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8"
                             style={{
-                                backgroundImage: `url(${Step3})`,
+                                backgroundImage: `url(${Step1})`,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat'
                             }}
                         >
-                            {/* White overlay for better text readability */}
+                            {/* White overlay  */}
                             <div className="absolute inset-0 bg-white/85"></div>
 
                             {/* Inner Mockup */}
@@ -43,9 +45,7 @@ const VerifiedStep = () => {
                                 <div className="space-y-2">
                                     {[1, 2, 3].map((_, i) => (
                                         <div key={i} className="flex items-center gap-3 bg-[#F4F4F5] p-2.5 rounded-lg">
-                                            <svg className="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                            </svg>
+                                            <img src={PhoneIcon} alt="Phone" className="w-3.5 h-3.5 object-contain" />
                                             <span className="text-[11px] font-medium text-gray-500">+971 78643 3409</span>
                                         </div>
                                     ))}
@@ -78,33 +78,33 @@ const VerifiedStep = () => {
                             <div className="absolute inset-0 bg-white/55"></div>
 
                             {/* Inner Mockup */}
-                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-4 w-full max-w-[280px]">
-                                <div className="flex items-center justify-between mb-5">
-                                    <span className="text-gray-700 font-semibold text-sm">Business Details</span>
+                            <div className="relative z-10 bg-gray-100 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-4 w-full max-w-[280px]">
+                                <div className="flex items-center justify-between mb-3">
+                                    <span className="text-gray-500 font-semibold text-sm">Business Details</span>
                                     <div className="w-5 h-5 rounded bg-yellow-400 flex items-center justify-center">
                                         <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                         </svg>
                                     </div>
                                 </div>
-
-                                <div className="space-y-3">
+                                <hr className="border-gray-100 mb-2" />
+                                <div className="space-y-3 ">
                                     <div>
-                                        <label className="text-[9px] text-gray-400 mb-1 block">Business Name</label>
-                                        <div className="bg-white border border-gray-100 rounded-lg p-2.5">
-                                            <span className="text-[10px] text-gray-600 font-medium">Hexa Ai</span>
+                                        <label className="text-[9px] text-gray-400 mb-1 block ">Business Name</label>
+                                        <div className="bg-gray-200 border border-gray-100 rounded-lg p-0.5 ">
+                                            <span className="text-[10px] text-gray-400 font-medium">Hexa Ai</span>
                                         </div>
                                     </div>
                                     <div>
                                         <label className="text-[9px] text-gray-400 mb-1 block">Business Number</label>
-                                        <div className="bg-white border border-gray-100 rounded-lg p-2.5">
-                                            <span className="text-[10px] text-gray-600 font-medium">+ 571 1289 2345</span>
+                                        <div className="bg-gray-200 border border-gray-100 rounded-lg p-0.5">
+                                            <span className="text-[10px] text-gray-400 font-medium">+ 571 1289 2345</span>
                                         </div>
                                     </div>
                                     <div>
                                         <label className="text-[9px] text-gray-400 mb-1 block">Business Type</label>
-                                        <div className="bg-white border border-gray-100 rounded-lg p-2.5">
-                                            <span className="text-[10px] text-gray-600 font-medium">Technology Company</span>
+                                        <div className="bg-gray-200 border border-gray-100 rounded-lg p-0.5">
+                                            <span className="text-[10px] text-gray-400 font-medium">Technology Company</span>
                                         </div>
                                     </div>
                                 </div>
@@ -126,7 +126,7 @@ const VerifiedStep = () => {
                         <div
                             className="relative h-[350px] w-full flex items-center justify-center p-6 shrink-0 rounded-2xl overflow-hidden mb-8"
                             style={{
-                                backgroundImage: `url(${Step1})`,
+                                backgroundImage: `url(${Step3})`,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat'
@@ -136,7 +136,7 @@ const VerifiedStep = () => {
                             <div className="absolute inset-0 bg-white/55"></div>
 
                             {/* Inner Mockup */}
-                            <div className="relative z-10 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-5 w-full max-w-[280px]">
+                            <div className="relative z-10 bg-gray-100 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 p-5 w-full max-w-[280px]">
                                 <div className="flex items-center justify-between mb-5">
                                     <span className="text-gray-700 font-semibold text-sm">Verified Phone Numbers</span>
                                     <div className="w-5 h-5 rounded bg-yellow-400 flex items-center justify-center">
@@ -152,12 +152,8 @@ const VerifiedStep = () => {
 
                                 <div className="space-y-2">
                                     {[1, 2].map((_, i) => (
-                                        <div key={i} className="flex items-center gap-3 bg-[#F4F4F5] p-2.5 rounded-lg border border-gray-100">
-                                            <div className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center">
-                                                <svg className="w-2.5 h-2.5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                                </svg>
-                                            </div>
+                                        <div key={i} className="flex items-center gap-3 bg-gray-200 p-2.5 rounded-lg border border-gray-100">
+                                            <img src={CheckIcon} alt="Verified" className="w-4 h-4 object-contain" />
                                             <span className="text-[11px] font-medium text-gray-500">+971 78643 3409</span>
                                         </div>
                                     ))}
