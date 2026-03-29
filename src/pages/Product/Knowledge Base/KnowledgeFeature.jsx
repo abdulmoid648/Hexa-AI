@@ -22,14 +22,14 @@ const Knowledgefeature = () => {
 
                 <div className="grid md:grid-cols-2 gap-8">
                     {/* Cold Transfer Card */}
-                    <div className="bg-[#FAF9FA] rounded-[1rem] p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <div className="bg-[#FAF9FA] rounded-[1rem] p-10 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                         <h3 className="text-xl font-semibold text-gray-900 mb-4">Upload Webpages</h3>
                         <p className="text-base text-gray-500 mb-8 leading-relaxed">
                             Easily import content from your website to keep your AI agent
                             informed.
                         </p>
 
-                        <ul className="space-y-3">
+                        <ul className="space-y-5">
                             <li className="flex items-start gap-4">
                                 <div className="mt-0.5 w-5 h-5 rounded-full bg-[#52C45A] flex items-center justify-center shrink-0">
                                     <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
