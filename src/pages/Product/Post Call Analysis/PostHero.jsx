@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PostHeroImg from '../../../assets/Product/Post Call Analysis/PostHero.gif';
 import CallHistoryImg from '../../../assets/Product/Post Call Analysis/Call History.png';
 import NavigateBadge from '../../../assets/Product/Post Call Analysis/navigate.png';
+import logo from "../../../assets/logo.png";
 
 const PostHero = () => {
     const [step, setStep] = useState(0);
@@ -24,26 +25,31 @@ const PostHero = () => {
     }, [step]);
 
     return (
-        <section className="relative pt-32 pb-24 overflow-hidden bg-white">
+        <section className="relative pt-20 lg:pt-32 pb-24 overflow-hidden bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
                     {/* Left Side: Content */}
-                    <div className="max-w-xl mb-20">
-                        <span className="text-gray-400 font-medium mb-4 block tracking-wider uppercase text-sm">Build</span>
-                        <h1 className="text-5xl sm:text-4xl  text-gray-900 leading-[1.1] mb-6 tracking-tight">
-                            Turn Every Call Into <br />
-                            Actionable Insights <br />
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#4F7AFF] to-[#FE49FF]"> Post Call Analysis</span>
+                    <div className="max-w-xl mb-12 lg:mb-20 flex flex-col items-center lg:items-start text-center lg:text-left">
+                        {/* Logo above title on mobile */}
+                        <img src={logo} alt="Hexa AI Logo" className="h-16 w-auto mb-8 lg:hidden" />
+
+                        <span className="hidden lg:block text-gray-400 font-medium mb-4 tracking-wider uppercase text-sm">Build</span>
+
+                        <h1 className="text-3xl sm:text-5xl font-medium text-gray-900 leading-[1.1] mb-6 tracking-tight">
+                            Turn Every Call Into Actionable Insights  <br className='hidden lg:block' />
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#4F7AFF] to-[#FE49FF]">Post Call Analysis</span>
                         </h1>
-                        <p className="text-gray-400 text-lg leading-relaxed mb-10 max-w-md">
-                            Unlock the power of your customer conversations with Retell AI's Post-Call Analysis feature. Automatically analyze calls to uncover valuable insights, optimize performance, and make data-driven decisions.                        </p>
+
+                        <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-10 max-w-md">
+                            Unlock the power of your customer conversations with Retell AI's Post-Call Analysis feature. Automatically analyze calls to uncover valuable insights, optimize performance, and make data-driven decisions.
+                        </p>
                     </div>
 
                     {/* Right Side: Visual Mockup */}
                     <div className="relative">
                         {/* Large Purple Gradient Container */}
-                        <div className="rounded-[40px] w-full h-[500px] flex items-center justify-center relative overflow-hidden">
+                        <div className="rounded-[40px] w-full h-[320px] sm:h-[500px] flex items-center justify-center relative overflow-hidden">
                             {/* Background GIF */}
                             <div
                                 className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000"

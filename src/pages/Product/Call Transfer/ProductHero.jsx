@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import ProductHeroImg from '../../assets/ProductHero.gif';
-import logo from "../../assets/logo.png";
-import HandIcon from '../../assets/Product/Knowledge Base/HandIcon.png';
+import ProductHeroImg from '../../../assets/ProductHero.gif';
+import logo from "../../../assets/logo.png";
+import HandIcon from '../../../assets/Product/Knowledge Base/HandIcon.png';
 
 const ProductHero = () => {
     const [phase, setPhase] = useState(0);
@@ -15,14 +15,8 @@ const ProductHero = () => {
     // Phase 7: Card shrinks
 
     const showTransfer = phase >= 1 && phase <= 6;
-    const showHand = phase >= 2 && phase <= 3 || phase === 5; // Re-show or keep during hold? Actually user wants it to go back same way.
-
-    // Revised Hand logic:
-    // Phase 2: Slide In
-    // Phase 3: Click
-    // Phase 4: Stay (Click feedback)
-    // Phase 5: Stay (Viewing)
-    // Phase 6: Slide Out
+    const showHand = phase >= 2 && phase <= 3 || phase === 5; 
+    
     const handActive = phase >= 2 && phase <= 5;
     const showTransferCard = phase >= 4 && phase <= 6;
 
@@ -44,10 +38,10 @@ const ProductHero = () => {
                         {/* Logo above title on mobile */}
                         <img src={logo} alt="Hexa AI Logo" className="h-14 w-auto mb-8 lg:hidden" />
 
-                        <span className="text-gray-400 font-medium mb-4 md:-mt-40 block tracking-wider uppercase text-base">Build</span>
-                        <h1 className="text-2xl sm:text-5xl font-medium text-gray-900 leading-[1.1] mb-6 tracking-tight">
-                            Power your AI Agent  with <br />
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-fuchsia-500"> Call Transfer</span>
+                        <span className="text-gray-400 font-medium mb-4 md:-mt-40 block tracking-wider uppercase text-xs">Build</span>
+                        <h1 className="text-4xl sm:text-6xl font-medium text-gray-900 leading-[1.1] mb-6 tracking-tight">
+                            Power your AI Agent <br />
+                            with <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-fuchsia-500">Call Transfer</span>
                         </h1>
                         <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-10 max-w-sm">
                             Streamline customer calls with Hexa AI's fast, context-rich, and personalized AI-powered call transfer options.
@@ -57,11 +51,11 @@ const ProductHero = () => {
                     {/* Right Side: Visual Mockup */}
                     <div className="relative flex flex-col items-center">
                         {/* Main Container */}
-                        <div className="w-full bg-[#E9E9FF] rounded-[4.5rem] p-8 sm:p-12 h-[380px] sm:h-[480px] md:h-[450px] flex items-center justify-center relative transition-all duration-500">
+                        <div className="w-full bg-[#E9E9FF] rounded-[2.5rem] p-8 sm:p-12 h-[380px] sm:h-[480px] md:h-[450px] flex items-center justify-center relative transition-all duration-500">
 
                             {/* Background Layer (Hidden on mobile for the purple design) */}
                             <div
-                                className="absolute inset-0 rounded-xl bg-cover bg-center bg-no-repeat hidden md:block"
+                                className="absolute inset-0 bg-cover bg-center bg-no-repeat hidden md:block"
                                 style={{
                                     backgroundImage: `url(${ProductHeroImg})`,
                                 }}
@@ -77,11 +71,11 @@ const ProductHero = () => {
                                 <div className="relative">
                                     <div
                                         onClick={() => setPhase(1)}
-                                        className={`  origin-top-left transition-all duration-700 ease-in-out bg-white rounded-2xl shadow-xl p-5 z-10 cursor-pointer 
-                                    ${showTransfer
-                                                ? 'w-64 sm:w-72 transform rotate-0 scale-60 sm:scale-70 md:scale-90'
-                                                : 'w-64 sm:w-72 transform rotate-0 scale-30 md:scale-50 hover:scale-90'
-                                            }`}>
+                                        className={` origin-top-left transition-all duration-700 ease-in-out bg-white rounded-2xl shadow-xl p-5 z-10 cursor-pointer 
+                                    ${showTransfer 
+                                        ? 'w-64 sm:w-72 transform rotate-0 scale-60 sm:scale-70 md:scale-90' 
+                                        : 'w-64 sm:w-72 transform rotate-0 scale-30 md:scale-50 hover:scale-90'
+                                    }`}>
                                         <div className="flex items-center justify-between mb-3">
                                             <span className="text-gray-600 font-semibold text-xs tracking-tight">Functions</span>
                                             <button
@@ -112,14 +106,13 @@ const ProductHero = () => {
                                                 <span className="text-[10px] font-medium text-gray-600">Calendar</span>
                                             </div>
                                         </div>
-
                                     </div>
 
                                     {/* Animated Hand Cursor (Sibling of scaled card, so it doesn't shrink) */}
                                     <div
                                         className={`absolute pointer-events-none z-30 transform transition-all origin-top-left
                                             ${handActive
-                                                ? 'top-[10px] right-[90px] sm:top-[12px] sm:right-[30px] opacity-100 scale-75 md:scale-110'
+                                                ? 'top-[22px] right-[22px] sm:top-[12px] sm:right-[12px] opacity-100 scale-75 md:scale-110'
                                                 : 'top-[30px] right-[-60px] opacity-0 scale-75 md:scale-100'
                                             }`}
                                         style={{
@@ -132,12 +125,12 @@ const ProductHero = () => {
                                 </div>
 
                                 {/* Transfer Call Card */}
-                                <div className={`absolute w-72 md:w-76 bg-white rounded-3xl shadow-2xl border border-gray-100 p-5 z-20 
+                                <div className={`absolute w-72 md:w-96 bg-white rounded-xl shadow-2xl border border-gray-100 p-5 z-20 
                                     transition-all duration-[1000ms] ease-in-out
-                                    translate-x-40 translate-y-35
+                                    translate-x-4 translate-y-20
                                     sm:translate-x-28 sm:translate-y-30
-                                    md:translate-x-60 md:translate-y-38
-                                    scale-40 sm:scale-55 md:scale-70 origin-top-left hover:scale-90
+                                    md:translate-x-52 md:translate-y-38
+                                    scale-75 sm:scale-55 md:scale-70 origin-top-left hover:scale-90
                                     ${showTransferCard ? 'opacity-100 translate-y-16' : 'opacity-0 translate-y-28 pointer-events-none'}`}>
                                     <div className="flex items-center justify-between mb-4">
                                         <h3 className="text-sm font-bold text-gray-900 tracking-tight">Transfer Call</h3>
@@ -168,7 +161,7 @@ const ProductHero = () => {
                                                 </div>
                                                 <div className="w-3 h-3 rounded-full border-2 border-gray-200 flex-shrink-0"></div>
                                             </div>
-                                            <div className="bg-white border-2 border-gray-100 rounded-2xl p-3 flex items-center justify-between shadow-sm">
+                                            <div className="bg-white border-2 border-blue-500 rounded-2xl p-3 flex items-center justify-between shadow-sm">
                                                 <div className="space-y-1">
                                                     <span className="text-[10px] font-bold text-gray-900 block">Warm Transfer</span>
                                                     <span className="text-[8px] text-gray-400 block leading-[1.2]">AI briefs the next agent after transfer</span>

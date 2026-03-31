@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Search, ArrowRight } from "lucide-react";
 import logoImg from "../../assets/logo.png";
-import zapierLogo from "../../assets/Zappier.png";
-import makeLogo from "../../assets/Make.png";
-import n8nLogo from "../../assets/I.png";
+import Automation from "./Automation";
+import automationBg from "../../assets/Integration/Automation.gif";
 
 const categories = [
     "All",
@@ -28,18 +27,6 @@ const categoryDescriptions = {
 };
 
 const integrationsData = [
-    { name: "Zapier", category: "All", description: "Turn your voice AI agents into action-driven assistants that execute real-world tasks across thousands of apps without custom coding.", icon: zapierLogo },
-    { name: "n8n", category: "Retail", description: "Build real-time AI voice agents that execute workflows across your entire tech stack - no code required.", icon: n8nLogo },
-    { name: "Make", category: "Scheduling", description: "Empower your AI voice agents to orchestrate complex workflows across any system through natural conversation.", icon: makeLogo },
-    { name: "Zapier", category: "Telephony", description: "Turn your voice AI agents into action-driven assistants that execute real-world tasks across thousands of apps without custom coding.", icon: zapierLogo },
-    { name: "n8n", category: "CRM", description: "Build real-time AI voice agents that execute workflows across your entire tech stack - no code required.", icon: n8nLogo },
-    { name: "Make", category: "Customer Support & CX", description: "Empower your AI voice agents to orchestrate complex workflows across any system through natural conversation.", icon: makeLogo },
-    { name: "Zapier", category: "Automation", description: "Turn your voice AI agents into action-driven assistants that execute real-world tasks across thousands of apps without custom coding.", icon: zapierLogo },
-    { name: "n8n", category: "Automation", description: "Build real-time AI voice agents that execute workflows across your entire tech stack - no code required.", icon: n8nLogo },
-    { name: "Make", category: "Automation", description: "Empower your AI voice agents to orchestrate complex workflows across any system through natural conversation.", icon: makeLogo },
-    { name: "Zapier", category: "Data", description: "Turn your voice AI agents into action-driven assistants that execute real-world tasks across thousands of apps without custom coding.", icon: zapierLogo },
-    { name: "n8n", category: "Data", description: "Build real-time AI voice agents that execute workflows across your entire tech stack - no code required.", icon: n8nLogo },
-    { name: "Make", category: "Telephony", description: "Empower your AI voice agents to orchestrate complex workflows across any system through natural conversation.", icon: makeLogo },
 ];
 
 const IntegrationsHero = () => (
@@ -69,18 +56,29 @@ const IntegrationsHero = () => (
 const IntegrationsGrid = () => {
     const [activeTab, setActiveTab] = useState("Automation");
     return (
-        <div className="relative bg-sky-50 border-t border-gray-100/50">
-            <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white to-transparent pointer-events-none" />
-            <div className="max-w-4xl mx-auto px-4 py-16">
-                <div className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar gap-3 pb-8 border-b border-gray-200/60">
+        <div className="relative bg-sky-100 border-t border-sky-100/50 overflow-hidden">
+            <div
+                className="absolute inset-0 z-0 pointer-events-none"
+                style={{
+                    backgroundImage: `url(${automationBg})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    opacity: 0.1
+                }}
+            />
+            <div className="absolute inset-0 z-0 bg-white/60 pointer-events-none" />
+            <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white to-transparent pointer-events-none z-[1]" />
+            <div className="max-w-4xl mx-auto px-4 py-16 relative z-10">
+                <div className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar gap-3 pt-4 pb-8 border-b border-gray-200/60">
                     {categories.map((category) => (
                         <button
                             key={category}
                             onClick={() => setActiveTab(category)}
-                            className={`whitespace-nowrap px-6 py-2.5 rounded-xl border transition-all duration-200 text-sm font-medium
+                            className={`whitespace-nowrap px-8 py-3.5 rounded-2xl transition-all duration-200 text-[15px] font-semibold
                 ${activeTab === category
-                                    ? "border-cyan-400 text-cyan-600 bg-white shadow-sm"
-                                    : "border-gray-200/50 text-gray-500 bg-white/50 hover:bg-white"
+                                    ? "text-cyan-600 bg-white shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)] scale-105 z-10 relative"
+                                    : "text-gray-500 bg-white/50 hover:bg-white hover:text-slate-700 hover:shadow-sm"
                                 }`}
                         >
                             {category}
@@ -88,41 +86,22 @@ const IntegrationsGrid = () => {
                     ))}
                 </div>
 
-                <div className="mt-16 text-left">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-2">
-                        {activeTab === "All" ? "Featured Integrations" : activeTab}
-                    </h2>
-                    <p className="text-gray-600 text-lg max-w-2xl leading-relaxed">
-                        {categoryDescriptions[activeTab]}
-                    </p>
+                {activeTab !== "Automation" && (
+                    <div className="mt-16 text-left">
+                        <h2 className="text-3xl font-bold text-gray-800 mb-2">
+                            {activeTab === "All" ? "Featured Integrations" : activeTab}
+                        </h2>
+                        <p className="text-gray-600 text-lg max-w-2xl leading-relaxed">
+                            {categoryDescriptions[activeTab]}
+                        </p>
+                    </div>
+                )}
+
+                <div className="relative mt-10">
+                    <Automation activeTab={activeTab} />
                 </div>
 
-                <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:-mr-20 md:-ml-3">
-                    {integrationsData
-                        .filter(item => activeTab === "All" || item.category === activeTab)
-                        .map((int) => (
-                            <div
-                                key={int.name}
-                                className="group flex flex-col items-start bg-white p-8 rounded-[1.5rem] border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 text-left w-full max-w-[650px] min-h-[100px]"
-                            >
-                                <h3 className="text-2xl md:text-xl font-bold text-slate-800 ml-25">{int.name}</h3>
-                                <div className="flex items-start gap-5 w-full">
-                                    <div className={`shrink-0 w-20 h-20 rounded-2xl ${int.color || ""} flex items-center justify-center text-white font-bold text-xl shadow-lg ring-4 ring-white overflow-hidden -ml-4 -mt-6`}>
-                                        {int.icon ? (
-                                            <img src={int.icon} alt={int.name} className="w-full h-full object-cover p-1" />
-                                        ) : (
-                                            int.name[0]
-                                        )}
-                                    </div>
-                                    <p className="text-slate-500 text-[12px] leading-snug">
-                                        {int.description}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                </div>
-
-                {integrationsData.filter(item => activeTab === "All" || item.category === activeTab).length === 0 && (
+                {activeTab !== "Automation" && activeTab !== "All" && integrationsData.filter(item => activeTab === "All" || item.category === activeTab).length === 0 && (
                     <div className="mt-16 py-12 px-4 rounded-[2rem] bg-white/50 border border-dashed border-gray-200">
                         <p className="text-gray-500 text-center">No integrations found for this category yet. Coming soon!</p>
                     </div>

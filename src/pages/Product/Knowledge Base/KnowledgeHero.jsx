@@ -3,6 +3,7 @@ import KnowledgeHeroImg from '../../../assets/Product/Knowledge Base/KnowledgeHe
 import KnowledgeBaseImg from '../../../assets/Product/Knowledge Base/Knowledge Base.png';
 import CustomerServiceImg from '../../../assets/Product/Knowledge Base/Customer Service.png';
 import HandIcon from '../../../assets/Product/Knowledge Base/HandIcon.png';
+import logo from "../../../assets/logo.png";
 
 const KnowledgeHero = () => {
     const [phase, setPhase] = useState(0);
@@ -24,18 +25,23 @@ const KnowledgeHero = () => {
     }, [phase]);
 
     return (
-        <section className="relative pt-32 pb-24 overflow-hidden bg-white">
+        <section className="relative pt-20 lg:pt-32 pb-24 overflow-hidden bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
 
                     {/* Left Side: Content */}
-                    <div className="max-w-xl mb-20 lg:mb-0 lg:col-span-5">
-                        <span className="text-gray-400 font-medium mb-4 block tracking-wider uppercase text-sm">Build</span>
-                        <h1 className="text-5xl sm:text-5xl font-medium text-gray-900 leading-[1.1] mb-6 tracking-tight">
-                            Power your AI Agent <br />
-                            with <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#4F7AFF] to-[#FE49FF]">Knowledge Base</span>
+                    <div className="max-w-xl mb-12 lg:mb-0 lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left">
+                        {/* Logo above title on mobile */}
+                        <img src={logo} alt="Hexa AI Logo" className="h-16 w-auto mb-8 lg:hidden" />
+
+                        <span className="hidden lg:block text-gray-400 font-medium mb-4 tracking-wider uppercase text-sm">Build</span>
+
+                        <h1 className="text-2xl md:text-4xl font-medium text-gray-900 leading-[1.1] mb-6 tracking-tight">
+                            Power your AI Agent <br /> with
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#4F7AFF] to-[#FE49FF]"> Knowledge Base</span>
                         </h1>
-                        <p className="text-gray-400 text-lg leading-relaxed mb-10 max-w-md">
+
+                        <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-10 max-w-md">
                             Ensure your AI agent delivers precise, up-to-date responses every time. Hexa Ai Knowledge Base feature seamlessly integrates webpages, documents, and custom content to keep your agent informed and efficient.
                         </p>
                     </div>
@@ -43,7 +49,7 @@ const KnowledgeHero = () => {
                     {/* Right Side: Visual Mockup */}
                     <div className="relative lg:col-span-7">
                         {/* Large Purple Gradient Container */}
-                        <div className="rounded-[40px] w-full h-[500px] flex items-center justify-center relative overflow-hidden">
+                        <div className="rounded-[40px] w-full max-w-4xl h-[320px] sm:h-[500px] flex items-center justify-center relative overflow-hidden">
                             {/* Background GIF */}
                             <div
                                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"

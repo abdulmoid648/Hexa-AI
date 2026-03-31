@@ -3,6 +3,7 @@ import MobileImg from '../../../assets/Product/Verified Phone Numbers/Mobile.png
 import VerifiedImg from '../../../assets/Product/Verified Phone Numbers/VerifiedHero.gif';
 import SpamBadge from '../../../assets/Product/Verified Phone Numbers/Spam Tag.png';
 import TrustBadge from '../../../assets/Product/Verified Phone Numbers/Improve Trust.png';
+import logo from "../../../assets/logo.png";
 
 const VerifiedHero = () => {
     const [step, setStep] = useState(0);
@@ -33,19 +34,23 @@ const VerifiedHero = () => {
     }, []);
 
     return (
-        <section className="relative pt-32 pb-24 overflow-hidden bg-white">
+        <section className="relative pt-20 lg:pt-32 pb-24 overflow-hidden bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
                     {/* Left Side: Content */}
-                    <div className="max-w-xl mb-20">
-                        <span className="text-gray-400 font-medium mb-4 block tracking-wider uppercase text-sm">Build</span>
-                        <h1 className="text-5xl sm:text-5xl text-gray-900 leading-[1.1] mb-6 tracking-tight">
-                            Ensure Your Calls Get  <br />
-                            Answered with
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-fuchsia-500"> Verified <br /> Phone Numbers</span>
+                    <div className="max-w-xl mb-12 lg:mb-20 flex flex-col items-center lg:items-start text-center lg:text-left">
+                        {/* Logo above title on mobile */}
+                        <img src={logo} alt="Hexa AI Logo" className="h-16 w-auto mb-8 lg:hidden" />
+
+                        <span className="hidden lg:block text-gray-400 font-medium mb-4 tracking-wider uppercase text-sm">Build</span>
+
+                        <h1 className="text-3xl sm:text-5xl font-medium text-gray-900 leading-[1.1] mb-6 tracking-tight">
+                            Ensure Your Calls Get Answered with <br className="hidden lg:block" />
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-fuchsia-500">Verified Phone Numbers</span>
                         </h1>
-                        <p className="text-gray-400 text-base leading-relaxed mb-10 max-w-sm">
+
+                        <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-10 max-w-sm">
                             Boost trust and credibility in your call campaigns with Retell AI's Verified Phone Numbers. Reduce the chances of your calls being flagged as spam and improve answer rates to make every outreach effort count.
                         </p>
                     </div>
@@ -66,7 +71,7 @@ const VerifiedHero = () => {
 
                             {/* Floating Badge: Spam Tag (Top Left) */}
                             <div
-                                className="absolute top-[30%] left-[-8%] sm:left-[1%] z-20"
+                                className="absolute top-[30%] sm:top-[30%] left-[-3%] sm:left-[1%] z-20 px-4 mb-4"
                                 style={{
                                     opacity: step >= 3 ? 1 : 0,
                                     transform: step >= 3 ? 'translateX(0)' : 'translateX(-30px)',
@@ -76,13 +81,13 @@ const VerifiedHero = () => {
                                 <img
                                     src={SpamBadge}
                                     alt="Remove Spam Tag"
-                                    className="w-40 sm:w-48 h-auto drop-shadow-lg"
+                                    className="w-34 sm:w-48 h-auto drop-shadow-lg"
                                 />
                             </div>
 
                             {/* Floating Badge: Improve Trust (Bottom Right) */}
                             <div
-                                className="absolute bottom-[12%] right-[-5%] sm:right-[2%] z-20"
+                                className="absolute sm:bottom-[12%] bottom-[12%] right-[2%] sm:right-[2%] z-20"
                                 style={{
                                     opacity: step >= 3 ? 1 : 0,
                                     transform: step >= 3 ? 'translateX(0)' : 'translateX(30px)',
@@ -92,7 +97,7 @@ const VerifiedHero = () => {
                                 <img
                                     src={TrustBadge}
                                     alt="Improve Trust"
-                                    className="w-40 sm:w-48 h-auto drop-shadow-lg"
+                                    className="w-34 sm:w-48 h-auto drop-shadow-lg"
                                 />
                             </div>
 
@@ -106,7 +111,7 @@ const VerifiedHero = () => {
                                         style={{ transform: 'translateY(35%)' }}
                                     />
                                     {/* On-screen content */}
-                                    <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ top: ' 10%' }}>
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center translate-y-[40px] sm:translate-y-10" >
                                         {/* Spam Likely - appears at step 1 blurred, clears at step 3 */}
                                         <h2
                                             className="text-white text-2xl sm:text-3xl font-bold tracking-tight"

@@ -80,10 +80,10 @@ const KnowledgeStep = () => {
                         </div>
                         {/* Text Bottom Half */}
                         <div className="px-2 pb-4 flex flex-col">
-                            <h3 className="text-[22px] font-semibold text-[#333333] mb-3 tracking-tight">
+                            <h3 className="text-[15px] md:text-[22px] font-semibold text-[#333333] mb-3 tracking-tight">
                                 Create a knowledge base in Hexa Ai
                             </h3>
-                            <p className="text-[14px] text-[#6b7280] leading-relaxed">
+                            <p className="text-[12px] md:text-[14px] text-[#6b7280] leading-relaxed">
                                 Navigate to the “Knowledge Base” tab and click the “Add” button. Choose your source: URL, File, or Text.
                             </p>
                         </div>
@@ -131,10 +131,10 @@ const KnowledgeStep = () => {
                         </div>
                         {/* Text Bottom Half */}
                         <div className="px-2 pb-4 flex flex-col">
-                            <h3 className="text-[22px] font-semibold text-[#333333] mb-3 tracking-tight">
+                            <h3 className="text-[15px] md:text-[22px] font-semibold text-[#333333] mb-3 tracking-tight">
                                 Add the knowledge base to your agent
                             </h3>
-                            <p className="text-[14px] text-[#6b7280] leading-relaxed">
+                            <p className="text-[12px] md:text-[14px] text-[#6b7280] leading-relaxed">
                                 In the agent editor, select your knowledge items for accurate responses.
                             </p>
                         </div>
@@ -174,17 +174,17 @@ const KnowledgeStep = () => {
                                         <span className="text-[9px] text-gray-600 font-medium">Hi, How to test...</span>
                                     </div>
                                     <div className="bg-[#00A3FF] w-[26px] h-[26px] rounded-full flex shrink-0 items-center justify-center shadow-md">
-                                        <SendHorizontal className="w-[10px] h-[10px] text-white -rotate-45 -ml-[1px] mt-[1px]" strokeWidth={2.5} />
+                                        <SendHorizontal className="w-[12px] h-[12px] text-white -rotate-45 -ml-[1px] mt-[1px]" strokeWidth={3.5} />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         {/* Text Bottom Half */}
                         <div className="px-2 pb-4 flex flex-col">
-                            <h3 className="text-[22px] font-semibold text-[#333333] mb-3 tracking-tight">
+                            <h3 className="text-[15px] md:text-[22px] font-semibold text-[#333333] mb-3 tracking-tight">
                                 Test the knowledge base in the playground
                             </h3>
-                            <p className="text-[14px] text-[#6b7280] leading-relaxed">
+                            <p className="text-[12px] md:text-[14px] text-[#6b7280] leading-relaxed">
                                 Ask a related question in the test LLM area to verify the knowledge base integration.
                             </p>
                         </div>
